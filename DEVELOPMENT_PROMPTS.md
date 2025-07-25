@@ -58,16 +58,17 @@ Create H2 database configuration in backend/ folder:
 - Create backend/src/main/resources/application.yml with H2 setup
 - Configure H2 console, JWT settings, and server port 8080
 - Create backend/src/main/resources/data.sql with sample data
-- Add default users: admin/admin123 (ADMIN), doctor/doctor123 (DOCTOR)
+- Add default users: admin@clinic.com/admin123 (ADMIN), doctor@clinic.com/doctor123 (DOCTOR)
 ```
 
 ### **Prompt 3: Create User Entity**
 ```
 Create User entity in backend/src/main/java/com/dentalclinic/model/User.java:
 
-- Fields: id, username, passwordHash, role (enum), firstName, lastName, active, createdAt
+- Fields: id, email, passwordHash, role (enum), firstName, lastName, active, createdAt
 - JPA annotations for database mapping
 - Role enum: ADMIN, DOCTOR
+- Email field should be unique and used for login
 - Constructors, getters, setters
 ```
 
@@ -95,9 +96,9 @@ Create main app structure in frontend/src/:
 ```
 Create TypeScript interfaces in frontend/src/types/:
 
-- User.ts interface matching backend User entity
+- User.ts interface matching backend User entity (with email field)
 - ApiResponse.ts for standard API responses
-- AuthTypes.ts for login/auth related types
+- AuthTypes.ts for login/auth related types (email/password login)
 - Common.ts for shared types
 ```
 
@@ -128,7 +129,7 @@ Create API client in frontend/src/services/api/:
 Create User repository in backend/src/main/java/com/dentalclinic/repository/UserRepository.java:
 
 - Extend JpaRepository<User, Long>
-- Add method: findByUsername(String username)
+- Add method: findByEmail(String email)
 - Add method: findByRole(Role role)
 - Add method: findByActiveTrue()
 - Add custom query for user statistics
@@ -138,8 +139,8 @@ Create User repository in backend/src/main/java/com/dentalclinic/repository/User
 ```
 Create authentication controller in backend/src/main/java/com/dentalclinic/controller/AuthController.java:
 
-- POST /api/auth/login endpoint
-- Login request/response DTOs
+- POST /api/auth/login endpoint (email/password)
+- Login request/response DTOs (email, password)
 - JWT token generation
 - Password validation with BCrypt
 - Return user info and token
@@ -194,10 +195,10 @@ Create authentication service in frontend/src/services/auth/AuthService.ts:
 Create login page in frontend/src/pages/auth/LoginPage.tsx:
 
 - Split-screen layout with branding
-- Role selector (Admin/Doctor)
-- Form with username/password fields
+- Form with email/password fields (no role selector)
 - Loading states and error handling
 - Corona React styling
+- Auto-redirect based on user role after login
 ```
 
 ### **Prompt 16: Create Protected Route**
@@ -227,8 +228,8 @@ Create user management page in frontend/src/pages/admin/UserManagement.tsx:
 Create add user modal in frontend/src/components/admin/AddUserModal.tsx:
 
 - Form for creating new doctor
-- Username/password fields
-- Form validation
+- Email/password fields
+- Form validation (email format validation)
 - Role selection (Doctor only)
 - Success/error handling
 ```
@@ -261,7 +262,7 @@ Create error handling in backend/src/main/java/com/dentalclinic/config/GlobalExc
 ```
 Create Patient entity in backend/src/main/java/com/dentalclinic/model/Patient.java:
 
-- Fields: id, firstName, lastName, phone, dateOfBirth, address, assignedDoctorId
+- Fields: id, firstName, lastName, email, phone, dateOfBirth, address, assignedDoctorId
 - Medical fields: allergies, medicalConditions, emergencyContact
 - JPA annotations and relationships
 - Constructors, getters, setters
@@ -273,7 +274,7 @@ Create Patient repository in backend/src/main/java/com/dentalclinic/repository/P
 
 - Extend JpaRepository<Patient, Long>
 - findByAssignedDoctorId() method
-- findByFirstNameContainingOrLastNameContaining() for search
+- findByFirstNameContainingOrLastNameContainingOrEmailContaining() for search
 - findByDateOfBirthBetween() for age filtering
 - Custom query for patient statistics
 ```

@@ -50,7 +50,6 @@ graph TB
     subgraph "External Services"
         O[Medical API Integration]
         P[Web Search Services]
-        Q[Email/SMS Services]
     end
     
     A --> E
@@ -69,7 +68,6 @@ graph TB
     I --> P
     
     H --> N
-    H --> Q
     
     style A fill:#e1f5fe
     style H fill:#f3e5f5
@@ -260,32 +258,30 @@ erDiagram
     MEDICINES ||--o{ PRESCRIPTION_ITEMS : "medicine"
     MEDICINES ||--o{ STOCK_MOVEMENTS : "medicine"
     
-    USERS {
-        bigint id PK
-        string username UK
-        string password_hash
-        enum role
-        string first_name
-        string last_name
-        string email UK
-        boolean active
-        timestamp created_at
-    }
-    
-    PATIENTS {
-        bigint id PK
-        string first_name
-        string last_name
-        string email
-        string phone
-        date date_of_birth
-        text address
-        bigint assigned_doctor_id FK
-        text allergies
-        text medical_conditions
-        text emergency_contact
-        timestamp created_at
-    }
+         USERS {
+         bigint id PK
+         string username UK
+         string password_hash
+         enum role
+         string first_name
+         string last_name
+         boolean active
+         timestamp created_at
+     }
+     
+     PATIENTS {
+         bigint id PK
+         string first_name
+         string last_name
+         string phone
+         date date_of_birth
+         text address
+         bigint assigned_doctor_id FK
+         text allergies
+         text medical_conditions
+         text emergency_contact
+         timestamp created_at
+     }
     
     APPOINTMENTS {
         bigint id PK
@@ -358,11 +354,13 @@ journey
       Enter credentials: 4: Admin
       Access dashboard: 5: Admin
     
-    section User Management
-      View doctor list: 5: Admin
-      Create new doctor: 4: Admin
-      Assign patients: 4: Admin
-      Monitor activity: 5: Admin
+         section User Management
+       View doctor list: 5: Admin
+       Create new doctor: 5: Admin
+       Set doctor credentials: 4: Admin
+       Assign patients to doctors: 4: Admin
+       Monitor doctor activity: 5: Admin
+       Deactivate/reactivate users: 3: Admin
     
     section Analytics
       View revenue reports: 5: Admin
@@ -846,6 +844,179 @@ graph TB
     style F fill:#e8f5e8
     style K fill:#fff3e0
     style O fill:#ffebee
+```
+
+---
+
+## **ADMIN DOCTOR MANAGEMENT WORKFLOW**
+
+### **Add New Doctor Process Flow**
+```mermaid
+flowchart TD
+    A[Admin Logs In] --> B[Navigate to User Management]
+    B --> C[Click 'Add New Doctor']
+    C --> D[Fill Doctor Details Form]
+    
+    D --> E{Form Validation}
+    E -->|Invalid| F[Show Validation Errors]
+    F --> D
+    
+    E -->|Valid| G[Check Username Availability]
+    G -->|Taken| H[Show Username Error]
+    H --> D
+    
+    G -->|Available| I[Create Doctor Account]
+    I --> J[Generate Default Password]
+    J --> K[Save to Database]
+    K --> L[Show Success Message]
+    L --> M[Display Credentials to Admin]
+    M --> N[Print/Copy Credentials]
+    N --> O[Return to Doctor List]
+    
+    style A fill:#ffebee
+    style I fill:#e8f5e8
+    style L fill:#e3f2fd
+    style M fill:#fff3e0
+```
+
+### **Doctor Management Features**
+```mermaid
+graph TB
+    subgraph "Admin Doctor Management"
+        A[Doctor List View]
+        B[Add New Doctor]
+        C[Edit Doctor Info]
+        D[Deactivate/Activate]
+        E[Reset Password]
+        F[Assign Patients]
+    end
+    
+    subgraph "Doctor Profile Management"
+        G[Personal Information]
+        H[Specialization]
+        I[Working Hours]
+        J[Contact Details]
+        K[Status Management]
+    end
+    
+    subgraph "Patient Assignment"
+        L[View Unassigned Patients]
+        M[Bulk Patient Assignment]
+        N[Transfer Patients]
+        O[Assignment History]
+    end
+    
+    A --> B
+    A --> C
+    A --> D
+    A --> E
+    A --> F
+    
+    B --> G
+    C --> G
+    G --> H
+    H --> I
+    I --> J
+    J --> K
+    
+    F --> L
+    L --> M
+    M --> N
+    N --> O
+    
+    style A fill:#e3f2fd
+    style B fill:#e8f5e8
+    style F fill:#fff3e0
+    style L fill:#fce4ec
+```
+
+### **User Management Security Model**
+```mermaid
+graph TB
+    subgraph "Admin Privileges"
+        A[Create Doctor Accounts]
+        B[Set Initial Passwords]
+        C[Manage User Status]
+        D[View All User Activity]
+        E[Reset User Passwords]
+    end
+    
+    subgraph "Doctor Limitations"
+        F[Cannot Create Users]
+        G[Cannot View Other Doctors]
+        H[Cannot Access Admin Functions]
+        I[Can Only Change Own Password]
+    end
+    
+    subgraph "System Security"
+        J[Password Complexity Rules]
+        K[Session Management]
+        L[Role-based Access Control]
+        M[Audit Trail Logging]
+    end
+    
+    A --> J
+    B --> J
+    C --> K
+    D --> M
+    E --> J
+    
+    F --> L
+    G --> L
+    H --> L
+    I --> K
+    
+    J --> M
+    K --> M
+    L --> M
+    
+    style A fill:#ffebee
+    style F fill:#f3e5f5
+    style J fill:#e8f5e8
+```
+
+---
+
+## **SIMPLIFIED FEATURES (NO EMAIL/SMS/PAYMENTS)**
+
+### **Removed Features:**
+❌ Email notifications and confirmations
+❌ SMS reminders and alerts  
+❌ Credit card payment processing
+❌ Payment gateway integrations
+❌ Email-based password reset
+❌ Email appointment confirmations
+
+### **Alternative Implementations:**
+✅ **In-app notifications** instead of email
+✅ **Dashboard alerts** instead of SMS
+✅ **Cash/Check/Bank transfer** tracking only
+✅ **Manual password reset** by admin
+✅ **Phone-based** appointment confirmations
+✅ **Printed receipts** instead of email receipts
+
+### **Simplified Billing Workflow:**
+```mermaid
+flowchart LR
+    A[Treatment Completed] --> B[Generate Invoice]
+    B --> C[Print Invoice]
+    C --> D{Payment Method}
+    
+    D -->|Cash| E[Record Cash Payment]
+    D -->|Check| F[Record Check Payment]
+    D -->|Bank Transfer| G[Record Transfer]
+    
+    E --> H[Print Receipt]
+    F --> H
+    G --> H
+    
+    H --> I[Update Payment Status]
+    I --> J[File Invoice Copy]
+    
+    style A fill:#e3f2fd
+    style B fill:#e8f5e8
+    style H fill:#fff3e0
+    style I fill:#f3e5f5
 ```
 
 This comprehensive architecture document provides the complete blueprint for developing your dental clinic management system with all the UX/UI flows, AI features, and technical details needed for successful implementation! 🚀

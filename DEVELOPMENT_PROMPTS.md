@@ -33,8 +33,8 @@ SECURITY CONFIGURATION:
 
 SAMPLE DATA:
 - Create data.sql with sample users, patients, appointments
-- Default admin: admin@clinic.com / admin123
-- Default doctor: doctor@clinic.com / doctor123
+- Default admin: admin / admin123
+- Default doctor: doctor / doctor123
 ```
 
 #### **Frontend Setup Prompt (React)**
@@ -176,10 +176,10 @@ ADMIN CONTROLLER ENDPOINTS:
 - PATCH /api/admin/users/{id}/status - activate/deactivate
 
 VALIDATION:
-- Email format validation
-- Password strength requirements
-- Unique username/email constraints
-- Role validation
+- Username format validation (alphanumeric)
+- Password strength requirements (min 8 chars)
+- Unique username constraints
+- Role validation (ADMIN, DOCTOR only)
 
 AUDIT LOGGING:
 - Track user creation, updates, login attempts
@@ -201,7 +201,7 @@ COMPONENTS:
 2. AddUserModal:
    - Form with proper validation
    - Role selection (Doctor only for admin)
-   - Email/username availability check
+   - Username availability check
    - Password generation option
 
 3. UserTable:
@@ -237,7 +237,7 @@ PATIENT ENTITY ENHANCEMENTS:
 - Add medical history fields (allergies, medications, conditions)
 - File attachments (X-rays, documents)
 - Emergency contact information
-- Insurance details
+- Basic insurance information (optional)
 
 PATIENT CONTROLLER:
 - GET /api/patients - list with pagination and search
@@ -254,14 +254,15 @@ DOCTOR RESTRICTIONS:
 - Admin sees all patients
 
 SEARCH FUNCTIONALITY:
-- Search by name, email, phone
-- Filter by age range, assigned doctor
+- Search by name, phone number
+- Filter by age range, assigned doctor, registration date
 - Sort by name, last visit, registration date
 
 FILE MANAGEMENT:
-- Upload patient documents (X-rays, insurance)
-- File type validation (PDF, JPEG, PNG)
+- Upload patient documents (X-rays, medical records)
+- File type validation (PDF, JPEG, PNG, DICOM)
 - Secure file storage and retrieval
+- File versioning and history
 ```
 
 #### **Frontend Patient Management Prompt**
@@ -282,7 +283,7 @@ COMPONENTS:
    - File upload with drag-and-drop
 
 3. AddPatientModal:
-   - Multi-step form (Personal, Medical, Contact, Insurance)
+   - Multi-step form (Personal, Medical, Contact)
    - Date picker for DOB
    - File upload for profile photo
    - Form validation with error messages
@@ -334,8 +335,8 @@ CALENDAR INTEGRATION:
 - Availability checking
 
 NOTIFICATIONS:
-- Email appointment confirmations
-- SMS reminders (placeholder)
+- In-app appointment notifications
+- Dashboard alerts for upcoming appointments
 - Doctor schedule notifications
 ```
 
@@ -391,7 +392,7 @@ TREATMENT ENTITY ENHANCEMENT:
 - Add treatment plans and follow-up schedules
 - Treatment photos (before/after)
 - Multi-visit treatment tracking
-- Cost breakdown and insurance claims
+- Cost breakdown and billing information
 
 TREATMENT CONTROLLER:
 - GET /api/treatments - list with filters
@@ -429,7 +430,7 @@ COMPONENTS:
    - Rich text editor for treatment notes
    - Procedure selection from predefined list
    - Photo upload with before/after comparison
-   - Cost calculation with insurance handling
+   - Cost calculation and billing details
 
 2. TreatmentHistory:
    - Timeline view of patient treatments
@@ -448,7 +449,7 @@ FEATURES:
 - Voice-to-text for quick note taking
 - Photo annotation tools
 - Treatment outcome tracking
-- Insurance claim generation
+- Invoice generation for treatments
 
 EDITOR:
 - Rich text editor (TinyMCE or similar)
@@ -493,7 +494,7 @@ ALERTS:
 - Low stock notifications
 - Expiry date warnings
 - Automatic reorder suggestions
-- Email notifications to admin
+- In-app notifications to admin
 ```
 
 #### **Frontend Inventory Management Prompt**
@@ -541,8 +542,8 @@ Implement comprehensive billing system:
 
 BILLING ENTITIES:
 - Invoice with line items and tax calculation
-- Payment tracking with multiple methods
-- Insurance claim processing
+- Payment tracking (cash, check, bank transfer)
+- Payment status management
 - Recurring billing for treatment plans
 
 BILLING CONTROLLER:
@@ -553,10 +554,10 @@ BILLING CONTROLLER:
 - GET /api/billing/reports - financial reports
 
 PAYMENT PROCESSING:
-- Multiple payment methods (cash, card, insurance)
+- Multiple payment methods (cash, check, bank transfer)
 - Payment plan management
 - Refund processing
-- Late payment tracking and reminders
+- Late payment tracking and follow-up
 
 FINANCIAL REPORTING:
 - Daily/monthly revenue reports
@@ -565,10 +566,10 @@ FINANCIAL REPORTING:
 - Tax reporting and compliance
 
 INTEGRATION:
-- Insurance claim submission
-- Payment gateway integration (placeholder)
-- Accounting software export
 - Receipt generation and printing
+- Accounting software export (CSV/Excel)
+- Invoice PDF generation
+- Payment receipt templates
 ```
 
 #### **Frontend Billing Management Prompt**
@@ -596,10 +597,10 @@ COMPONENTS:
 
 FEATURES:
 - Automated invoice generation
-- Payment reminders and follow-ups
+- Payment follow-up notifications
 - Financial analytics and reporting
 - Export to accounting software
-- Mobile payment processing
+- Receipt printing and management
 
 REPORTING:
 - Interactive financial dashboards
@@ -1063,5 +1064,410 @@ MAINTENANCE:
 5. Test integration between frontend and backend
 6. Add error handling and validation
 7. Implement responsive design and styling
+
+---
+
+## **ADDITIONAL MISSING PROMPTS**
+
+### **18. Dashboard Components**
+
+#### **Admin Dashboard Prompt**
+```
+Create comprehensive admin dashboard:
+
+DASHBOARD LAYOUT:
+- 4-column grid layout with responsive design
+- Key metrics cards with trend indicators
+- Quick action buttons for common tasks
+- Recent activity feed
+
+METRICS CARDS:
+1. Total Patients (with monthly growth)
+2. Active Doctors (with status indicators)
+3. Today's Appointments (with completion rate)
+4. Monthly Revenue (with comparison to last month)
+5. Low Stock Items (with alert count)
+6. Pending Payments (with overdue amount)
+
+CHARTS AND ANALYTICS:
+- Patient registration trends (line chart)
+- Revenue by month (bar chart)
+- Appointment types distribution (pie chart)
+- Doctor performance comparison (horizontal bar)
+
+QUICK ACTIONS:
+- Add new doctor
+- Schedule appointment
+- View inventory alerts
+- Generate monthly report
+
+RECENT ACTIVITY:
+- Latest patient registrations
+- Recent appointments
+- Payment transactions
+- System alerts
+```
+
+#### **Doctor Dashboard Prompt**
+```
+Create doctor-focused dashboard:
+
+DASHBOARD LAYOUT:
+- 3-column layout optimized for clinical workflow
+- Patient-centric information display
+- Quick access to AI chat
+- Today's schedule prominently displayed
+
+METRICS CARDS:
+1. Today's Appointments (with time slots)
+2. My Patients (total assigned)
+3. Pending Treatments (follow-ups needed)
+4. This Week's Revenue (personal)
+
+CLINICAL WIDGETS:
+- Today's appointment schedule with patient photos
+- Recently treated patients with outcome status
+- Pending treatment plans requiring attention
+- AI chat quick access with recent conversations
+
+PATIENT INSIGHTS:
+- Upcoming appointments with preparation notes
+- Patients requiring follow-up
+- Treatment success rates
+- Personal performance metrics
+
+QUICK ACTIONS:
+- Start new patient consultation
+- Open AI treatment chat
+- Record treatment outcome
+- Schedule follow-up appointment
+```
+
+### **19. Responsive Design System**
+
+#### **Mobile Responsiveness Prompt**
+```
+Implement comprehensive responsive design:
+
+BREAKPOINTS:
+- Mobile: 320px - 768px
+- Tablet: 768px - 1024px
+- Desktop: 1024px+
+
+MOBILE ADAPTATIONS:
+- Collapsible sidebar navigation
+- Touch-friendly button sizes (min 44px)
+- Swipe gestures for navigation
+- Mobile-optimized forms with proper input types
+
+TABLET OPTIMIZATIONS:
+- Grid layouts that adapt to portrait/landscape
+- Touch-friendly data tables
+- Modal dialogs optimized for tablet screens
+- Sidebar that can overlay or push content
+
+COMPONENT RESPONSIVENESS:
+- Data tables convert to card layouts on mobile
+- Charts resize and simplify for small screens
+- Navigation becomes hamburger menu
+- Forms stack vertically on mobile
+
+TOUCH INTERACTIONS:
+- Swipe to delete items
+- Pull to refresh lists
+- Touch-friendly date pickers
+- Gesture-based navigation
+```
+
+### **20. Data Import/Export System**
+
+#### **Backend Data Management Prompt**
+```
+Create data import/export system:
+
+IMPORT FEATURES:
+- CSV import for patients, appointments, treatments
+- Excel file processing with validation
+- Bulk data upload with error reporting
+- Data mapping interface for field matching
+
+EXPORT FEATURES:
+- PDF reports for various entities
+- Excel export with formatting
+- CSV export for external systems
+- Filtered data export based on date ranges
+
+DATA VALIDATION:
+- Format validation for imported data
+- Duplicate detection and handling
+- Required field validation
+- Data type checking and conversion
+
+BATCH OPERATIONS:
+- Bulk patient updates
+- Mass appointment scheduling
+- Batch invoice generation
+- Group operations with progress tracking
+
+FILE MANAGEMENT:
+- Secure file upload handling
+- File size and type restrictions
+- Virus scanning for uploaded files
+- File storage organization by entity type
+```
+
+#### **Frontend Data Management Prompt**
+```
+Create data import/export interface:
+
+IMPORT INTERFACE:
+- Drag-and-drop file upload
+- CSV/Excel template download
+- Field mapping interface
+- Import progress tracking with real-time updates
+- Error reporting with line-by-line details
+
+EXPORT INTERFACE:
+- Export wizard with filter options
+- Date range selection
+- Field selection for custom exports
+- Format selection (PDF, Excel, CSV)
+- Export queue with download links
+
+BULK OPERATIONS UI:
+- Multi-select interfaces with checkboxes
+- Bulk action toolbar
+- Progress indicators for long operations
+- Confirmation dialogs for destructive actions
+
+DATA TEMPLATES:
+- Pre-built import templates
+- Sample data files
+- Field mapping presets
+- Export format templates
+```
+
+### **21. System Settings and Configuration**
+
+#### **Admin Settings Prompt**
+```
+Create comprehensive system settings:
+
+CLINIC CONFIGURATION:
+- Clinic name, address, contact information
+- Operating hours and time zones
+- Holiday calendar management
+- Service/treatment type definitions
+
+USER PREFERENCES:
+- Default dashboard layouts
+- Notification preferences
+- Theme customization options
+- Language and locale settings
+
+SYSTEM SETTINGS:
+- Session timeout configuration
+- File upload limits
+- Backup schedule settings
+- Audit log retention policies
+
+MEDICAL SETTINGS:
+- Treatment code definitions
+- Medicine categories and units
+- Appointment types and durations
+- Clinical note templates
+
+BUSINESS RULES:
+- Appointment booking rules
+- Payment terms and conditions
+- Late payment penalty settings
+- Inventory reorder thresholds
+```
+
+### **22. Notification System**
+
+#### **In-App Notification Prompt**
+```
+Create comprehensive notification system:
+
+NOTIFICATION TYPES:
+- Appointment reminders
+- Low stock alerts
+- Payment due notifications
+- System maintenance alerts
+- Treatment follow-up reminders
+
+NOTIFICATION DELIVERY:
+- In-app notification center
+- Browser push notifications
+- Dashboard alert badges
+- Toast notifications for immediate alerts
+
+NOTIFICATION MANAGEMENT:
+- Mark as read/unread
+- Notification history
+- Custom notification preferences
+- Bulk notification actions
+
+REAL-TIME UPDATES:
+- WebSocket-based live notifications
+- Auto-refresh for critical alerts
+- Sound notifications for urgent items
+- Desktop notification permissions
+
+USER PREFERENCES:
+- Notification type preferences
+- Frequency settings
+- Quiet hours configuration
+- Role-based notification rules
+```
+
+### **23. Advanced Search and Filtering**
+
+#### **Global Search Prompt**
+```
+Implement advanced search functionality:
+
+GLOBAL SEARCH:
+- Cross-entity search (patients, appointments, treatments)
+- Real-time search suggestions
+- Search history and saved searches
+- Advanced filter combinations
+
+SEARCH FEATURES:
+- Fuzzy matching for typos
+- Search by partial information
+- Date range searches
+- Numeric range filters (age, cost)
+
+FILTER SYSTEM:
+- Multi-level filter hierarchies
+- Custom filter presets
+- Filter persistence across sessions
+- Quick filter buttons for common searches
+
+SEARCH RESULTS:
+- Unified search results with entity types
+- Relevance scoring and ranking
+- Search result highlighting
+- Export search results
+
+PATIENT SEARCH:
+- Search by name, phone, address
+- Medical condition searches
+- Treatment history searches
+- Insurance information searches
+```
+
+### **24. Audit Trail and Logging**
+
+#### **Audit System Prompt**
+```
+Implement comprehensive audit trail:
+
+AUDIT LOGGING:
+- All CRUD operations tracking
+- User login/logout events
+- Failed authentication attempts
+- Data access logging
+
+AUDIT DETAILS:
+- User ID and timestamp
+- IP address and browser info
+- Before/after values for updates
+- Action type and entity affected
+
+AUDIT SEARCH:
+- Search by user, date, action type
+- Filter by entity type
+- Export audit logs
+- Audit report generation
+
+COMPLIANCE FEATURES:
+- HIPAA audit trail requirements
+- Data retention policies
+- Audit log integrity verification
+- Secure audit log storage
+
+MONITORING ALERTS:
+- Suspicious activity detection
+- Multiple failed login alerts
+- Unusual data access patterns
+- System security notifications
+```
+
+### **25. Error Handling and Logging**
+
+#### **Error Management Prompt**
+```
+Implement robust error handling:
+
+FRONTEND ERROR HANDLING:
+- Global error boundary
+- API error interception
+- User-friendly error messages
+- Error reporting to backend
+
+BACKEND ERROR HANDLING:
+- Global exception handler
+- Custom business exception types
+- Error response standardization
+- Error logging with stack traces
+
+ERROR TYPES:
+- Validation errors with field-level details
+- Authentication/authorization errors
+- Business logic errors
+- System/network errors
+
+ERROR LOGGING:
+- Structured logging with correlation IDs
+- Error severity levels
+- User context in error logs
+- Error frequency monitoring
+
+USER EXPERIENCE:
+- Graceful error fallbacks
+- Retry mechanisms for network errors
+- Offline mode handling
+- Error recovery suggestions
+```
+
+### **26. Testing Strategy**
+
+#### **Comprehensive Testing Prompt**
+```
+Implement full testing strategy:
+
+FRONTEND TESTING:
+- Unit tests with Jest and React Testing Library
+- Component integration tests
+- E2E tests with Cypress
+- Visual regression testing
+
+BACKEND TESTING:
+- Unit tests for services and controllers
+- Integration tests for repositories
+- API endpoint testing
+- Database integration tests
+
+TEST DATA:
+- Test data fixtures and factories
+- Database seeding for tests
+- Mock data generators
+- Test environment isolation
+
+TESTING SCENARIOS:
+- Role-based access testing
+- API security testing
+- Performance testing
+- Cross-browser compatibility testing
+
+CI/CD TESTING:
+- Automated test execution
+- Test coverage reporting
+- Test result notifications
+- Failed test investigation tools
+```
 
 This comprehensive guide ensures your frontend and backend development stays synchronized throughout the entire development process!

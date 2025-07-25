@@ -12,1661 +12,779 @@ project-root/
 ```
 
 **CRITICAL INSTRUCTIONS:**
+- 🎯 **Total Prompts Required**: **65 Prompts** (numbered 1-65)
 - 🎯 **Frontend changes**: Always create/modify files in `frontend/` folder
 - 🎯 **Backend changes**: Always create/modify files in `backend/` folder  
 - 🎯 **AI service changes**: Always create/modify files in `ai-service/` folder
 - 🎯 **Never mix files** between these directories
-- 🎯 **Always specify complete file paths** in prompts
+- 🎯 **Use prompts sequentially** (1, 2, 3, etc.) for best results
+- 🎯 **Each prompt handles ONE specific task** for efficient generation
 
 **Example file paths:**
 - ✅ `frontend/src/components/admin/UserManagement.tsx`
 - ✅ `backend/src/main/java/com/dentalclinic/controller/UserController.java`
 - ✅ `ai-service/app/services/medical_nlp.py`
 
+## 📋 **PROMPT EXECUTION ORDER:**
+- **Prompts 1-8**: Project Setup
+- **Prompts 9-20**: Authentication & User Management
+- **Prompts 21-32**: Patient Management
+- **Prompts 33-44**: Appointment & Treatment Management
+- **Prompts 45-56**: Advanced Features (Inventory, Billing, Analytics)
+- **Prompts 57-62**: AI Integration
+- **Prompts 63-65**: Production Setup
+
 ---
 
-## **SETUP PROMPTS**
+# **SIMPLIFIED DEVELOPMENT PROMPTS (1-65)**
 
-### **1. Initial Project Setup**
+## **PHASE 1: PROJECT SETUP (Prompts 1-8)**
 
-#### **Backend Setup Prompt (Spring Boot)**
+### **Prompt 1: Create Backend Spring Boot Project**
 ```
-Create a Spring Boot dental clinic management system in the 'backend' folder with the following structure:
+Create a new Spring Boot project in backend/ folder:
 
-PROJECT SETUP:
-- Create project in backend/ directory
-- Spring Boot 3.2+, Java 17
-- Dependencies: web, data-jpa, h2, websocket, validation, security
-- Package structure: com.dentalclinic
-- H2 in-memory database configuration
-- Two roles: ADMIN, DOCTOR
+- Initialize Spring Boot 3.2+ with Java 17
+- Add dependencies: web, data-jpa, h2, security, validation
+- Create package structure: com.dentalclinic
+- Create main application class: backend/src/main/java/com/dentalclinic/DentalClinicApplication.java
+- Setup basic folder structure: controller/, service/, repository/, model/, config/
+```
 
-FOLDER STRUCTURE:
-backend/
-├── src/main/java/com/dentalclinic/
-│   ├── DentalClinicApplication.java
-│   ├── config/
-│   ├── controller/
-│   ├── service/
-│   ├── repository/
-│   ├── model/
-│   ├── dto/
-│   └── security/
-├── src/main/resources/
-│   ├── application.yml
-│   └── data.sql
-└── pom.xml
+### **Prompt 2: Backend Database Configuration**
+```
+Create H2 database configuration in backend/ folder:
 
-ENTITIES TO CREATE:
-1. User (id, username, password, role, firstName, lastName, email, active, createdAt)
-2. Patient (id, firstName, lastName, email, phone, dateOfBirth, address, assignedDoctorId)
-3. Appointment (id, patientId, doctorId, appointmentTime, type, status, notes)
-4. Treatment (id, patientId, doctorId, treatmentDate, symptoms, diagnosis, procedure, medications, cost)
-5. Medicine (id, name, category, quantity, unitPrice, expiryDate, supplier, minStockLevel)
-6. Invoice (id, patientId, invoiceDate, totalAmount, paidAmount, status, paymentMethod)
-7. ChatMessage (id, doctorId, patientId, message, response, suggestionType, timestamp)
+- Create backend/src/main/resources/application.yml with H2 setup
+- Configure H2 console, JWT settings, and server port 8080
+- Create backend/src/main/resources/data.sql with sample data
+- Add default users: admin/admin123 (ADMIN), doctor/doctor123 (DOCTOR)
+```
 
-SECURITY CONFIGURATION:
-- JWT authentication
+### **Prompt 3: Create User Entity**
+```
+Create User entity in backend/src/main/java/com/dentalclinic/model/User.java:
+
+- Fields: id, username, passwordHash, role (enum), firstName, lastName, active, createdAt
+- JPA annotations for database mapping
+- Role enum: ADMIN, DOCTOR
+- Constructors, getters, setters
+```
+
+### **Prompt 4: Create Frontend React Project**
+```
+Create React TypeScript project in frontend/ folder:
+
+- Initialize with Vite and TypeScript
+- Install dependencies: @mui/material, @emotion/react, @emotion/styled, react-router-dom, axios
+- Create basic folder structure: src/components/, src/pages/, src/services/, src/types/
+- Setup package.json and tsconfig.json
+```
+
+### **Prompt 5: Frontend App Structure**
+```
+Create main app structure in frontend/src/:
+
+- Create App.tsx with basic routing setup
+- Create main.tsx with React 18 root
+- Create index.html in frontend/public/
+- Setup basic CSS reset and Corona theme colors
+```
+
+### **Prompt 6: Create TypeScript Types**
+```
+Create TypeScript interfaces in frontend/src/types/:
+
+- User.ts interface matching backend User entity
+- ApiResponse.ts for standard API responses
+- AuthTypes.ts for login/auth related types
+- Common.ts for shared types
+```
+
+### **Prompt 7: Backend Security Configuration**
+```
+Create JWT security setup in backend/src/main/java/com/dentalclinic/config/:
+
+- SecurityConfig.java with JWT configuration
+- JwtUtil.java for token generation/validation
+- Role-based access control setup
+- CORS configuration for frontend
+```
+
+### **Prompt 8: Frontend API Client Setup**
+```
+Create API client in frontend/src/services/api/:
+
+- apiClient.ts with axios configuration
+- Base URL setup pointing to backend:8080
+- Request/response interceptors
+- Error handling setup
+```
+
+## **PHASE 2: AUTHENTICATION & USER MANAGEMENT (Prompts 9-20)**
+
+### **Prompt 9: Create User Repository**
+```
+Create User repository in backend/src/main/java/com/dentalclinic/repository/UserRepository.java:
+
+- Extend JpaRepository<User, Long>
+- Add method: findByUsername(String username)
+- Add method: findByRole(Role role)
+- Add method: findByActiveTrue()
+- Add custom query for user statistics
+```
+
+### **Prompt 10: Create Auth Controller**
+```
+Create authentication controller in backend/src/main/java/com/dentalclinic/controller/AuthController.java:
+
+- POST /api/auth/login endpoint
+- Login request/response DTOs
+- JWT token generation
+- Password validation with BCrypt
+- Return user info and token
+```
+
+### **Prompt 11: Create User Service**
+```
+Create user service in backend/src/main/java/com/dentalclinic/service/UserService.java:
+
+- createUser() method for admin
+- updateUser() method
+- getUserById() method
+- getAllUsers() with pagination
+- changePassword() method
+```
+
+### **Prompt 12: Create Admin Controller**
+```
+Create admin controller in backend/src/main/java/com/dentalclinic/controller/AdminController.java:
+
+- GET /api/admin/users endpoint
+- POST /api/admin/users endpoint (create doctor)
+- PUT /api/admin/users/{id} endpoint
+- PATCH /api/admin/users/{id}/status endpoint
+- Admin-only access with @PreAuthorize
+```
+
+### **Prompt 13: Create Auth Context**
+```
+Create authentication context in frontend/src/context/AuthContext.tsx:
+
+- User state management
+- Login/logout functions
+- Token storage in localStorage
+- Auto-logout on token expiry
+- Role-based navigation helpers
+```
+
+### **Prompt 14: Create Auth Service**
+```
+Create authentication service in frontend/src/services/auth/AuthService.ts:
+
+- login() method calling backend API
+- logout() method
+- getCurrentUser() method
+- refreshToken() method
+- Token validation helpers
+```
+
+### **Prompt 15: Create Login Page**
+```
+Create login page in frontend/src/pages/auth/LoginPage.tsx:
+
+- Split-screen layout with branding
+- Role selector (Admin/Doctor)
+- Form with username/password fields
+- Loading states and error handling
+- Corona React styling
+```
+
+### **Prompt 16: Create Protected Route**
+```
+Create protected route component in frontend/src/components/auth/ProtectedRoute.tsx:
+
+- Check authentication status
 - Role-based access control
-- ADMIN endpoints: /api/admin/**
-- DOCTOR endpoints: /api/doctor/**
-- Public endpoints: /api/auth/**
-
-SAMPLE DATA:
-- Create data.sql with sample users, patients, appointments
-- Default admin: admin / admin123
-- Default doctor: doctor / doctor123
+- Redirect to login if not authenticated
+- Redirect based on user role
+- Loading spinner while checking auth
 ```
 
-#### **Frontend Setup Prompt (React)**
+### **Prompt 17: Create User Management Page**
 ```
-Create a React TypeScript dental clinic management system frontend in the 'frontend' folder with Corona React design:
+Create user management page in frontend/src/pages/admin/UserManagement.tsx:
 
-PROJECT SETUP:
-- Create project in frontend/ directory
-- React 18 + TypeScript + Vite
-- Dependencies: @mui/material, recharts, react-router-dom, axios
-
-FOLDER STRUCTURE:
-frontend/
-├── src/
-│   ├── components/
-│   │   ├── common/
-│   │   ├── admin/
-│   │   ├── doctor/
-│   │   └── auth/
-│   ├── pages/
-│   │   ├── admin/
-│   │   ├── doctor/
-│   │   └── auth/
-│   ├── services/
-│   │   ├── api/
-│   │   └── auth/
-│   ├── hooks/
-│   ├── types/
-│   ├── utils/
-│   ├── context/
-│   ├── styles/
-│   └── assets/
-├── public/
-└── package.json
-
-DESIGN SYSTEM:
-- Corona React inspired dark theme
-- Color scheme: Primary #4c84ff (doctor), #dc3545 (admin)
-- Sidebar navigation with gradient backgrounds
-- Card-based layout with shadows
-- Professional medical styling
-
-AUTHENTICATION:
-- Role-based login page with split design
-- JWT token management
-- Route protection based on roles
-- Auto-redirect based on user role
-
-ROUTING STRUCTURE:
-/login - Role-based login
-/admin/* - Admin dashboard and features
-/doctor/* - Doctor dashboard and features
-/chat - AI chat interface (doctor only)
-
-GLOBAL STATE:
-- Auth context for user management
-- Theme context for role-based styling
-- API service layer with interceptors
+- User list with data table
+- Search and filter functionality
+- Add user button
+- Edit/deactivate actions
+- Export functionality
 ```
 
----
-
-## **PHASE 1: MVP SETUP PROMPTS**
-
-### **2. Authentication System**
-
-#### **Backend Authentication Prompt**
+### **Prompt 18: Create Add User Modal**
 ```
-Implement JWT authentication for dental clinic system in backend/ folder:
+Create add user modal in frontend/src/components/admin/AddUserModal.tsx:
 
-FILE LOCATIONS:
-- Create in backend/src/main/java/com/dentalclinic/
-
-CONTROLLERS TO CREATE:
-1. AuthController (backend/src/main/java/com/dentalclinic/controller/AuthController.java):
-   - POST /api/auth/login (username, password, role validation)
-   - POST /api/auth/refresh-token
-   - POST /api/auth/logout
-   - GET /api/auth/me (current user profile)
-
-2. UserController (backend/src/main/java/com/dentalclinic/controller/UserController.java):
-   - GET /api/admin/users (admin only - list all users)
-   - POST /api/admin/users (admin only - create doctor account)
-   - PUT /api/admin/users/{id} (admin only - update user)
-   - DELETE /api/admin/users/{id} (admin only - deactivate user)
-
-SECURITY FEATURES:
-- Password encryption with BCrypt
-- JWT token with 24h expiry
-- Refresh token mechanism
-- Role-based method security
-- Input validation and sanitization
-
-RESPONSE FORMAT:
-{
-  "success": true,
-  "data": {...},
-  "message": "Operation successful",
-  "timestamp": "2024-01-15T10:30:00Z"
-}
-
-ERROR HANDLING:
-- Global exception handler
-- Custom exceptions for business logic
-- Standardized error responses
+- Form for creating new doctor
+- Username/password fields
+- Form validation
+- Role selection (Doctor only)
+- Success/error handling
 ```
 
-#### **Frontend Authentication Prompt**
+### **Prompt 19: Setup Routing**
 ```
-Create authentication system for React dental clinic app in frontend/ folder:
+Create routing setup in frontend/src/App.tsx:
 
-FILE LOCATIONS:
-- Create in frontend/src/
-
-COMPONENTS TO CREATE:
-1. LoginPage (frontend/src/pages/auth/LoginPage.tsx):
-   - Split-screen design with medical branding
-   - Role selector (Admin/Doctor) with different themes
-   - Floating label inputs with icons
-   - Loading states and error handling
-   - Remember me functionality
-
-2. AuthContext (frontend/src/context/AuthContext.tsx):
-   - User state management
-   - Token storage and retrieval
-   - Auto-logout on token expiry
-   - Role-based navigation
-
-3. ProtectedRoute (frontend/src/components/auth/ProtectedRoute.tsx):
-   - Route protection based on authentication
-   - Role-based access control
-   - Redirect logic for unauthorized access
-
-SERVICES:
-- AuthService (frontend/src/services/auth/AuthService.ts) for API calls
-- Token interceptor (frontend/src/services/api/apiClient.ts) for axios
-- Auto-refresh token mechanism
-
-STYLING:
-- Corona React inspired design
-- Gradient backgrounds: Doctor (#2e2e48 to #4c84ff), Admin (#2c3e50 to #dc3545)
-- Professional medical imagery
-- Smooth animations and transitions
+- React Router configuration
+- Protected routes for admin/doctor
+- Public routes for login
+- Role-based redirects
+- 404 page handling
 ```
 
-### **3. User Management System**
-
-#### **Backend User Management Prompt**
+### **Prompt 20: Create Global Error Handler**
 ```
-Create comprehensive user management for dental clinic in backend/ folder:
+Create error handling in backend/src/main/java/com/dentalclinic/config/GlobalExceptionHandler.java:
 
-FILE LOCATIONS:
-- Create in backend/src/main/java/com/dentalclinic/
-
-USER REPOSITORY (backend/src/main/java/com/dentalclinic/repository/UserRepository.java):
-- findByUsername, findByRole, findActiveUsers
-- Custom queries for user statistics
-- Soft delete functionality
-
-USER SERVICE (backend/src/main/java/com/dentalclinic/service/UserService.java):
-- createDoctor(CreateUserDto) - admin only
-- updateUser(id, UpdateUserDto)
-- deactivateUser(id) - soft delete
-- getUsersByRole(Role role)
-- changePassword(ChangePasswordDto)
-
-ADMIN CONTROLLER ENDPOINTS (backend/src/main/java/com/dentalclinic/controller/AdminController.java):
-- GET /api/admin/users - paginated user list with filters
-- GET /api/admin/users/{id} - user details
-- POST /api/admin/users - create new doctor
-- PUT /api/admin/users/{id} - update user
-- PATCH /api/admin/users/{id}/status - activate/deactivate
-
-VALIDATION:
-- Username format validation (alphanumeric)
-- Password strength requirements (min 8 chars)
-- Unique username constraints
-- Role validation (ADMIN, DOCTOR only)
-
-AUDIT LOGGING:
-- Track user creation, updates, login attempts
-- Store in audit_logs table
+- @ControllerAdvice class
+- Handle validation errors
+- Handle authentication errors
+- Handle business logic errors
+- Standardized error response format
 ```
 
-#### **Frontend User Management Prompt**
+## **PHASE 3: PATIENT MANAGEMENT (Prompts 21-32)**
+
+### **Prompt 21: Create Patient Entity**
 ```
-Create admin user management interface in frontend/ folder:
+Create Patient entity in backend/src/main/java/com/dentalclinic/model/Patient.java:
 
-FILE LOCATIONS:
-- Create in frontend/src/
+- Fields: id, firstName, lastName, phone, dateOfBirth, address, assignedDoctorId
+- Medical fields: allergies, medicalConditions, emergencyContact
+- JPA annotations and relationships
+- Constructors, getters, setters
+```
 
-COMPONENTS:
-1. UserManagement (frontend/src/pages/admin/UserManagement.tsx):
-   - Data table with sorting, filtering, pagination
-   - Add user modal with form validation
-   - Edit user inline or modal
-   - Bulk actions (activate/deactivate)
-   - Export user list functionality
+### **Prompt 22: Create Patient Repository**
+```
+Create Patient repository in backend/src/main/java/com/dentalclinic/repository/PatientRepository.java:
 
-2. AddUserModal (frontend/src/components/admin/AddUserModal.tsx):
-   - Form with proper validation
-   - Role selection (Doctor only for admin)
-   - Username availability check
-   - Password generation option
+- Extend JpaRepository<Patient, Long>
+- findByAssignedDoctorId() method
+- findByFirstNameContainingOrLastNameContaining() for search
+- findByDateOfBirthBetween() for age filtering
+- Custom query for patient statistics
+```
 
-3. UserTable (frontend/src/components/admin/UserTable.tsx):
-   - Status indicators (active/inactive)
-   - Last login information
-   - Quick actions (edit, deactivate, reset password)
-   - Role badges with colors
+### **Prompt 23: Create Patient Service**
+```
+Create Patient service in backend/src/main/java/com/dentalclinic/service/PatientService.java:
 
-FEATURES:
-- Real-time user status updates
-- Search and filter by role, status, name
-- Confirmation dialogs for destructive actions
-- Success/error notifications
+- createPatient() method
+- updatePatient() method
+- getPatientById() with doctor access control
+- getAllPatients() with pagination and filtering
+- assignPatientToDoctor() method
+```
 
-STYLING:
-- Material-UI DataGrid or custom table
-- Corona React card design
-- Professional admin theme
+### **Prompt 24: Create Patient Controller**
+```
+Create Patient controller in backend/src/main/java/com/dentalclinic/controller/PatientController.java:
+
+- GET /api/patients endpoint with pagination
+- GET /api/patients/{id} endpoint
+- POST /api/patients endpoint
+- PUT /api/patients/{id} endpoint
+- Doctor can only see assigned patients
+```
+
+### **Prompt 25: Create Patient Types**
+```
+Create Patient types in frontend/src/types/Patient.ts:
+
+- Patient interface matching backend entity
+- PatientCreateRequest interface
+- PatientUpdateRequest interface
+- PatientSearchFilters interface
+- MedicalHistory interface
+```
+
+### **Prompt 26: Create Patient Service**
+```
+Create Patient service in frontend/src/services/api/PatientService.ts:
+
+- getAllPatients() with pagination
+- getPatientById() method
+- createPatient() method
+- updatePatient() method
+- searchPatients() method
+```
+
+### **Prompt 27: Create Patient List Page**
+```
+Create Patient list page in frontend/src/pages/admin/PatientList.tsx:
+
+- Data table with patient information
+- Search and filter functionality
+- Add patient button
+- Quick actions (view, edit, assign doctor)
 - Responsive design for mobile
 ```
 
----
-
-## **PHASE 2: CORE FEATURES PROMPTS**
-
-### **4. Patient Management**
-
-#### **Backend Patient Management Prompt**
+### **Prompt 28: Create Patient Profile Component**
 ```
-Implement comprehensive patient management system in backend/ folder:
+Create Patient profile in frontend/src/components/common/PatientProfile.tsx:
 
-FILE LOCATIONS:
-- Create in backend/src/main/java/com/dentalclinic/
-
-PATIENT ENTITY (backend/src/main/java/com/dentalclinic/model/Patient.java):
-- Add medical history fields (allergies, medications, conditions)
-- File attachments (X-rays, documents)
+- Tabbed interface (Info, History, Appointments)
+- Editable patient information
+- Medical history display
 - Emergency contact information
-- Basic insurance information (optional)
-
-PATIENT CONTROLLER (backend/src/main/java/com/dentalclinic/controller/PatientController.java):
-- GET /api/patients - list with pagination and search
-- GET /api/patients/{id} - detailed patient profile
-- POST /api/patients - create new patient
-- PUT /api/patients/{id} - update patient
-- GET /api/patients/{id}/history - medical history
-- GET /api/patients/{id}/appointments - patient appointments
-- GET /api/patients/{id}/treatments - treatment history
-
-PATIENT SERVICE (backend/src/main/java/com/dentalclinic/service/PatientService.java):
-- Business logic for patient operations
-- Search and filtering functionality
-- Data validation and processing
-
-PATIENT REPOSITORY (backend/src/main/java/com/dentalclinic/repository/PatientRepository.java):
-- Custom query methods for search
-- Pagination and sorting support
-
-DOCTOR RESTRICTIONS:
-- Doctors can only see assigned patients
-- Filter patients by assignedDoctorId
-- Admin sees all patients
-
-SEARCH FUNCTIONALITY:
-- Search by name, phone number
-- Filter by age range, assigned doctor, registration date
-- Sort by name, last visit, registration date
-
-FILE MANAGEMENT:
-- Upload patient documents (X-rays, medical records)
-- File type validation (PDF, JPEG, PNG, DICOM)
-- Secure file storage and retrieval
-- File versioning and history
+- Print patient summary
 ```
 
-#### **Frontend Patient Management Prompt**
+### **Prompt 29: Create Add Patient Modal**
 ```
-Create comprehensive patient management interface in frontend/ folder:
+Create Add Patient modal in frontend/src/components/common/AddPatientModal.tsx:
 
-FILE LOCATIONS:
-- Create in frontend/src/
-
-COMPONENTS:
-1. PatientList (frontend/src/pages/admin/PatientList.tsx or frontend/src/pages/doctor/PatientList.tsx):
-   - Searchable data table with filters
-   - Patient cards with photos and key info
-   - Quick actions (view, edit, schedule appointment)
-   - Add new patient button
-
-2. PatientProfile (frontend/src/components/common/PatientProfile.tsx):
-   - Tabbed interface (Info, History, Appointments, Files)
-   - Editable fields with form validation
-   - Medical history timeline
-   - File upload with drag-and-drop
-
-3. AddPatientModal (frontend/src/components/common/AddPatientModal.tsx):
-   - Multi-step form (Personal, Medical, Contact)
-   - Date picker for DOB
-   - File upload for profile photo
-   - Form validation with error messages
-
-SERVICES:
-- PatientService (frontend/src/services/api/PatientService.ts)
-- FileUploadService (frontend/src/services/api/FileUploadService.ts)
-
-TYPES:
-- Patient interface (frontend/src/types/Patient.ts)
-- PatientHistory interface (frontend/src/types/PatientHistory.ts)
-
-FEATURES:
-- Advanced search with multiple criteria
-- Patient photo display with placeholder
-- Medical alerts for allergies/conditions
-- Quick appointment scheduling
-- Export patient list
-
-DESIGN:
-- Corona React card layout
-- Professional medical color scheme
-- Icons for different medical conditions
-- Responsive grid layout for patient cards
+- Multi-step form (Personal, Medical, Contact)
+- Date picker for date of birth
+- Form validation and error handling
+- Doctor assignment (admin only)
+- Success/error notifications
 ```
 
-### **5. Appointment Management**
-
-#### **Backend Appointment Management Prompt**
+### **Prompt 30: Create Patient Search Component**
 ```
-Create appointment scheduling system:
+Create Patient search in frontend/src/components/common/PatientSearch.tsx:
 
-APPOINTMENT ENTITY:
-- Add recurring appointment support
-- Appointment types (consultation, cleaning, surgery, follow-up)
-- Status tracking (scheduled, confirmed, in-progress, completed, cancelled)
-- Duration and room assignment
-
-APPOINTMENT CONTROLLER:
-- GET /api/appointments - list with date range filters
-- GET /api/appointments/calendar/{doctorId} - calendar view
-- POST /api/appointments - create appointment
-- PUT /api/appointments/{id} - update appointment
-- PATCH /api/appointments/{id}/status - change status
-- GET /api/appointments/available-slots - available time slots
-
-BUSINESS LOGIC:
-- Prevent double booking
-- Working hours validation
-- Appointment reminder system
-- Conflict detection and resolution
-
-CALENDAR INTEGRATION:
-- Generate calendar events
-- Time zone handling
-- Recurring appointment patterns
-- Availability checking
-
-NOTIFICATIONS:
-- In-app appointment notifications
-- Dashboard alerts for upcoming appointments
-- Doctor schedule notifications
+- Real-time search input
+- Advanced filters (age, doctor, date range)
+- Search suggestions
+- Clear filters functionality
+- Export search results
 ```
 
-#### **Frontend Appointment Management Prompt**
+### **Prompt 31: Create Doctor Dashboard**
 ```
-Create appointment scheduling interface:
+Create Doctor dashboard in frontend/src/pages/doctor/DoctorDashboard.tsx:
 
-COMPONENTS:
-1. AppointmentCalendar:
-   - Full calendar view with month/week/day views
-   - Drag-and-drop appointment rescheduling
-   - Color coding by appointment type
-   - Doctor-specific calendar filtering
-
-2. ScheduleAppointment:
-   - Patient selection with search
-   - Doctor selection (admin) or auto-assign (doctor)
-   - Date/time picker with availability checking
-   - Appointment type selection
-   - Notes and special instructions
-
-3. AppointmentList:
-   - Today's appointments dashboard
-   - Status indicators and actions
-   - Quick status updates
-   - Patient contact information
-
-FEATURES:
-- Real-time availability checking
-- Appointment conflict warnings
-- Bulk operations (reschedule, cancel)
-- Print appointment schedules
-- Export calendar data
-
-CALENDAR LIBRARY:
-- FullCalendar React integration
-- Custom styling to match Corona theme
-- Responsive design for mobile
-- Touch gestures for mobile calendars
+- Today's appointments widget
+- My patients summary
+- Quick actions (add treatment, view patient)
+- Recent activities feed
+- Performance metrics
 ```
 
----
-
-## **PHASE 3: ADVANCED FEATURES PROMPTS**
-
-### **6. Treatment Records**
-
-#### **Backend Treatment Management Prompt**
+### **Prompt 32: Create Admin Dashboard**
 ```
-Implement comprehensive treatment recording system:
+Create Admin dashboard in frontend/src/pages/admin/AdminDashboard.tsx:
 
-TREATMENT ENTITY ENHANCEMENT:
-- Add treatment plans and follow-up schedules
-- Treatment photos (before/after)
-- Multi-visit treatment tracking
-- Cost breakdown and billing information
-
-TREATMENT CONTROLLER:
-- GET /api/treatments - list with filters
-- GET /api/treatments/{id} - detailed treatment record
-- POST /api/treatments - create treatment record
-- PUT /api/treatments/{id} - update treatment
-- GET /api/treatments/patient/{patientId} - patient treatment history
-- POST /api/treatments/{id}/photos - upload treatment photos
-
-PRESCRIPTION MANAGEMENT:
-- Link treatments to prescriptions
-- Drug interaction checking
-- Dosage calculation helpers
-- Prescription printing
-
-TREATMENT ANALYTICS:
-- Treatment success rates
-- Popular procedures
-- Average costs by treatment type
-- Doctor performance metrics
-
-COMPLIANCE:
-- HIPAA compliance features
-- Audit trail for all changes
-- Data encryption for sensitive fields
-- Backup and restore functionality
+- System overview metrics
+- User management quick actions
+- Patient statistics
+- Revenue summaries
+- System alerts and notifications
 ```
 
-#### **Frontend Treatment Management Prompt**
+## **PHASE 4: APPOINTMENT & TREATMENT MANAGEMENT (Prompts 33-44)**
+
+### **Prompt 33: Create Appointment Entity**
 ```
-Create treatment recording interface:
+Create Appointment entity in backend/src/main/java/com/dentalclinic/model/Appointment.java:
 
-COMPONENTS:
-1. TreatmentForm:
-   - Rich text editor for treatment notes
-   - Procedure selection from predefined list
-   - Photo upload with before/after comparison
-   - Cost calculation and billing details
+- Fields: id, patientId, doctorId, appointmentTime, type, status, notes, durationMinutes
+- Status enum: SCHEDULED, CONFIRMED, IN_PROGRESS, COMPLETED, CANCELLED
+- JPA annotations and relationships
+- Constructors, getters, setters
+```
 
-2. TreatmentHistory:
-   - Timeline view of patient treatments
-   - Expandable treatment details
-   - Filter by date, procedure, doctor
-   - Print treatment summaries
+### **Prompt 34: Create Appointment Repository**
+```
+Create Appointment repository in backend/src/main/java/com/dentalclinic/repository/AppointmentRepository.java:
 
-3. TreatmentPlan:
-   - Multi-visit treatment planning
-   - Progress tracking with visual indicators
-   - Appointment scheduling integration
-   - Cost estimation and approval workflow
+- findByDoctorIdAndAppointmentTimeBetween() method
+- findByPatientId() method
+- findByStatus() method
+- findUpcomingAppointments() custom query
+- Calendar view queries
+```
 
-FEATURES:
-- Template-based treatment notes
-- Voice-to-text for quick note taking
-- Photo annotation tools
+### **Prompt 35: Create Appointment Service**
+```
+Create Appointment service in backend/src/main/java/com/dentalclinic/service/AppointmentService.java:
+
+- scheduleAppointment() method
+- updateAppointmentStatus() method
+- getAvailableTimeSlots() method
+- getAppointmentsByDoctor() method
+- checkConflicts() method
+```
+
+### **Prompt 36: Create Appointment Controller**
+```
+Create Appointment controller in backend/src/main/java/com/dentalclinic/controller/AppointmentController.java:
+
+- GET /api/appointments endpoint
+- POST /api/appointments endpoint
+- PUT /api/appointments/{id} endpoint
+- GET /api/appointments/calendar/{doctorId} endpoint
+- GET /api/appointments/available-slots endpoint
+```
+
+### **Prompt 37: Create Treatment Entity**
+```
+Create Treatment entity in backend/src/main/java/com/dentalclinic/model/Treatment.java:
+
+- Fields: id, patientId, doctorId, appointmentId, treatmentDate, symptoms, diagnosis
+- Fields: procedure, treatmentNotes, medications, cost, status
+- JPA annotations and relationships
+- Constructors, getters, setters
+```
+
+### **Prompt 38: Create Treatment Repository**
+```
+Create Treatment repository in backend/src/main/java/com/dentalclinic/repository/TreatmentRepository.java:
+
+- findByPatientId() method
+- findByDoctorId() method
+- findByTreatmentDateBetween() method
+- findByProcedureContaining() method
+- Treatment statistics queries
+```
+
+### **Prompt 39: Create Appointment Calendar Component**
+```
+Create Appointment calendar in frontend/src/components/common/AppointmentCalendar.tsx:
+
+- FullCalendar integration
+- Drag and drop rescheduling
+- Color coding by appointment type
+- Month/week/day views
+- Doctor-specific filtering
+```
+
+### **Prompt 40: Create Schedule Appointment Modal**
+```
+Create Schedule appointment modal in frontend/src/components/common/ScheduleAppointmentModal.tsx:
+
+- Patient selection with search
+- Doctor selection (admin only)
+- Date/time picker with availability
+- Appointment type selection
+- Notes and special instructions
+```
+
+### **Prompt 41: Create Treatment Form**
+```
+Create Treatment form in frontend/src/components/doctor/TreatmentForm.tsx:
+
+- Rich text editor for treatment notes
+- Procedure selection dropdown
+- Symptoms and diagnosis fields
+- Medication prescription
+- Cost calculation
+```
+
+### **Prompt 42: Create Treatment History**
+```
+Create Treatment history in frontend/src/components/common/TreatmentHistory.tsx:
+
+- Timeline view of treatments
+- Expandable treatment details
+- Filter by date and procedure
+- Print treatment summary
 - Treatment outcome tracking
-- Invoice generation for treatments
-
-EDITOR:
-- Rich text editor (TinyMCE or similar)
-- Medical symbol insertion
-- Template library for common procedures
-- Auto-save functionality
 ```
 
-### **7. Inventory Management**
-
-#### **Backend Inventory Management Prompt**
+### **Prompt 43: Create Appointment List**
 ```
-Create medicine inventory management system:
+Create Appointment list in frontend/src/components/common/AppointmentList.tsx:
 
-MEDICINE ENTITY:
-- Batch tracking with expiry dates
-- Supplier information and purchase history
-- Minimum stock levels and reorder points
-- Usage tracking and consumption analytics
-
-INVENTORY CONTROLLER:
-- GET /api/inventory - list with stock status
-- GET /api/inventory/low-stock - items below minimum
-- GET /api/inventory/expiring - items expiring soon
-- POST /api/inventory - add new medicine
-- PUT /api/inventory/{id} - update stock levels
-- POST /api/inventory/reorder - create purchase orders
-
-STOCK MANAGEMENT:
-- Automatic stock deduction on prescription
-- Stock adjustment with reason codes
-- Waste tracking for expired medicines
-- Supplier management and purchase orders
-
-REPORTING:
-- Consumption reports by medicine/period
-- Cost analysis and budgeting
-- Expiry alerts and waste reports
-- Purchase order management
-
-ALERTS:
-- Low stock notifications
-- Expiry date warnings
-- Automatic reorder suggestions
-- In-app notifications to admin
+- Today's appointments view
+- Status indicators and actions
+- Quick status updates
+- Patient contact information
+- Appointment notes
 ```
 
-#### **Frontend Inventory Management Prompt**
+### **Prompt 44: Create Calendar Integration**
 ```
-Create inventory management interface:
+Create Calendar integration in frontend/src/services/api/CalendarService.ts:
 
-COMPONENTS:
-1. InventoryDashboard:
-   - Stock level overview with gauges
-   - Low stock alerts with action buttons
-   - Expiry calendar with color coding
-   - Quick stock adjustment interface
-
-2. MedicineList:
-   - Sortable table with stock indicators
-   - Barcode scanning for quick lookup
-   - Bulk update capabilities
-   - Advanced filtering options
-
-3. StockManagement:
-   - Stock in/out forms with reason codes
-   - Batch tracking interface
-   - Supplier management
-   - Purchase order creation
-
-FEATURES:
-- Real-time stock level updates
-- Barcode generation and scanning
-- Export reports to Excel/PDF
-- Mobile-friendly stock checking
-- Photo capture for stock verification
-
-VISUALIZATION:
-- Stock level charts and trends
-- Consumption analytics
-- Cost tracking dashboards
-- Predictive reorder suggestions
+- Real-time availability checking
+- Appointment conflict detection
+- Calendar synchronization
+- Export calendar data
+- Notification scheduling
 ```
 
-### **8. Billing System**
+## **PHASE 5: ADVANCED FEATURES (Prompts 45-56)**
 
-#### **Backend Billing Management Prompt**
+### **Prompt 45: Create Medicine Entity**
 ```
-Implement comprehensive billing system:
+Create Medicine entity in backend/src/main/java/com/dentalclinic/model/Medicine.java:
 
-BILLING ENTITIES:
-- Invoice with line items and tax calculation
-- Payment tracking (cash, check, bank transfer)
-- Payment status management
-- Recurring billing for treatment plans
-
-BILLING CONTROLLER:
-- GET /api/billing/invoices - invoice list with filters
-- POST /api/billing/invoices - create invoice
-- PUT /api/billing/invoices/{id} - update invoice
-- POST /api/billing/payments - record payment
-- GET /api/billing/reports - financial reports
-
-PAYMENT PROCESSING:
-- Multiple payment methods (cash, check, bank transfer)
-- Payment plan management
-- Refund processing
-- Late payment tracking and follow-up
-
-FINANCIAL REPORTING:
-- Daily/monthly revenue reports
-- Outstanding payments tracking
-- Doctor commission calculations
-- Tax reporting and compliance
-
-INTEGRATION:
-- Receipt generation and printing
-- Accounting software export (CSV/Excel)
-- Invoice PDF generation
-- Payment receipt templates
+- Fields: id, name, category, quantity, unitPrice, expiryDate, supplier
+- Fields: minStockLevel, batchNumber, manufacturer
+- JPA annotations
+- Constructors, getters, setters
 ```
 
-#### **Frontend Billing Management Prompt**
+### **Prompt 46: Create Inventory Service**
 ```
-Create billing and invoicing interface:
+Create Inventory service in backend/src/main/java/com/dentalclinic/service/InventoryService.java:
 
-COMPONENTS:
-1. BillingDashboard:
-   - Revenue charts and KPIs
-   - Outstanding payments overview
-   - Recent transactions list
-   - Quick payment recording
-
-2. InvoiceManager:
-   - Invoice creation with line items
-   - PDF invoice generation
-   - Payment status tracking
-   - Bulk invoice operations
-
-3. PaymentProcessing:
-   - Payment recording interface
-   - Payment method selection
-   - Receipt generation
-   - Refund processing
-
-FEATURES:
-- Automated invoice generation
-- Payment follow-up notifications
-- Financial analytics and reporting
-- Export to accounting software
-- Receipt printing and management
-
-REPORTING:
-- Interactive financial dashboards
-- Customizable report generation
-- Data visualization with charts
-- Export capabilities (PDF, Excel)
+- addMedicine() method
+- updateStock() method
+- getLowStockItems() method
+- getExpiringItems() method
+- generateReorderReport() method
 ```
 
----
-
-## **PHASE 4: AI INTEGRATION PROMPTS**
-
-### **9. AI Service Setup**
-
-#### **Python AI Service Prompt**
+### **Prompt 47: Create Invoice Entity**
 ```
-Create Python FastAPI AI service for dental clinic in ai-service/ folder:
+Create Invoice entity in backend/src/main/java/com/dentalclinic/model/Invoice.java:
 
-PROJECT SETUP:
-- Create project in ai-service/ directory
-- FastAPI with async support
-- ChromaDB for vector storage
-- Hugging Face transformers for NLP
-- Medical knowledge base integration
-
-FOLDER STRUCTURE:
-ai-service/
-├── app/
-│   ├── main.py
-│   ├── models/
-│   ├── services/
-│   ├── api/
-│   └── utils/
-├── data/
-└── requirements.txt
-
-ENDPOINTS TO CREATE:
-1. POST /api/ai/clinic-suggestions (ai-service/app/api/clinic_suggestions.py):
-   - Input: symptoms, patient history, previous treatments
-   - Output: similar cases, suggested treatments, confidence scores
-   - Use vector similarity search in ChromaDB
-
-2. POST /api/ai/web-suggestions (ai-service/app/api/web_suggestions.py):
-   - Input: medical query, symptoms
-   - Output: web research results, medical guidelines
-   - Integration with medical APIs (PubMed, medical databases)
-
-3. POST /api/ai/train-model (ai-service/app/api/train_model.py):
-   - Input: new treatment data
-   - Process: add to vector database, update embeddings
-   - Output: training confirmation
-
-AI SERVICES:
-- MedicalNLPService (ai-service/app/services/medical_nlp.py)
-- VectorSearchService (ai-service/app/services/vector_search.py)
-- WebScrapingService (ai-service/app/services/web_scraping.py)
-- ModelTrainingService (ai-service/app/services/model_training.py)
-
-MEDICAL NLP:
-- Extract symptoms from natural language
-- Medical entity recognition
-- Treatment recommendation engine
-- Drug interaction checking
-
-VECTOR DATABASE:
-- Store treatment embeddings
-- Patient similarity matching
-- Symptom-treatment correlation
-- Medical knowledge graphs
-
-SECURITY:
-- API key authentication
-- Rate limiting
-- Medical data privacy compliance
-- Audit logging for AI decisions
+- Fields: id, patientId, invoiceDate, totalAmount, paidAmount, status
+- Payment method enum: CASH, CHECK, BANK_TRANSFER
+- Status enum: PENDING, PARTIAL, PAID, OVERDUE
+- JPA annotations and relationships
 ```
 
-#### **Backend AI Integration Prompt**
+### **Prompt 48: Create Billing Service**
 ```
-Integrate AI service with Spring Boot backend:
+Create Billing service in backend/src/main/java/com/dentalclinic/service/BillingService.java:
 
-AI SERVICE CLIENT:
-- Create AiServiceClient with RestTemplate
-- Async communication with Python service
-- Fallback mechanisms for service unavailability
-- Response caching for common queries
+- generateInvoice() method
+- recordPayment() method
+- getOutstandingPayments() method
+- generateFinancialReport() method
+- calculateRevenue() method
+```
 
-CHAT CONTROLLER:
-- POST /api/doctor/chat/message
-- GET /api/doctor/chat/history/{patientId}
-- POST /api/doctor/chat/suggestions
-- PUT /api/doctor/chat/feedback/{messageId}
+### **Prompt 49: Create Inventory Management Page**
+```
+Create Inventory management in frontend/src/pages/admin/InventoryManagement.tsx:
 
-CHAT ENTITIES:
-- ChatSession (id, doctorId, patientId, startTime, status)
-- ChatMessage (id, sessionId, message, response, suggestionType, timestamp)
-- AiSuggestion (id, messageId, suggestionText, confidenceScore, sourceType)
+- Medicine list with stock levels
+- Low stock alerts
+- Add/edit medicine modal
+- Expiry date tracking
+- Supplier management
+```
 
-AI FEATURES:
-- Treatment suggestion based on symptoms
-- Similar case retrieval from history
-- Drug interaction warnings
+### **Prompt 50: Create Billing Dashboard**
+```
+Create Billing dashboard in frontend/src/pages/admin/BillingDashboard.tsx:
+
+- Revenue overview charts
+- Outstanding payments list
+- Recent transactions
+- Payment method statistics
+- Export financial reports
+```
+
+### **Prompt 51: Create Invoice Component**
+```
+Create Invoice component in frontend/src/components/common/InvoiceComponent.tsx:
+
+- Invoice generation form
+- Line items with costs
+- Tax calculation
+- Payment recording
+- PDF invoice generation
+```
+
+### **Prompt 52: Create Analytics Service**
+```
+Create Analytics service in backend/src/main/java/com/dentalclinic/service/AnalyticsService.java:
+
+- getPatientStatistics() method
+- getRevenueAnalytics() method
+- getDoctorPerformance() method
+- getTreatmentTrends() method
+- getSystemMetrics() method
+```
+
+### **Prompt 53: Create Charts Component**
+```
+Create Charts component in frontend/src/components/common/ChartsComponent.tsx:
+
+- Revenue line charts
+- Patient demographics pie charts
+- Treatment distribution bar charts
+- Doctor performance metrics
+- Interactive chart filters
+```
+
+### **Prompt 54: Create Export Service**
+```
+Create Export service in frontend/src/services/api/ExportService.ts:
+
+- exportToExcel() method
+- exportToPDF() method
+- generateReport() method
+- scheduleReport() method
+- downloadFile() helper
+```
+
+### **Prompt 55: Create Notification System**
+```
+Create Notification system in frontend/src/components/common/NotificationCenter.tsx:
+
+- In-app notification center
+- Toast notifications
+- Alert badges
+- Notification history
+- Mark as read functionality
+```
+
+### **Prompt 56: Create File Upload Component**
+```
+Create File upload in frontend/src/components/common/FileUpload.tsx:
+
+- Drag and drop file upload
+- File type validation
+- Progress indicators
+- File preview
+- Multiple file support
+```
+
+## **PHASE 6: AI INTEGRATION (Prompts 57-62)**
+
+### **Prompt 57: Setup AI Service Project**
+```
+Create AI service project in ai-service/ folder:
+
+- Initialize FastAPI project
+- Setup ChromaDB for vector storage
+- Create main.py with FastAPI app
+- Install dependencies: fastapi, chromadb, uvicorn
+- Basic project structure setup
+```
+
+### **Prompt 58: Create Clinic Suggestions API**
+```
+Create clinic suggestions in ai-service/app/api/clinic_suggestions.py:
+
+- POST /api/ai/clinic-suggestions endpoint
+- Vector similarity search implementation
+- Patient history analysis
+- Treatment recommendation logic
+- Confidence scoring system
+```
+
+### **Prompt 59: Create Web Suggestions API**
+```
+Create web suggestions in ai-service/app/api/web_suggestions.py:
+
+- POST /api/ai/web-suggestions endpoint
+- Medical API integration
+- Web scraping service
+- Research paper retrieval
 - Medical guideline references
-
-WEBSOCKET INTEGRATION:
-- Real-time chat communication
-- AI suggestion streaming
-- Typing indicators
-- Message status updates
-
-TRAINING DATA MANAGEMENT:
-- Anonymize patient data for AI training
-- Export training datasets
-- Model performance tracking
-- Feedback loop for AI improvement
 ```
 
-### **10. AI Chat Interface**
-
-#### **Frontend AI Chat Prompt**
+### **Prompt 60: Create AI Chat Interface**
 ```
-Create AI-powered chat interface for doctors in frontend/ folder:
+Create AI chat interface in frontend/src/pages/doctor/ChatInterface.tsx:
 
-FILE LOCATIONS:
-- Create in frontend/src/
-
-COMPONENTS:
-1. ChatInterface (frontend/src/pages/doctor/ChatInterface.tsx):
-   - Split layout: chat area (70%) + suggestions panel (30%)
-   - Real-time messaging with WebSocket
-   - Message typing indicators
-   - File attachment support (X-rays, documents)
-
-2. SuggestionPanel (frontend/src/components/doctor/SuggestionPanel.tsx):
-   - Toggle between "Web Suggestions" and "Clinic History"
-   - Confidence score indicators
-   - Source attribution (guidelines, similar cases)
-   - Suggestion rating and feedback
-
-3. ChatHistory (frontend/src/components/doctor/ChatHistory.tsx):
-   - Searchable conversation history
-   - Filter by date, patient, suggestion type
-   - Export conversation summaries
-   - Bookmark important suggestions
-
-CHAT SERVICES:
-- ChatService (frontend/src/services/api/ChatService.ts)
-- WebSocketService (frontend/src/services/api/WebSocketService.ts)
-- AIService (frontend/src/services/api/AIService.ts)
-
-CHAT TYPES:
-- ChatMessage interface (frontend/src/types/ChatMessage.ts)
-- AISuggestion interface (frontend/src/types/AISuggestion.ts)
-- ChatSession interface (frontend/src/types/ChatSession.ts)
-
-CHAT FEATURES:
-- Voice-to-text input
-- Medical symbol keyboard
-- Quick response templates
-- Auto-save draft messages
-
-AI INTEGRATION:
-- Real-time suggestion generation
-- Confidence score visualization
-- Source linking for suggestions
-- Feedback collection for AI improvement
-
-DESIGN:
-- WhatsApp-like chat interface
-- Medical-themed color coding
-- Professional typography
-- Mobile-responsive design
-
-WEBSOCKET:
-- Real-time message delivery
-- Typing indicators
-- Online status
-- Message read receipts
+- Split layout design (chat + suggestions)
+- Real-time messaging
+- Mode toggle (Web/Clinic)
+- File attachment support
+- Suggestion rating system
 ```
 
-### **11. AI Model Training**
-
-#### **AI Training Data Pipeline Prompt**
+### **Prompt 61: Create AI Service Integration**
 ```
-Create AI training data pipeline:
+Create AI service integration in backend/src/main/java/com/dentalclinic/service/AIService.java:
 
-DATA PROCESSING:
-- Patient data anonymization
-- Treatment outcome labeling
-- Medical text preprocessing
-- Symptom-treatment correlation analysis
-
-TRAINING PIPELINE:
-- Automated model retraining
-- Performance metric tracking
-- A/B testing for model versions
-- Feedback incorporation system
-
-FEATURES:
-1. Treatment Prediction:
-   - Symptom -> Treatment mapping
-   - Success rate prediction
-   - Cost estimation
-   - Duration forecasting
-
-2. Similar Case Retrieval:
-   - Vector similarity search
-   - Patient matching algorithms
-   - Treatment outcome comparison
-   - Risk factor analysis
-
-3. Medical Knowledge Integration:
-   - Guideline compliance checking
-   - Drug interaction detection
-   - Allergy considerations
-   - Age/condition-specific recommendations
-
-MODEL MANAGEMENT:
-- Version control for models
-- Rollback capabilities
-- Performance monitoring
-- Continuous learning from feedback
-
-EVALUATION METRICS:
-- Suggestion accuracy
-- Doctor adoption rate
-- Patient outcome improvement
-- Time savings quantification
+- RestTemplate client for AI service
+- Async communication
+- Fallback mechanisms
+- Response caching
+- Error handling
 ```
 
----
-
-## **PHASE 5: PRODUCTION READY PROMPTS**
-
-### **12. Database Migration**
-
-#### **PostgreSQL Migration Prompt**
+### **Prompt 62: Create Model Training Service**
 ```
-Migrate from H2 to PostgreSQL:
+Create model training in ai-service/app/services/model_training.py:
 
-DATABASE SETUP:
-- PostgreSQL configuration
-- Connection pooling
-- Migration scripts from H2 schema
-- Data backup and restore procedures
-
-CONFIGURATION CHANGES:
-- Update application.yml for production
-- Environment-specific configurations
-- Database connection security
-- SSL configuration
-
-MIGRATION STRATEGY:
-- Zero-downtime migration approach
-- Data validation and integrity checks
-- Rollback procedures
-- Performance optimization
-
-PRODUCTION FEATURES:
-- Database monitoring
-- Automated backups
-- Query optimization
-- Index management
-
-DATA MIGRATION:
-- Export H2 data to SQL scripts
-- Transform data for PostgreSQL
-- Validate data integrity
-- Performance testing with production data volume
+- Data anonymization
+- Vector embedding generation
+- Model retraining pipeline
+- Performance metrics tracking
+- Feedback incorporation
 ```
 
-### **13. Security Hardening**
+## **PHASE 7: PRODUCTION SETUP (Prompts 63-65)**
 
-#### **Security Implementation Prompt**
+### **Prompt 63: Create Docker Configuration**
 ```
-Implement production-grade security:
+Create Docker setup for all services:
 
-AUTHENTICATION:
-- JWT token security hardening
-- Token rotation and blacklisting
-- Multi-factor authentication
-- Session management
-
-AUTHORIZATION:
-- Fine-grained role-based access control
-- API endpoint security
-- Method-level security
-- Resource-based permissions
-
-DATA PROTECTION:
-- Data encryption at rest and in transit
-- PII data anonymization
-- HIPAA compliance measures
-- Audit trail implementation
-
-API SECURITY:
-- Rate limiting and throttling
-- Input validation and sanitization
-- SQL injection prevention
-- XSS protection
-
-MONITORING:
-- Security event logging
-- Intrusion detection
-- Failed login monitoring
-- Suspicious activity alerts
-
-COMPLIANCE:
-- GDPR compliance features
-- Data retention policies
-- Right to deletion
-- Consent management
+- backend/Dockerfile for Spring Boot
+- frontend/Dockerfile for React
+- ai-service/Dockerfile for Python
+- docker-compose.yml for development
+- Environment configuration files
 ```
 
-### **14. Performance Optimization**
-
-#### **Performance Tuning Prompt**
+### **Prompt 64: Database Migration Setup**
 ```
-Optimize application performance:
+Create PostgreSQL migration configuration:
 
-BACKEND OPTIMIZATION:
-- Database query optimization
+- Update backend/src/main/resources/application-prod.yml
+- Create migration scripts
+- Data backup/restore procedures
 - Connection pooling configuration
-- Caching strategies (Redis)
-- Async processing implementation
-
-FRONTEND OPTIMIZATION:
-- Code splitting and lazy loading
-- Image optimization and compression
-- Bundle size reduction
-- CDN implementation
-
-API OPTIMIZATION:
-- Response compression
-- Pagination implementation
-- GraphQL for efficient data fetching
-- API response caching
-
-MONITORING:
-- Application performance monitoring
-- Database performance tracking
-- User experience monitoring
-- Error tracking and reporting
-
-SCALABILITY:
-- Horizontal scaling preparation
-- Load balancing configuration
-- Database sharding strategies
-- Microservices architecture planning
+- Performance optimization settings
 ```
 
-### **15. Deployment Setup**
-
-#### **Production Deployment Prompt**
+### **Prompt 65: Production Deployment**
 ```
 Create production deployment configuration:
 
-CONTAINERIZATION:
-- Docker containers for all services
-- Multi-stage builds for optimization
+- Kubernetes manifests
+- CI/CD pipeline setup
+- Environment variables management
 - Health checks and monitoring
-- Resource limits and scaling
-
-ORCHESTRATION:
-- Docker Compose for local development
-- Kubernetes manifests for production
-- Service discovery and load balancing
-- Auto-scaling configuration
-
-CI/CD PIPELINE:
-- GitHub Actions or GitLab CI
-- Automated testing and deployment
-- Blue-green deployment strategy
-- Rollback mechanisms
-
-MONITORING:
-- Application monitoring (Prometheus/Grafana)
-- Log aggregation (ELK stack)
-- Health checks and alerts
-- Performance metrics tracking
-
-BACKUP AND RECOVERY:
-- Automated database backups
-- File storage backup
-- Disaster recovery procedures
-- Data restoration testing
-
-ENVIRONMENT MANAGEMENT:
-- Development, staging, production environments
-- Environment-specific configurations
-- Secret management
-- SSL certificate management
+- SSL certificate configuration
 ```
 
 ---
 
-## **INTEGRATION PROMPTS**
+# **🎉 CONGRATULATIONS! You now have 65 optimized prompts for efficient development!**
 
-### **16. Frontend-Backend Sync Prompt**
-```
-Ensure frontend and backend are perfectly synchronized:
+## **📝 USAGE INSTRUCTIONS:**
 
-API CONTRACT:
-- OpenAPI/Swagger documentation
-- Consistent response formats
-- Error handling standards
-- Version management
+1. **Start with Prompt 1** and work sequentially through to Prompt 65
+2. **Each prompt is designed** to be completed quickly by Cursor (2-5 minutes each)
+3. **Copy the exact prompt text** when using with Cursor or GitHub Copilot
+4. **File paths are pre-specified** - no guessing where to place files
+5. **Each prompt builds on previous ones** - maintain the sequence for best results
 
-TYPE SAFETY:
-- Generate TypeScript types from backend DTOs
-- API client generation
-- Runtime type validation
-- Mock data generation
+## **⚡ EFFICIENCY BENEFITS:**
 
-REAL-TIME FEATURES:
-- WebSocket integration for chat
-- Server-sent events for notifications
-- Real-time data updates
-- Offline capability
+- **Small, focused tasks** - Cursor can generate code faster
+- **Clear file locations** - No confusion about folder structure  
+- **Sequential building** - Each prompt depends on previous ones
+- **Single responsibility** - One feature per prompt
+- **Complete coverage** - All 65 prompts cover entire system
 
-TESTING:
-- End-to-end testing with Cypress
-- API integration testing
-- Component testing with React Testing Library
-- Performance testing
+## **🎯 ESTIMATED TIMELINE:**
 
-DEVELOPMENT WORKFLOW:
-- Hot reloading for development
-- Proxy configuration for API calls
-- Environment variable management
-- Debug configuration
-```
+- **Phase 1 (Prompts 1-8)**: 1-2 days - Project setup
+- **Phase 2 (Prompts 9-20)**: 2-3 days - Authentication
+- **Phase 3 (Prompts 21-32)**: 3-4 days - Patient management  
+- **Phase 4 (Prompts 33-44)**: 3-4 days - Appointments & treatments
+- **Phase 5 (Prompts 45-56)**: 4-5 days - Advanced features
+- **Phase 6 (Prompts 57-62)**: 2-3 days - AI integration
+- **Phase 7 (Prompts 63-65)**: 1-2 days - Production setup
 
-### **17. Final Integration Prompt**
-```
-Complete system integration and final testing:
+**Total estimated time: 16-23 days for complete system**
 
-SYSTEM TESTING:
-- User acceptance testing scenarios
-- Role-based workflow testing
-- Data flow validation
-- Security penetration testing
-
-DEMO PREPARATION:
-- Sample data creation
-- Demo user accounts
-- Feature showcase scenarios
-- Performance benchmarking
-
-DOCUMENTATION:
-- User manuals for admin and doctors
-- API documentation
-- Deployment guides
-- Troubleshooting guides
-
-LAUNCH PREPARATION:
-- Production environment setup
-- Monitoring and alerting configuration
-- Backup procedures validation
-- Support process documentation
-
-MAINTENANCE:
-- Update procedures
-- Bug tracking and resolution
-- Feature request management
-- Performance monitoring
-```
-
----
-
-## **PROMPT USAGE GUIDELINES**
-
-### **For Cursor:**
-1. Use specific prompts for individual features
-2. Provide context about existing code structure
-3. Ask for implementation with error handling
-4. Request proper TypeScript types
-5. Ensure responsive design compliance
-
-### **For GitHub Copilot:**
-1. Use prompts as comments in your code
-2. Break down complex features into smaller functions
-3. Request test cases along with implementation
-4. Ask for documentation and examples
-5. Ensure code follows project conventions
-
-### **Development Order:**
-1. Start with backend entity and repository in backend/ folder
-2. Create corresponding frontend types in frontend/src/types/
-3. Implement backend controller and service in backend/src/main/java/com/dentalclinic/
-4. Create frontend components and services in frontend/src/
-5. Test integration between frontend and backend
-6. Add error handling and validation
-7. Implement responsive design and styling
-
-### **Folder Structure Guidelines:**
-
-#### **Backend (backend/):**
-```
-backend/
-├── src/main/java/com/dentalclinic/
-│   ├── controller/        # REST API controllers
-│   ├── service/          # Business logic services
-│   ├── repository/       # JPA repositories
-│   ├── model/           # Entity classes
-│   ├── dto/             # Data Transfer Objects
-│   ├── config/          # Configuration classes
-│   ├── security/        # Security configuration
-│   └── exception/       # Custom exceptions
-├── src/main/resources/
-│   ├── application.yml  # Configuration
-│   └── data.sql        # Sample data
-└── pom.xml             # Maven dependencies
-```
-
-#### **Frontend (frontend/):**
-```
-frontend/
-├── src/
-│   ├── components/
-│   │   ├── admin/       # Admin-specific components
-│   │   ├── doctor/      # Doctor-specific components
-│   │   ├── common/      # Shared components
-│   │   └── auth/        # Authentication components
-│   ├── pages/
-│   │   ├── admin/       # Admin pages
-│   │   ├── doctor/      # Doctor pages
-│   │   └── auth/        # Authentication pages
-│   ├── services/
-│   │   ├── api/         # API service clients
-│   │   └── auth/        # Authentication services
-│   ├── hooks/           # Custom React hooks
-│   ├── types/           # TypeScript type definitions
-│   ├── utils/           # Utility functions
-│   ├── context/         # React context providers
-│   ├── styles/          # CSS/SCSS files
-│   └── assets/          # Images, icons, etc.
-├── public/              # Static assets
-└── package.json         # npm dependencies
-```
-
-### **AI Service (ai-service/):**
-```
-ai-service/
-├── app/
-│   ├── main.py          # FastAPI application
-│   ├── models/          # AI/ML models
-│   ├── services/        # AI processing services
-│   ├── api/             # API endpoints
-│   └── utils/           # Utility functions
-├── data/                # Training data and embeddings
-└── requirements.txt     # Python dependencies
-```
-
-**IMPORTANT: Always specify the complete file path when creating or modifying files!**
-
----
-
-## **ADDITIONAL MISSING PROMPTS**
-
-### **18. Dashboard Components**
-
-#### **Admin Dashboard Prompt**
-```
-Create comprehensive admin dashboard in frontend/ folder:
-
-FILE LOCATIONS:
-- Create in frontend/src/pages/admin/
-
-DASHBOARD LAYOUT (frontend/src/pages/admin/AdminDashboard.tsx):
-- 4-column grid layout with responsive design
-- Key metrics cards with trend indicators
-- Quick action buttons for common tasks
-- Recent activity feed
-
-METRICS CARDS:
-1. Total Patients (with monthly growth)
-2. Active Doctors (with status indicators)
-3. Today's Appointments (with completion rate)
-4. Monthly Revenue (with comparison to last month)
-5. Low Stock Items (with alert count)
-6. Pending Payments (with overdue amount)
-
-CHARTS AND ANALYTICS:
-- Patient registration trends (line chart)
-- Revenue by month (bar chart)
-- Appointment types distribution (pie chart)
-- Doctor performance comparison (horizontal bar)
-
-QUICK ACTIONS:
-- Add new doctor
-- Schedule appointment
-- View inventory alerts
-- Generate monthly report
-
-RECENT ACTIVITY:
-- Latest patient registrations
-- Recent appointments
-- Payment transactions
-- System alerts
-```
-
-#### **Doctor Dashboard Prompt**
-```
-Create doctor-focused dashboard in frontend/ folder:
-
-FILE LOCATIONS:
-- Create in frontend/src/pages/doctor/
-
-DASHBOARD LAYOUT (frontend/src/pages/doctor/DoctorDashboard.tsx):
-- 3-column layout optimized for clinical workflow
-- Patient-centric information display
-- Quick access to AI chat
-- Today's schedule prominently displayed
-
-METRICS CARDS:
-1. Today's Appointments (with time slots)
-2. My Patients (total assigned)
-3. Pending Treatments (follow-ups needed)
-4. This Week's Revenue (personal)
-
-CLINICAL WIDGETS:
-- Today's appointment schedule with patient photos
-- Recently treated patients with outcome status
-- Pending treatment plans requiring attention
-- AI chat quick access with recent conversations
-
-PATIENT INSIGHTS:
-- Upcoming appointments with preparation notes
-- Patients requiring follow-up
-- Treatment success rates
-- Personal performance metrics
-
-QUICK ACTIONS:
-- Start new patient consultation
-- Open AI treatment chat
-- Record treatment outcome
-- Schedule follow-up appointment
-```
-
-### **19. Responsive Design System**
-
-#### **Mobile Responsiveness Prompt**
-```
-Implement comprehensive responsive design:
-
-BREAKPOINTS:
-- Mobile: 320px - 768px
-- Tablet: 768px - 1024px
-- Desktop: 1024px+
-
-MOBILE ADAPTATIONS:
-- Collapsible sidebar navigation
-- Touch-friendly button sizes (min 44px)
-- Swipe gestures for navigation
-- Mobile-optimized forms with proper input types
-
-TABLET OPTIMIZATIONS:
-- Grid layouts that adapt to portrait/landscape
-- Touch-friendly data tables
-- Modal dialogs optimized for tablet screens
-- Sidebar that can overlay or push content
-
-COMPONENT RESPONSIVENESS:
-- Data tables convert to card layouts on mobile
-- Charts resize and simplify for small screens
-- Navigation becomes hamburger menu
-- Forms stack vertically on mobile
-
-TOUCH INTERACTIONS:
-- Swipe to delete items
-- Pull to refresh lists
-- Touch-friendly date pickers
-- Gesture-based navigation
-```
-
-### **20. Data Import/Export System**
-
-#### **Backend Data Management Prompt**
-```
-Create data import/export system:
-
-IMPORT FEATURES:
-- CSV import for patients, appointments, treatments
-- Excel file processing with validation
-- Bulk data upload with error reporting
-- Data mapping interface for field matching
-
-EXPORT FEATURES:
-- PDF reports for various entities
-- Excel export with formatting
-- CSV export for external systems
-- Filtered data export based on date ranges
-
-DATA VALIDATION:
-- Format validation for imported data
-- Duplicate detection and handling
-- Required field validation
-- Data type checking and conversion
-
-BATCH OPERATIONS:
-- Bulk patient updates
-- Mass appointment scheduling
-- Batch invoice generation
-- Group operations with progress tracking
-
-FILE MANAGEMENT:
-- Secure file upload handling
-- File size and type restrictions
-- Virus scanning for uploaded files
-- File storage organization by entity type
-```
-
-#### **Frontend Data Management Prompt**
-```
-Create data import/export interface:
-
-IMPORT INTERFACE:
-- Drag-and-drop file upload
-- CSV/Excel template download
-- Field mapping interface
-- Import progress tracking with real-time updates
-- Error reporting with line-by-line details
-
-EXPORT INTERFACE:
-- Export wizard with filter options
-- Date range selection
-- Field selection for custom exports
-- Format selection (PDF, Excel, CSV)
-- Export queue with download links
-
-BULK OPERATIONS UI:
-- Multi-select interfaces with checkboxes
-- Bulk action toolbar
-- Progress indicators for long operations
-- Confirmation dialogs for destructive actions
-
-DATA TEMPLATES:
-- Pre-built import templates
-- Sample data files
-- Field mapping presets
-- Export format templates
-```
-
-### **21. System Settings and Configuration**
-
-#### **Admin Settings Prompt**
-```
-Create comprehensive system settings:
-
-CLINIC CONFIGURATION:
-- Clinic name, address, contact information
-- Operating hours and time zones
-- Holiday calendar management
-- Service/treatment type definitions
-
-USER PREFERENCES:
-- Default dashboard layouts
-- Notification preferences
-- Theme customization options
-- Language and locale settings
-
-SYSTEM SETTINGS:
-- Session timeout configuration
-- File upload limits
-- Backup schedule settings
-- Audit log retention policies
-
-MEDICAL SETTINGS:
-- Treatment code definitions
-- Medicine categories and units
-- Appointment types and durations
-- Clinical note templates
-
-BUSINESS RULES:
-- Appointment booking rules
-- Payment terms and conditions
-- Late payment penalty settings
-- Inventory reorder thresholds
-```
-
-### **22. Notification System**
-
-#### **In-App Notification Prompt**
-```
-Create comprehensive notification system:
-
-NOTIFICATION TYPES:
-- Appointment reminders
-- Low stock alerts
-- Payment due notifications
-- System maintenance alerts
-- Treatment follow-up reminders
-
-NOTIFICATION DELIVERY:
-- In-app notification center
-- Browser push notifications
-- Dashboard alert badges
-- Toast notifications for immediate alerts
-
-NOTIFICATION MANAGEMENT:
-- Mark as read/unread
-- Notification history
-- Custom notification preferences
-- Bulk notification actions
-
-REAL-TIME UPDATES:
-- WebSocket-based live notifications
-- Auto-refresh for critical alerts
-- Sound notifications for urgent items
-- Desktop notification permissions
-
-USER PREFERENCES:
-- Notification type preferences
-- Frequency settings
-- Quiet hours configuration
-- Role-based notification rules
-```
-
-### **23. Advanced Search and Filtering**
-
-#### **Global Search Prompt**
-```
-Implement advanced search functionality:
-
-GLOBAL SEARCH:
-- Cross-entity search (patients, appointments, treatments)
-- Real-time search suggestions
-- Search history and saved searches
-- Advanced filter combinations
-
-SEARCH FEATURES:
-- Fuzzy matching for typos
-- Search by partial information
-- Date range searches
-- Numeric range filters (age, cost)
-
-FILTER SYSTEM:
-- Multi-level filter hierarchies
-- Custom filter presets
-- Filter persistence across sessions
-- Quick filter buttons for common searches
-
-SEARCH RESULTS:
-- Unified search results with entity types
-- Relevance scoring and ranking
-- Search result highlighting
-- Export search results
-
-PATIENT SEARCH:
-- Search by name, phone, address
-- Medical condition searches
-- Treatment history searches
-- Insurance information searches
-```
-
-### **24. Audit Trail and Logging**
-
-#### **Audit System Prompt**
-```
-Implement comprehensive audit trail:
-
-AUDIT LOGGING:
-- All CRUD operations tracking
-- User login/logout events
-- Failed authentication attempts
-- Data access logging
-
-AUDIT DETAILS:
-- User ID and timestamp
-- IP address and browser info
-- Before/after values for updates
-- Action type and entity affected
-
-AUDIT SEARCH:
-- Search by user, date, action type
-- Filter by entity type
-- Export audit logs
-- Audit report generation
-
-COMPLIANCE FEATURES:
-- HIPAA audit trail requirements
-- Data retention policies
-- Audit log integrity verification
-- Secure audit log storage
-
-MONITORING ALERTS:
-- Suspicious activity detection
-- Multiple failed login alerts
-- Unusual data access patterns
-- System security notifications
-```
-
-### **25. Error Handling and Logging**
-
-#### **Error Management Prompt**
-```
-Implement robust error handling:
-
-FRONTEND ERROR HANDLING:
-- Global error boundary
-- API error interception
-- User-friendly error messages
-- Error reporting to backend
-
-BACKEND ERROR HANDLING:
-- Global exception handler
-- Custom business exception types
-- Error response standardization
-- Error logging with stack traces
-
-ERROR TYPES:
-- Validation errors with field-level details
-- Authentication/authorization errors
-- Business logic errors
-- System/network errors
-
-ERROR LOGGING:
-- Structured logging with correlation IDs
-- Error severity levels
-- User context in error logs
-- Error frequency monitoring
-
-USER EXPERIENCE:
-- Graceful error fallbacks
-- Retry mechanisms for network errors
-- Offline mode handling
-- Error recovery suggestions
-```
-
-### **26. Testing Strategy**
-
-#### **Comprehensive Testing Prompt**
-```
-Implement full testing strategy:
-
-FRONTEND TESTING:
-- Unit tests with Jest and React Testing Library
-- Component integration tests
-- E2E tests with Cypress
-- Visual regression testing
-
-BACKEND TESTING:
-- Unit tests for services and controllers
-- Integration tests for repositories
-- API endpoint testing
-- Database integration tests
-
-TEST DATA:
-- Test data fixtures and factories
-- Database seeding for tests
-- Mock data generators
-- Test environment isolation
-
-TESTING SCENARIOS:
-- Role-based access testing
-- API security testing
-- Performance testing
-- Cross-browser compatibility testing
-
-CI/CD TESTING:
-- Automated test execution
-- Test coverage reporting
-- Test result notifications
-- Failed test investigation tools
-```
-
-This comprehensive guide ensures your frontend and backend development stays synchronized throughout the entire development process!
+Happy coding! 🚀

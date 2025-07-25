@@ -1,19 +1,61 @@
 # **DENTAL CLINIC MANAGEMENT SYSTEM - DEVELOPMENT PROMPTS**
 
+## 🚨 **IMPORTANT FOLDER STRUCTURE NOTICE** 🚨
+
+**ALL DEVELOPMENT MUST FOLLOW THIS FOLDER STRUCTURE:**
+
+```
+project-root/
+├── frontend/          # React TypeScript application
+├── backend/           # Spring Boot application  
+└── ai-service/        # Python FastAPI AI service
+```
+
+**CRITICAL INSTRUCTIONS:**
+- 🎯 **Frontend changes**: Always create/modify files in `frontend/` folder
+- 🎯 **Backend changes**: Always create/modify files in `backend/` folder  
+- 🎯 **AI service changes**: Always create/modify files in `ai-service/` folder
+- 🎯 **Never mix files** between these directories
+- 🎯 **Always specify complete file paths** in prompts
+
+**Example file paths:**
+- ✅ `frontend/src/components/admin/UserManagement.tsx`
+- ✅ `backend/src/main/java/com/dentalclinic/controller/UserController.java`
+- ✅ `ai-service/app/services/medical_nlp.py`
+
+---
+
 ## **SETUP PROMPTS**
 
 ### **1. Initial Project Setup**
 
 #### **Backend Setup Prompt (Spring Boot)**
 ```
-Create a Spring Boot dental clinic management system with the following structure:
+Create a Spring Boot dental clinic management system in the 'backend' folder with the following structure:
 
 PROJECT SETUP:
+- Create project in backend/ directory
 - Spring Boot 3.2+, Java 17
 - Dependencies: web, data-jpa, h2, websocket, validation, security
 - Package structure: com.dentalclinic
 - H2 in-memory database configuration
 - Two roles: ADMIN, DOCTOR
+
+FOLDER STRUCTURE:
+backend/
+├── src/main/java/com/dentalclinic/
+│   ├── DentalClinicApplication.java
+│   ├── config/
+│   ├── controller/
+│   ├── service/
+│   ├── repository/
+│   ├── model/
+│   ├── dto/
+│   └── security/
+├── src/main/resources/
+│   ├── application.yml
+│   └── data.sql
+└── pom.xml
 
 ENTITIES TO CREATE:
 1. User (id, username, password, role, firstName, lastName, email, active, createdAt)
@@ -39,12 +81,36 @@ SAMPLE DATA:
 
 #### **Frontend Setup Prompt (React)**
 ```
-Create a React TypeScript dental clinic management system frontend with Corona React design:
+Create a React TypeScript dental clinic management system frontend in the 'frontend' folder with Corona React design:
 
 PROJECT SETUP:
+- Create project in frontend/ directory
 - React 18 + TypeScript + Vite
 - Dependencies: @mui/material, recharts, react-router-dom, axios
-- Folder structure: components, pages, services, hooks, types, utils
+
+FOLDER STRUCTURE:
+frontend/
+├── src/
+│   ├── components/
+│   │   ├── common/
+│   │   ├── admin/
+│   │   ├── doctor/
+│   │   └── auth/
+│   ├── pages/
+│   │   ├── admin/
+│   │   ├── doctor/
+│   │   └── auth/
+│   ├── services/
+│   │   ├── api/
+│   │   └── auth/
+│   ├── hooks/
+│   ├── types/
+│   ├── utils/
+│   ├── context/
+│   ├── styles/
+│   └── assets/
+├── public/
+└── package.json
 
 DESIGN SYSTEM:
 - Corona React inspired dark theme
@@ -79,16 +145,19 @@ GLOBAL STATE:
 
 #### **Backend Authentication Prompt**
 ```
-Implement JWT authentication for dental clinic system:
+Implement JWT authentication for dental clinic system in backend/ folder:
+
+FILE LOCATIONS:
+- Create in backend/src/main/java/com/dentalclinic/
 
 CONTROLLERS TO CREATE:
-1. AuthController:
+1. AuthController (backend/src/main/java/com/dentalclinic/controller/AuthController.java):
    - POST /api/auth/login (username, password, role validation)
    - POST /api/auth/refresh-token
    - POST /api/auth/logout
    - GET /api/auth/me (current user profile)
 
-2. UserController:
+2. UserController (backend/src/main/java/com/dentalclinic/controller/UserController.java):
    - GET /api/admin/users (admin only - list all users)
    - POST /api/admin/users (admin only - create doctor account)
    - PUT /api/admin/users/{id} (admin only - update user)
@@ -117,30 +186,33 @@ ERROR HANDLING:
 
 #### **Frontend Authentication Prompt**
 ```
-Create authentication system for React dental clinic app:
+Create authentication system for React dental clinic app in frontend/ folder:
+
+FILE LOCATIONS:
+- Create in frontend/src/
 
 COMPONENTS TO CREATE:
-1. LoginPage:
+1. LoginPage (frontend/src/pages/auth/LoginPage.tsx):
    - Split-screen design with medical branding
    - Role selector (Admin/Doctor) with different themes
    - Floating label inputs with icons
    - Loading states and error handling
    - Remember me functionality
 
-2. AuthContext:
+2. AuthContext (frontend/src/context/AuthContext.tsx):
    - User state management
    - Token storage and retrieval
    - Auto-logout on token expiry
    - Role-based navigation
 
-3. ProtectedRoute:
+3. ProtectedRoute (frontend/src/components/auth/ProtectedRoute.tsx):
    - Route protection based on authentication
    - Role-based access control
    - Redirect logic for unauthorized access
 
 SERVICES:
-- AuthService for API calls
-- Token interceptor for axios
+- AuthService (frontend/src/services/auth/AuthService.ts) for API calls
+- Token interceptor (frontend/src/services/api/apiClient.ts) for axios
 - Auto-refresh token mechanism
 
 STYLING:
@@ -154,21 +226,24 @@ STYLING:
 
 #### **Backend User Management Prompt**
 ```
-Create comprehensive user management for dental clinic:
+Create comprehensive user management for dental clinic in backend/ folder:
 
-USER REPOSITORY:
+FILE LOCATIONS:
+- Create in backend/src/main/java/com/dentalclinic/
+
+USER REPOSITORY (backend/src/main/java/com/dentalclinic/repository/UserRepository.java):
 - findByUsername, findByRole, findActiveUsers
 - Custom queries for user statistics
 - Soft delete functionality
 
-USER SERVICE:
+USER SERVICE (backend/src/main/java/com/dentalclinic/service/UserService.java):
 - createDoctor(CreateUserDto) - admin only
 - updateUser(id, UpdateUserDto)
 - deactivateUser(id) - soft delete
 - getUsersByRole(Role role)
 - changePassword(ChangePasswordDto)
 
-ADMIN CONTROLLER ENDPOINTS:
+ADMIN CONTROLLER ENDPOINTS (backend/src/main/java/com/dentalclinic/controller/AdminController.java):
 - GET /api/admin/users - paginated user list with filters
 - GET /api/admin/users/{id} - user details
 - POST /api/admin/users - create new doctor
@@ -188,23 +263,26 @@ AUDIT LOGGING:
 
 #### **Frontend User Management Prompt**
 ```
-Create admin user management interface:
+Create admin user management interface in frontend/ folder:
+
+FILE LOCATIONS:
+- Create in frontend/src/
 
 COMPONENTS:
-1. UserManagement:
+1. UserManagement (frontend/src/pages/admin/UserManagement.tsx):
    - Data table with sorting, filtering, pagination
    - Add user modal with form validation
    - Edit user inline or modal
    - Bulk actions (activate/deactivate)
    - Export user list functionality
 
-2. AddUserModal:
+2. AddUserModal (frontend/src/components/admin/AddUserModal.tsx):
    - Form with proper validation
    - Role selection (Doctor only for admin)
    - Username availability check
    - Password generation option
 
-3. UserTable:
+3. UserTable (frontend/src/components/admin/UserTable.tsx):
    - Status indicators (active/inactive)
    - Last login information
    - Quick actions (edit, deactivate, reset password)
@@ -231,15 +309,18 @@ STYLING:
 
 #### **Backend Patient Management Prompt**
 ```
-Implement comprehensive patient management system:
+Implement comprehensive patient management system in backend/ folder:
 
-PATIENT ENTITY ENHANCEMENTS:
+FILE LOCATIONS:
+- Create in backend/src/main/java/com/dentalclinic/
+
+PATIENT ENTITY (backend/src/main/java/com/dentalclinic/model/Patient.java):
 - Add medical history fields (allergies, medications, conditions)
 - File attachments (X-rays, documents)
 - Emergency contact information
 - Basic insurance information (optional)
 
-PATIENT CONTROLLER:
+PATIENT CONTROLLER (backend/src/main/java/com/dentalclinic/controller/PatientController.java):
 - GET /api/patients - list with pagination and search
 - GET /api/patients/{id} - detailed patient profile
 - POST /api/patients - create new patient
@@ -247,6 +328,15 @@ PATIENT CONTROLLER:
 - GET /api/patients/{id}/history - medical history
 - GET /api/patients/{id}/appointments - patient appointments
 - GET /api/patients/{id}/treatments - treatment history
+
+PATIENT SERVICE (backend/src/main/java/com/dentalclinic/service/PatientService.java):
+- Business logic for patient operations
+- Search and filtering functionality
+- Data validation and processing
+
+PATIENT REPOSITORY (backend/src/main/java/com/dentalclinic/repository/PatientRepository.java):
+- Custom query methods for search
+- Pagination and sorting support
 
 DOCTOR RESTRICTIONS:
 - Doctors can only see assigned patients
@@ -267,26 +357,37 @@ FILE MANAGEMENT:
 
 #### **Frontend Patient Management Prompt**
 ```
-Create comprehensive patient management interface:
+Create comprehensive patient management interface in frontend/ folder:
+
+FILE LOCATIONS:
+- Create in frontend/src/
 
 COMPONENTS:
-1. PatientList:
+1. PatientList (frontend/src/pages/admin/PatientList.tsx or frontend/src/pages/doctor/PatientList.tsx):
    - Searchable data table with filters
    - Patient cards with photos and key info
    - Quick actions (view, edit, schedule appointment)
    - Add new patient button
 
-2. PatientProfile:
+2. PatientProfile (frontend/src/components/common/PatientProfile.tsx):
    - Tabbed interface (Info, History, Appointments, Files)
    - Editable fields with form validation
    - Medical history timeline
    - File upload with drag-and-drop
 
-3. AddPatientModal:
+3. AddPatientModal (frontend/src/components/common/AddPatientModal.tsx):
    - Multi-step form (Personal, Medical, Contact)
    - Date picker for DOB
    - File upload for profile photo
    - Form validation with error messages
+
+SERVICES:
+- PatientService (frontend/src/services/api/PatientService.ts)
+- FileUploadService (frontend/src/services/api/FileUploadService.ts)
+
+TYPES:
+- Patient interface (frontend/src/types/Patient.ts)
+- PatientHistory interface (frontend/src/types/PatientHistory.ts)
 
 FEATURES:
 - Advanced search with multiple criteria
@@ -617,29 +718,47 @@ REPORTING:
 
 #### **Python AI Service Prompt**
 ```
-Create Python FastAPI AI service for dental clinic:
+Create Python FastAPI AI service for dental clinic in ai-service/ folder:
 
 PROJECT SETUP:
+- Create project in ai-service/ directory
 - FastAPI with async support
 - ChromaDB for vector storage
 - Hugging Face transformers for NLP
 - Medical knowledge base integration
 
+FOLDER STRUCTURE:
+ai-service/
+├── app/
+│   ├── main.py
+│   ├── models/
+│   ├── services/
+│   ├── api/
+│   └── utils/
+├── data/
+└── requirements.txt
+
 ENDPOINTS TO CREATE:
-1. POST /api/ai/clinic-suggestions
+1. POST /api/ai/clinic-suggestions (ai-service/app/api/clinic_suggestions.py):
    - Input: symptoms, patient history, previous treatments
    - Output: similar cases, suggested treatments, confidence scores
    - Use vector similarity search in ChromaDB
 
-2. POST /api/ai/web-suggestions
+2. POST /api/ai/web-suggestions (ai-service/app/api/web_suggestions.py):
    - Input: medical query, symptoms
    - Output: web research results, medical guidelines
    - Integration with medical APIs (PubMed, medical databases)
 
-3. POST /api/ai/train-model
+3. POST /api/ai/train-model (ai-service/app/api/train_model.py):
    - Input: new treatment data
    - Process: add to vector database, update embeddings
    - Output: training confirmation
+
+AI SERVICES:
+- MedicalNLPService (ai-service/app/services/medical_nlp.py)
+- VectorSearchService (ai-service/app/services/vector_search.py)
+- WebScrapingService (ai-service/app/services/web_scraping.py)
+- ModelTrainingService (ai-service/app/services/model_training.py)
 
 MEDICAL NLP:
 - Extract symptoms from natural language
@@ -704,26 +823,39 @@ TRAINING DATA MANAGEMENT:
 
 #### **Frontend AI Chat Prompt**
 ```
-Create AI-powered chat interface for doctors:
+Create AI-powered chat interface for doctors in frontend/ folder:
+
+FILE LOCATIONS:
+- Create in frontend/src/
 
 COMPONENTS:
-1. ChatInterface:
+1. ChatInterface (frontend/src/pages/doctor/ChatInterface.tsx):
    - Split layout: chat area (70%) + suggestions panel (30%)
    - Real-time messaging with WebSocket
    - Message typing indicators
    - File attachment support (X-rays, documents)
 
-2. SuggestionPanel:
+2. SuggestionPanel (frontend/src/components/doctor/SuggestionPanel.tsx):
    - Toggle between "Web Suggestions" and "Clinic History"
    - Confidence score indicators
    - Source attribution (guidelines, similar cases)
    - Suggestion rating and feedback
 
-3. ChatHistory:
+3. ChatHistory (frontend/src/components/doctor/ChatHistory.tsx):
    - Searchable conversation history
    - Filter by date, patient, suggestion type
    - Export conversation summaries
    - Bookmark important suggestions
+
+CHAT SERVICES:
+- ChatService (frontend/src/services/api/ChatService.ts)
+- WebSocketService (frontend/src/services/api/WebSocketService.ts)
+- AIService (frontend/src/services/api/AIService.ts)
+
+CHAT TYPES:
+- ChatMessage interface (frontend/src/types/ChatMessage.ts)
+- AISuggestion interface (frontend/src/types/AISuggestion.ts)
+- ChatSession interface (frontend/src/types/ChatSession.ts)
 
 CHAT FEATURES:
 - Voice-to-text input
@@ -1057,13 +1189,74 @@ MAINTENANCE:
 5. Ensure code follows project conventions
 
 ### **Development Order:**
-1. Start with backend entity and repository
-2. Create corresponding frontend types
-3. Implement backend controller and service
-4. Create frontend components and services
+1. Start with backend entity and repository in backend/ folder
+2. Create corresponding frontend types in frontend/src/types/
+3. Implement backend controller and service in backend/src/main/java/com/dentalclinic/
+4. Create frontend components and services in frontend/src/
 5. Test integration between frontend and backend
 6. Add error handling and validation
 7. Implement responsive design and styling
+
+### **Folder Structure Guidelines:**
+
+#### **Backend (backend/):**
+```
+backend/
+├── src/main/java/com/dentalclinic/
+│   ├── controller/        # REST API controllers
+│   ├── service/          # Business logic services
+│   ├── repository/       # JPA repositories
+│   ├── model/           # Entity classes
+│   ├── dto/             # Data Transfer Objects
+│   ├── config/          # Configuration classes
+│   ├── security/        # Security configuration
+│   └── exception/       # Custom exceptions
+├── src/main/resources/
+│   ├── application.yml  # Configuration
+│   └── data.sql        # Sample data
+└── pom.xml             # Maven dependencies
+```
+
+#### **Frontend (frontend/):**
+```
+frontend/
+├── src/
+│   ├── components/
+│   │   ├── admin/       # Admin-specific components
+│   │   ├── doctor/      # Doctor-specific components
+│   │   ├── common/      # Shared components
+│   │   └── auth/        # Authentication components
+│   ├── pages/
+│   │   ├── admin/       # Admin pages
+│   │   ├── doctor/      # Doctor pages
+│   │   └── auth/        # Authentication pages
+│   ├── services/
+│   │   ├── api/         # API service clients
+│   │   └── auth/        # Authentication services
+│   ├── hooks/           # Custom React hooks
+│   ├── types/           # TypeScript type definitions
+│   ├── utils/           # Utility functions
+│   ├── context/         # React context providers
+│   ├── styles/          # CSS/SCSS files
+│   └── assets/          # Images, icons, etc.
+├── public/              # Static assets
+└── package.json         # npm dependencies
+```
+
+### **AI Service (ai-service/):**
+```
+ai-service/
+├── app/
+│   ├── main.py          # FastAPI application
+│   ├── models/          # AI/ML models
+│   ├── services/        # AI processing services
+│   ├── api/             # API endpoints
+│   └── utils/           # Utility functions
+├── data/                # Training data and embeddings
+└── requirements.txt     # Python dependencies
+```
+
+**IMPORTANT: Always specify the complete file path when creating or modifying files!**
 
 ---
 
@@ -1073,9 +1266,12 @@ MAINTENANCE:
 
 #### **Admin Dashboard Prompt**
 ```
-Create comprehensive admin dashboard:
+Create comprehensive admin dashboard in frontend/ folder:
 
-DASHBOARD LAYOUT:
+FILE LOCATIONS:
+- Create in frontend/src/pages/admin/
+
+DASHBOARD LAYOUT (frontend/src/pages/admin/AdminDashboard.tsx):
 - 4-column grid layout with responsive design
 - Key metrics cards with trend indicators
 - Quick action buttons for common tasks
@@ -1110,9 +1306,12 @@ RECENT ACTIVITY:
 
 #### **Doctor Dashboard Prompt**
 ```
-Create doctor-focused dashboard:
+Create doctor-focused dashboard in frontend/ folder:
 
-DASHBOARD LAYOUT:
+FILE LOCATIONS:
+- Create in frontend/src/pages/doctor/
+
+DASHBOARD LAYOUT (frontend/src/pages/doctor/DoctorDashboard.tsx):
 - 3-column layout optimized for clinical workflow
 - Patient-centric information display
 - Quick access to AI chat

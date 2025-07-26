@@ -21,7 +21,7 @@ project-root/
 - 🎯 **Auto-Testing**: Include basic error handling in every component
 - 🎯 **TailAdmin React**: Use exact TailAdmin FREE template patterns
 
-**🎨 DESIGN SYSTEM (Copy to every prompt):**
+**🎨 DESIGN SYSTEM REFERENCE:**
 - **Primary Theme**: LIGHT mode (default) → DARK mode (toggle)
 - **Colors**: `bg-primary-600` (#3C50E0), `bg-success-500` (#10B981), `bg-info-500` (#06B6D4)
 - **Medical Colors**: `bg-medical-blue` (#2563EB), `bg-medical-green` (#059669), `bg-medical-red` (#DC2626)
@@ -32,13 +32,7 @@ project-root/
 - **Layout**: Sidebar `w-72.5` + Main `ml-72.5`
 - **Medical UI**: Rounded corners `rounded-lg`, Shadows `shadow-md`, Professional spacing `p-6 gap-4`
 
-**🔧 AGENT TEMPLATE (Include in every prompt):**
-```typescript
-// Standard imports for every component
-import React from 'react';
-import { useState, useEffect } from 'react';
-// TailAdmin specific classes: bg-white dark:bg-boxdark, text-black dark:text-white
-```
+**💡 IMPORTANT**: Design system is embedded in each relevant prompt - **NO MANUAL COPYING REQUIRED**
 
 **Example file paths:**
 - ✅ `frontend/src/components/admin/UserManagement.tsx`
@@ -276,11 +270,12 @@ Create JWT security setup in backend/src/main/java/com/dentalclinic/config/:
 - Visual feedback: Light mode = Sun icon, Dark mode = Moon icon
 - Click handler: calls `toggleTheme()` from useTheme hook
 
-🎨 THEME TOGGLE STYLING:
+🎨 EXACT STYLING (TailAdmin + Medical Design):
 - Container: `relative inline-flex h-6 w-11 items-center rounded-full`
 - Light mode: `bg-gray-200` with sun icon `text-yellow-500`
-- Dark mode: `bg-primary-600` with moon icon `text-white`
+- Dark mode: `bg-primary-600` (#3C50E0) with moon icon `text-white`
 - Switch ball: `translate-x-0` (light) / `translate-x-5` (dark)
+- Medical UI: `shadow-md rounded-lg` for professional appearance
 
 📁 IMPORTS REQUIRED:
 ```typescript
@@ -398,11 +393,12 @@ Create authentication service in frontend/src/services/auth/AuthService.ts:
 - Error messages display below form
 - Auto-redirect: admin → /admin/dashboard, doctor → /doctor/dashboard
 
-🎨 TAILADMIN CLASSES TO USE:
-- Container: `min-h-screen bg-white dark:bg-boxdark`
-- Form: `rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark`
-- Input: `w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10`
-- Button: `w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white`
+🎨 EXACT STYLING (TailAdmin + Medical Design):
+- Container: `min-h-screen bg-white dark:bg-boxdark` (Theme support)
+- Form: `rounded-lg border border-stroke bg-white shadow-md dark:border-strokedark dark:bg-boxdark`
+- Input: `w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 focus:border-primary`
+- Button: `w-full cursor-pointer rounded-lg border border-primary bg-primary-600 p-4 text-white hover:bg-primary-700`
+- Medical Colors: Primary #3C50E0, Success #10B981, Medical Blue #2563EB
 
 📁 IMPORTS REQUIRED:
 ```typescript
@@ -1178,17 +1174,25 @@ Create production deployment configuration:
 
 ## **🤖 AGENT OPTIMIZATION GUIDE:**
 
+### **🚀 SIMPLE WORKFLOW - NO MANUAL COPYING NEEDED:**
+
 ### **FOR CURSOR USERS:**
 1. **Copy ENTIRE prompt block** (including 🎯 TASK, 📋 REQUIREMENTS, 🎨 CLASSES)
 2. **Use "Generate in file"** feature for exact file creation
 3. **One prompt = One file** - maximum efficiency for Cursor's context
-4. **Include exact imports** - Cursor works best with complete dependencies
+4. **Design system is embedded** - No need to copy design guidelines separately
 
 ### **FOR GITHUB COPILOT USERS:**
 1. **Create empty file first** with exact path specified in prompt
 2. **Paste prompt as comment** at top of file
 3. **Start typing component name** - Copilot will autocomplete based on prompt
-4. **Include TailAdmin classes** - helps Copilot understand styling context
+4. **All styling included** - TailAdmin classes and medical colors are in each prompt
+
+### **✅ WHAT YOU DON'T NEED TO DO:**
+- ❌ **Don't copy design system manually** - It's embedded in each prompt
+- ❌ **Don't add extra styling** - Medical colors and TailAdmin classes included
+- ❌ **Don't guess imports** - All required imports are specified
+- ❌ **Don't modify file paths** - Exact paths provided
 
 ### **📝 USAGE INSTRUCTIONS:**
 

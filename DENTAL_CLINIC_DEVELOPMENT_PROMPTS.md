@@ -13,7 +13,7 @@ project-root/
 ```
 
 **🤖 AGENT OPTIMIZATION RULES:**
-- 🎯 **Total Prompts**: **75 Prompts** (1-75) - **ATOMIC TASKS ONLY**
+- 🎯 **Total Prompts**: **76 Prompts** (1-76) - **ATOMIC TASKS ONLY**
 - 🎯 **File Isolation**: Each prompt = ONE file/component creation
 - 🎯 **Zero Dependencies**: Each prompt can run independently 
 - 🎯 **Explicit Imports**: Always include ALL required imports
@@ -22,12 +22,15 @@ project-root/
 - 🎯 **TailAdmin React**: Use exact TailAdmin FREE template patterns
 
 **🎨 DESIGN SYSTEM (Copy to every prompt):**
+- **Primary Theme**: LIGHT mode (default) → DARK mode (toggle)
 - **Colors**: `bg-primary-600` (#3C50E0), `bg-success-500` (#10B981), `bg-info-500` (#06B6D4)
+- **Medical Colors**: `bg-medical-blue` (#2563EB), `bg-medical-green` (#059669), `bg-medical-red` (#DC2626)
 - **Typography**: `font-inter text-sm/md/lg/xl/2xl`
 - **Components**: Tailwind CSS + `@headlessui/react`
-- **Theme**: `dark:bg-boxdark dark:text-bodydark`
-- **Icons**: `@heroicons/react/24/outline` + medical icons
+- **Theme Classes**: `bg-white dark:bg-boxdark text-black dark:text-bodydark`
+- **Medical Icons**: `@heroicons/react/24/outline` + Stethoscope, Tooth, Heart icons
 - **Layout**: Sidebar `w-72.5` + Main `ml-72.5`
+- **Medical UI**: Rounded corners `rounded-lg`, Shadows `shadow-md`, Professional spacing `p-6 gap-4`
 
 **🔧 AGENT TEMPLATE (Include in every prompt):**
 ```typescript
@@ -43,14 +46,14 @@ import { useState, useEffect } from 'react';
 - ✅ `ai-service/app/services/medical_nlp.py`
 
 ## 📋 **PROMPT EXECUTION ORDER:**
-- **Prompts 1-10**: Project Setup & TailAdmin Integration
-- **Prompts 11-22**: Authentication & User Management
-- **Prompts 23-34**: Patient Management
-- **Prompts 35-46**: Appointment & Treatment Management
-- **Prompts 47-58**: Advanced Features (Inventory, Billing, Analytics)
-- **Prompts 59-66**: AI Chat Integration (Priority Feature)
-- **Prompts 67-72**: Dashboard & Analytics
-- **Prompts 73-75**: Production Setup
+- **Prompts 1-11**: Project Setup & TailAdmin Integration (Including Theme Toggle)
+- **Prompts 12-23**: Authentication & User Management
+- **Prompts 24-35**: Patient Management
+- **Prompts 36-47**: Appointment & Treatment Management
+- **Prompts 48-59**: Advanced Features (Inventory, Billing, Analytics)
+- **Prompts 60-67**: AI Chat Integration (Priority Feature)
+- **Prompts 68-73**: Dashboard & Analytics
+- **Prompts 74-76**: Production Setup
 
 ---
 
@@ -123,24 +126,62 @@ Create H2 database configuration in backend/ folder:
 
 ### **Prompt 4: Setup TailAdmin Base Layout**
 ```
-Create TailAdmin base layout in frontend/src/layouts/:
+🎯 TASK: Create TailAdmin layout components - frontend/src/layouts/
 
-- Create DefaultLayout.tsx with TailAdmin sidebar and header
-- Create Sidebar.tsx with collapsible medical navigation menu
-- Create Header.tsx with user profile and theme toggle
-- Setup responsive design breakpoints matching TailAdmin
-- Add medical-themed navigation icons (dashboard, patients, appointments, etc.)
+📁 CREATE FILE: frontend/src/layouts/DefaultLayout.tsx
+- Main layout container with sidebar + header + content area
+- Responsive design: sidebar collapses on mobile
+- Theme-aware: `bg-white dark:bg-boxdark` transitions
+
+📁 CREATE FILE: frontend/src/layouts/Sidebar.tsx
+- Collapsible medical navigation menu
+- Medical icons: Dashboard, Patients, Appointments, Treatments, Inventory, Analytics
+- Active state styling with medical-blue accent
+- Role-based menu items (Admin vs Doctor vs Receptionist)
+
+📁 CREATE FILE: frontend/src/layouts/Header.tsx
+- User profile dropdown with avatar
+- **THEME TOGGLE BUTTON**: Light/Dark mode switcher with icon
+- Notifications bell with badge
+- Search functionality
+- Responsive hamburger menu for mobile
+
+🎨 MEDICAL NAVIGATION ICONS:
+- Dashboard: `HomeIcon`
+- Patients: `UserGroupIcon` 
+- Appointments: `CalendarDaysIcon`
+- Treatments: `BeakerIcon`
+- Inventory: `CubeIcon`
+- Chat AI: `ChatBubbleLeftRightIcon`
+
+✅ COMPLETE: Professional medical layout with working theme toggle and responsive design
 ```
 
 ### **Prompt 5: Configure TailAdmin Theme System**
 ```
-Setup TailAdmin theme configuration in frontend/src/:
+🎯 TASK: Create COMPLETE theme system with Light/Dark toggle - frontend/src/
 
-- Create ThemeProvider.tsx with dark/light mode support
-- Create tailwind.config.js with TailAdmin + medical color palette
-- Setup CSS variables for theme switching
-- Create theme.ts with TailAdmin color definitions
-- Add medical color variants (success-green, warning-amber, error-red)
+📁 CREATE FILE: frontend/src/context/ThemeContext.tsx
+- Default: LIGHT theme (primary mode)
+- Toggle functionality: Light ↔ Dark
+- localStorage persistence: 'dental-clinic-theme'
+- Context provider with theme state and toggleTheme function
+
+📁 CREATE FILE: frontend/src/hooks/useTheme.ts
+- Custom hook to consume theme context
+- Return: { theme: 'light'|'dark', toggleTheme: () => void }
+
+📁 UPDATE FILE: frontend/tailwind.config.js
+- Add medical color palette: medical-blue: #2563EB, medical-green: #059669, medical-red: #DC2626
+- Extend TailAdmin colors: boxdark: #24303F, strokedark: #2E3A47, bodydark: #DEE4EE
+- Enable dark mode: darkMode: 'class'
+
+🎨 MEDICAL-GRADE STYLING:
+- Professional shadows: `shadow-default`, `shadow-card`
+- Medical borders: `border-medical-blue/20`, `border-stroke`
+- Status colors: Success (green), Warning (amber), Error (red), Info (blue)
+
+✅ COMPLETE: Working theme system with light/dark toggle, medical color palette, and localStorage persistence
 ```
 
 ### **Prompt 6: Create User Entity**
@@ -167,16 +208,50 @@ Create TypeScript interfaces in frontend/src/types/:
 - Common.ts for shared TailAdmin component types
 ```
 
-### **Prompt 8: Setup TailAdmin Components Library**
+### **Prompt 8: Setup Medical-Grade UI Components Library**
 ```
-Create reusable TailAdmin components in frontend/src/components/ui/:
+🎯 TASK: Create medical-grade UI components - frontend/src/components/ui/
 
-- Button.tsx with TailAdmin styling variants
-- Input.tsx with TailAdmin form styling
-- Card.tsx with TailAdmin card design
-- Modal.tsx with TailAdmin modal styling
-- Table.tsx with TailAdmin data table design
-- Badge.tsx for status indicators
+📁 CREATE FILE: frontend/src/components/ui/Button.tsx
+- Medical variants: primary (blue), success (green), danger (red), warning (amber)
+- Sizes: sm, md, lg with proper medical touch targets (44px minimum)
+- Loading states with spinner for medical operations
+- Accessibility: ARIA labels, keyboard navigation
+
+📁 CREATE FILE: frontend/src/components/ui/Input.tsx
+- Medical form styling: clean borders, focus states
+- Validation states: error (red), success (green), neutral
+- Medical field types: email, phone, date, medical ID
+- Theme support: `bg-white dark:bg-form-input`
+
+📁 CREATE FILE: frontend/src/components/ui/Card.tsx
+- Medical card variants: patient-card, appointment-card, treatment-card
+- Professional shadows and borders
+- Status indicators: urgent (red), normal (blue), completed (green)
+
+📁 CREATE FILE: frontend/src/components/ui/Modal.tsx
+- Medical modal styling: professional, clean, accessible
+- Overlay with proper contrast ratios
+- Close button with X icon and ESC key support
+
+📁 CREATE FILE: frontend/src/components/ui/Badge.tsx
+- Medical status badges: Active, Pending, Completed, Cancelled
+- Severity levels: Low, Medium, High, Critical
+- Color-coded for medical professionals
+
+📁 CREATE FILE: frontend/src/components/ui/Table.tsx
+- Medical data table with sorting, filtering
+- Striped rows for readability
+- Hover states and selection highlighting
+- Responsive design for mobile medical devices
+
+🏥 MEDICAL-GRADE FEATURES:
+- High contrast ratios (WCAG AAA compliance)
+- Large touch targets for medical gloves
+- Professional color palette for healthcare
+- Error states for critical medical data
+
+✅ COMPLETE: Professional medical UI component library with theme support and accessibility
 ```
 
 ### **Prompt 9: Backend Security Configuration**
@@ -190,20 +265,57 @@ Create JWT security setup in backend/src/main/java/com/dentalclinic/config/:
 - WebSocket security configuration for chat feature
 ```
 
-### **Prompt 10: Frontend API Client Setup**
+### **Prompt 10: Create Theme Toggle Component**
 ```
-Create API client in frontend/src/services/api/:
+🎯 TASK: Create dedicated theme toggle component - frontend/src/components/ui/
 
-- apiClient.ts with axios configuration for TailAdmin
+📁 CREATE FILE: frontend/src/components/ui/ThemeToggle.tsx
+- **PRIMARY MODE**: Light theme (default on first load)
+- Toggle button with sun/moon icons
+- Smooth transition animations
+- Visual feedback: Light mode = Sun icon, Dark mode = Moon icon
+- Click handler: calls `toggleTheme()` from useTheme hook
+
+🎨 THEME TOGGLE STYLING:
+- Container: `relative inline-flex h-6 w-11 items-center rounded-full`
+- Light mode: `bg-gray-200` with sun icon `text-yellow-500`
+- Dark mode: `bg-primary-600` with moon icon `text-white`
+- Switch ball: `translate-x-0` (light) / `translate-x-5` (dark)
+
+📁 IMPORTS REQUIRED:
+```typescript
+import React from 'react';
+import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
+import { useTheme } from '../../hooks/useTheme';
+```
+
+🔄 FUNCTIONALITY:
+- onClick: Toggle between light/dark themes
+- Visual state: Show current theme with appropriate icon
+- Smooth CSS transitions: `transition-all duration-200 ease-in-out`
+- Accessibility: ARIA labels for screen readers
+
+✅ COMPLETE: Working theme toggle component with smooth animations and proper accessibility
+```
+
+### **Prompt 11: Frontend API Client Setup**
+```
+🎯 TASK: Create API client configuration - frontend/src/services/api/
+
+📁 CREATE FILE: frontend/src/services/api/apiClient.ts
+- Axios configuration for TailAdmin
 - Base URL setup pointing to backend:8080
 - Request/response interceptors with TailAdmin loading states
 - Error handling setup with TailAdmin toast notifications
 - Authentication token management
+- Theme-aware error messages
+
+✅ COMPLETE: Complete API client with error handling and authentication
 ```
 
-## **PHASE 2: AUTHENTICATION & USER MANAGEMENT (Prompts 11-22)**
+## **PHASE 2: AUTHENTICATION & USER MANAGEMENT (Prompts 12-23)**
 
-### **Prompt 11: Create User Repository**
+### **Prompt 12: Create User Repository**
 ```
 Create User repository in backend/src/main/java/com/dentalclinic/repository/UserRepository.java:
 
@@ -1062,7 +1174,7 @@ Create production deployment configuration:
 
 ---
 
-# **🎉 CONGRATULATIONS! You now have 75 optimized prompts for TailAdmin React dental clinic system!**
+# **🎉 CONGRATULATIONS! You now have 76 optimized prompts for TailAdmin React dental clinic system!**
 
 ## **🤖 AGENT OPTIMIZATION GUIDE:**
 
@@ -1080,7 +1192,7 @@ Create production deployment configuration:
 
 ### **📝 USAGE INSTRUCTIONS:**
 
-1. **Start with Prompt 1** and work sequentially through to Prompt 75
+1. **Start with Prompt 1** and work sequentially through to Prompt 76
 2. **Each prompt = 2-3 minutes** with optimized agent instructions
 3. **Copy FULL prompt text** including all 🎯📋🎨✅ sections
 4. **File paths are EXACT** - no guessing, no modifications needed

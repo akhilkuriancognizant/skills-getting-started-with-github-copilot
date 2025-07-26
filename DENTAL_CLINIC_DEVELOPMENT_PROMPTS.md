@@ -21,6 +21,67 @@ project-root/
 - 🎯 **Auto-Testing**: Include basic error handling in every component
 - 🎯 **TailAdmin React**: Use exact TailAdmin FREE template patterns
 
+## 🚨 **VERY IMPORTANT - PROMPT CONSISTENCY RULE** 🚨
+
+**⚠️ CRITICAL FOR ALL AGENTS/USERS:**
+
+**When ANY change is made to CODE/business logic/versions/dependencies that differs from existing prompts:**
+
+### **📝 MANDATORY ACTIONS:**
+
+1. **🔄 UPDATE PROMPTS IMMEDIATELY** - If you change existing code logic, update the corresponding prompts in this file
+2. **🔄 UPDATE VERSION REFERENCES** - If you upgrade/downgrade versions, update all version numbers in prompts
+3. **🔄 UPDATE BUSINESS LOGIC** - If you modify workflows/processes, update related prompt descriptions
+4. **🔄 UPDATE DEPENDENCIES** - If you add/remove packages, update dependency lists in prompts
+5. **🔄 UPDATE CONFIGURATIONS** - If you modify configs, update configuration examples in prompts
+
+### **⚡ REVERT RULE:**
+**If you revert CODE changes back to original logic → REVERT the corresponding prompts back to original logic as well**
+
+### **🎯 WHY THIS IS CRITICAL:**
+- **Prevents Conflicts**: Keeps code and prompts synchronized
+- **Maintains Accuracy**: Future prompt executions will generate correct code
+- **Ensures Consistency**: All agents will follow the same updated logic
+- **Avoids Confusion**: No contradictory instructions between code and prompts
+
+### **📋 EXAMPLES OF CHANGES REQUIRING PROMPT UPDATES:**
+
+#### **Code Changes:**
+```typescript
+// OLD CODE (in prompt):
+const API_BASE_URL = 'http://localhost:8080/api'
+
+// NEW CODE (you implemented):
+const API_BASE_URL = 'http://localhost:3001/api'
+
+// ⚠️ UPDATE PROMPT: Change localhost:8080 to localhost:3001 in all relevant prompts
+```
+
+#### **Business Logic Changes:**
+```java
+// OLD LOGIC (in prompt):
+// User roles: ADMIN, DOCTOR
+
+// NEW LOGIC (you implemented):
+// User roles: ADMIN, DOCTOR, NURSE, RECEPTIONIST
+
+// ⚠️ UPDATE PROMPT: Add NURSE, RECEPTIONIST to all role-related prompts
+```
+
+#### **Version Changes:**
+```json
+// OLD VERSION (in prompt):
+"react": "^18.2.0"
+
+// NEW VERSION (you implemented):
+"react": "^18.3.0"
+
+// ⚠️ UPDATE PROMPT: Change React version in all package.json references
+```
+
+### **🛡️ PROMPT INTEGRITY GUARANTEE:**
+**This rule ensures that this DENTAL_CLINIC_DEVELOPMENT_PROMPTS.md file remains the single source of truth and all prompts generate consistent, up-to-date code.**
+
 **🎨 DESIGN SYSTEM REFERENCE:**
 - **Primary Theme**: LIGHT mode (default) → DARK mode (toggle)
 - **Colors**: `bg-primary-600` (#3C50E0), `bg-success-500` (#10B981), `bg-info-500` (#06B6D4)
@@ -162,6 +223,27 @@ prompts-history/
 - [Config file modifications]
 ### **Database Changes:** (if applicable)
 - [Schema/data changes]
+
+## 🚨 **PROMPT CONSISTENCY CHECK**
+### **⚠️ MANDATORY VERIFICATION:**
+**Did this execution change any logic that differs from the original prompt?**
+- **Code Logic Changes:** ✅ No Changes | ⚠️ Minor Changes | ❌ Major Changes
+- **Version Changes:** ✅ No Changes | ⚠️ Version Updates | ❌ Breaking Changes  
+- **Business Logic Changes:** ✅ No Changes | ⚠️ Minor Updates | ❌ Logic Overhaul
+- **Dependencies Changes:** ✅ No Changes | ⚠️ Added Packages | ❌ Removed/Replaced Packages
+- **Configuration Changes:** ✅ No Changes | ⚠️ Minor Config Updates | ❌ Major Config Overhaul
+
+### **🔄 ACTION REQUIRED:**
+**If any ⚠️ or ❌ above, YOU MUST UPDATE the original prompt in DENTAL_CLINIC_DEVELOPMENT_PROMPTS.md**
+
+### **📝 Prompt Updates Made:**
+- [List any prompt updates made to maintain consistency]
+- [If no updates needed, write "No prompt updates required"]
+
+### **🛡️ Consistency Status:**
+- ✅ **CONSISTENT** - Code matches prompts perfectly
+- ⚠️ **NEEDS SYNC** - Prompt updated to match code changes  
+- ❌ **CONFLICT** - Code and prompts are contradictory
 
 ## 📝 **NOTES & OBSERVATIONS**
 ### **What Worked Well:**
@@ -1549,9 +1631,17 @@ Use the template provided above and include:
 - **Execution metrics** (time, success rate, iterations)
 - **Files created** with exact paths and descriptions
 - **Technical details** (dependencies, configurations, database changes)
+- **🚨 PROMPT CONSISTENCY CHECK** (MANDATORY)
 - **Issues encountered** and their resolutions
 - **Styling notes** (for frontend prompts)
 - **Follow-up actions** needed
+
+#### **STEP 4: Maintain Prompt Consistency** 🚨
+**CRITICAL REQUIREMENT:**
+- **🔄 IF** your generated code differs from the original prompt → **UPDATE the prompt immediately**
+- **📝 DOCUMENT** all prompt updates in the tracking file
+- **🛡️ ENSURE** consistency status shows ✅ CONSISTENT or ⚠️ NEEDS SYNC (never ❌ CONFLICT)
+- **⚡ REVERT RULE:** If you revert code changes → revert corresponding prompt changes too
 
 ### **✅ WHAT YOU DON'T NEED TO DO:**
 - ❌ **Don't copy design system manually** - It's embedded in each prompt
@@ -1605,6 +1695,14 @@ Use the template provided above and include:
 - **Prevention strategies** - Avoid repeated mistakes through documented solutions
 - **Agent limitations** - Understand what each agent struggles with
 - **Q&A tracking** - Document questions, doubts, and their resolutions
+
+### **🛡️ Prompt Consistency Monitoring:**
+- **CRITICAL BENEFIT** - Prevents code-prompt conflicts and contradictions
+- **Code-prompt sync** - Track when prompts need updates due to code changes
+- **Single source of truth** - Maintains accuracy of all development prompts
+- **Future-proof development** - Ensures new executions generate correct code
+- **Revert tracking** - Documents rollback scenarios and corresponding prompt updates
+- **Logic integrity** - Prevents contradictory instructions between code and prompts
 
 ### **📋 Project Management:**
 - **Progress tracking** - Clear visibility of development status
@@ -1682,10 +1780,11 @@ Use the template provided above and include:
 1. **82 Optimized Prompts** - Each prompt = 1-2 minutes execution
 2. **Automated Tracking** - No external tools needed
 3. **Local Deployment System** - Complete guides for all services
-4. **Medical UI Standards** - Professional healthcare design
-5. **Agent Compatibility** - Works with Cursor and GitHub Copilot
-6. **Progress Monitoring** - Built-in project management
-7. **Quality Control** - Medical compliance tracking
-8. **Deployment Automation** - Reference guides for easy local setup
+4. **Prompt Consistency Control** - Prevents code-prompt conflicts
+5. **Medical UI Standards** - Professional healthcare design
+6. **Agent Compatibility** - Works with Cursor and GitHub Copilot
+7. **Progress Monitoring** - Built-in project management
+8. **Quality Control** - Medical compliance tracking
+9. **Deployment Automation** - Reference guides for easy local setup
 
 **🏥 Ready for professional dental clinic development with complete tracking and deployment! 💻📊🚀**

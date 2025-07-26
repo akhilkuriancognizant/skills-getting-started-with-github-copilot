@@ -99,7 +99,7 @@ const API_BASE_URL = 'http://localhost:3001/api'
 
 ### **📁 DEPLOYMENT FOLDER STRUCTURE:**
 ```
-local-deploy/
+project-root/local-deploy/
 ├── frontend/
 │   ├── deploy-frontend.bat       # Auto deployment script
 │   └── deploy-frontend.md        # React + TailAdmin deployment guide
@@ -121,8 +121,8 @@ local-deploy/
 
 #### **Frontend Deployment Reference:**
 ```markdown
-🚀 AUTO DEPLOY: Execute `local-deploy/frontend/deploy-frontend.bat`
-📚 DEPLOYMENT GUIDE: Refer to `local-deploy/frontend/deploy-frontend.md` for:
+🚀 AUTO DEPLOY: Execute `project-root/local-deploy/frontend/deploy-frontend.bat`
+📚 DEPLOYMENT GUIDE: Refer to `project-root/local-deploy/frontend/deploy-frontend.md` for:
 - Node.js setup and version requirements
 - npm/yarn dependency installation
 - Vite configuration and build process
@@ -133,8 +133,8 @@ local-deploy/
 
 #### **Backend Deployment Reference:**
 ```markdown
-🚀 AUTO DEPLOY: Execute `local-deploy/backend/deploy-backend.bat`
-📚 DEPLOYMENT GUIDE: Refer to `local-deploy/backend/deploy-backend.md` for:
+🚀 AUTO DEPLOY: Execute `project-root/local-deploy/backend/deploy-backend.bat`
+📚 DEPLOYMENT GUIDE: Refer to `project-root/local-deploy/backend/deploy-backend.md` for:
 - Java 17+ installation and JAVA_HOME setup
 - Maven wrapper and dependency management
 - Spring Boot application.yml configuration
@@ -145,8 +145,8 @@ local-deploy/
 
 #### **AI Service Deployment Reference:**
 ```markdown
-🚀 AUTO DEPLOY: Execute `local-deploy/ai-service/deploy-ai-service.bat`
-📚 DEPLOYMENT GUIDE: Refer to `local-deploy/ai-service/deploy-ai-service.md` for:
+🚀 AUTO DEPLOY: Execute `project-root/local-deploy/ai-service/deploy-ai-service.bat`
+📚 DEPLOYMENT GUIDE: Refer to `project-root/local-deploy/ai-service/deploy-ai-service.md` for:
 - Python 3.9+ and virtual environment setup
 - FastAPI and uvicorn server configuration
 - ChromaDB installation and initialization
@@ -157,7 +157,7 @@ local-deploy/
 
 #### **Database Deployment Reference:**
 ```markdown
-📚 DEPLOYMENT GUIDE: Refer to `local-deploy/db/deploy-database.md` for:
+📚 DEPLOYMENT GUIDE: Refer to `project-root/local-deploy/db/deploy-database.md` for:
 - H2 in-memory database setup (local only)
 - Database schema creation and sample data
 - Migration scripts and backup procedures
@@ -168,7 +168,7 @@ local-deploy/
 
 1. **Agent Creates/Modifies Code** → Execute prompt normally
 2. **Agent Needs to Deploy Service** → Execute appropriate .bat file OR reference deployment guide
-3. **Quick Deployment** → Use `local-deploy/start-all-services.bat` for all services
+3. **Quick Deployment** → Use `project-root/local-deploy/start-all-services.bat` for all services
 4. **Deployment Issue Encountered** → Reference specific deployment guide for troubleshooting
 5. **No External Tools Required** → Everything integrated and automated
 
@@ -180,7 +180,7 @@ local-deploy/
 
 ### **📁 TRACKING FOLDER STRUCTURE:**
 ```
-prompts-history/
+project-root/prompts-history/
 ├── frontend/YYYY-MM-DD/         # React/TailAdmin components
 ├── backend/YYYY-MM-DD/          # Spring Boot Java files  
 ├── ai-service/YYYY-MM-DD/       # Python FastAPI services
@@ -278,9 +278,9 @@ prompts-history/
 ```
 
 **Example file paths:**
-- ✅ `frontend/src/components/admin/UserManagement.tsx`
-- ✅ `backend/src/main/java/com/dentalclinic/controller/UserController.java`
-- ✅ `ai-service/app/services/medical_nlp.py`
+- ✅ `project-root/frontend/src/components/admin/UserManagement.tsx`
+- ✅ `project-root/backend/src/main/java/com/dentalclinic/controller/UserController.java`
+- ✅ `project-root/ai-service/app/services/medical_nlp.py`
 
 ## 📋 **OPTIMIZED PROMPT EXECUTION ORDER:**
 - **Prompts 1-11**: Project Setup & TailAdmin Integration (Including Theme Toggle)
@@ -319,7 +319,7 @@ prompts-history/
 - backend/src/main/java/com/dentalclinic/model/
 - backend/src/main/java/com/dentalclinic/config/
 
-📚 DEPLOYMENT GUIDE: Refer to `local-deploy/backend/deploy-backend.md` for:
+📚 DEPLOYMENT GUIDE: Refer to `project-root/local-deploy/backend/deploy-backend.md` for:
 - Java 17+ installation and JAVA_HOME setup
 - Maven wrapper and dependency management
 - Spring Boot application.yml configuration
@@ -366,7 +366,7 @@ Create H2 database configuration in backend/ folder:
 - frontend/src/hooks/
 - frontend/src/types/
 
-📚 DEPLOYMENT GUIDE: Refer to `local-deploy/frontend/deploy-frontend.md` for:
+📚 DEPLOYMENT GUIDE: Refer to `project-root/local-deploy/frontend/deploy-frontend.md` for:
 - Node.js setup and version requirements
 - npm/yarn dependency installation  
 - Vite configuration and build process
@@ -1310,7 +1310,7 @@ Create AI service project in ai-service/ folder:
 - Create project structure: app/api/, app/services/, app/models/
 - Setup environment configuration for AI APIs
 
-📚 DEPLOYMENT GUIDE: Refer to `local-deploy/ai-service/deploy-ai-service.md` for:
+📚 DEPLOYMENT GUIDE: Refer to `project-root/local-deploy/ai-service/deploy-ai-service.md` for:
 - Python 3.9+ and virtual environment setup
 - FastAPI and uvicorn server configuration
 - ChromaDB installation and initialization
@@ -1619,12 +1619,12 @@ Create production deployment configuration:
 **Location:** Determined by auto-categorization rules above
 
 **Examples:**
-- `prompts-history/backend/2024-01-15/Prompt-01-Create-Backend-Spring-Boot-Project.md`
-- `prompts-history/frontend/2024-01-15/Prompt-17-Create-TailAdmin-Login-Page.md`
-- `prompts-history/ai-service/2024-01-15/Prompt-59-Setup-AI-Service-Project.md`
-- `prompts-history/other-prompts/2024-01-15/Debug-Login-Authentication-Error.md`
-- `prompts-history/other-prompts/2024-01-15/Troubleshoot-TailAdmin-Theme-Issues.md`
-- `prompts-history/other-prompts/2024-01-15/Query-Best-Practices-Medical-UI.md`
+- `project-root/prompts-history/backend/2024-01-15/Prompt-01-Create-Backend-Spring-Boot-Project.md`
+- `project-root/prompts-history/frontend/2024-01-15/Prompt-17-Create-TailAdmin-Login-Page.md`
+- `project-root/prompts-history/ai-service/2024-01-15/Prompt-59-Setup-AI-Service-Project.md`
+- `project-root/prompts-history/other-prompts/2024-01-15/Debug-Login-Authentication-Error.md`
+- `project-root/prompts-history/other-prompts/2024-01-15/Troubleshoot-TailAdmin-Theme-Issues.md`
+- `project-root/prompts-history/other-prompts/2024-01-15/Query-Best-Practices-Medical-UI.md`
 
 #### **STEP 3: Fill Tracking Template**
 Use the template provided above and include:

@@ -7,7 +7,7 @@
 **For Agents - Execute this command:**
 ```batch
 # Run automated deployment script
-local-deploy/backend/deploy-backend.bat
+project-root/local-deploy/backend/deploy-backend.bat
 ```
 
 ### **🎯 MANUAL DEPLOYMENT COMMANDS:**

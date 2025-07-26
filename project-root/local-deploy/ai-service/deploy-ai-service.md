@@ -2,7 +2,15 @@
 
 ## 📁 **TARGET LOCATION:** `ai-service/`
 
-### **🎯 DEPLOYMENT COMMANDS:**
+### **🎯 AUTOMATED DEPLOYMENT:**
+
+**For Agents - Execute this command:**
+```batch
+# Run automated deployment script
+project-root/local-deploy/ai-service/deploy-ai-service.bat
+```
+
+### **🎯 MANUAL DEPLOYMENT COMMANDS:**
 
 ```bash
 # Navigate to ai-service directory

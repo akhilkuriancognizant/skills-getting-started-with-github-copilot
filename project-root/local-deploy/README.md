@@ -18,15 +18,15 @@ This folder contains comprehensive deployment guides for all components of the D
 ### **🚀 One-Click Deployment (Recommended):**
 ```batch
 # Start all services at once
-local-deploy/start-all-services.bat
+project-root/local-deploy/start-all-services.bat
 ```
 
 ### **📋 Individual Service Deployment:**
 ```batch
 # Deploy individual services
-local-deploy/frontend/deploy-frontend.bat
-local-deploy/backend/deploy-backend.bat
-local-deploy/ai-service/deploy-ai-service.bat
+project-root/local-deploy/frontend/deploy-frontend.bat
+project-root/local-deploy/backend/deploy-backend.bat
+project-root/local-deploy/ai-service/deploy-ai-service.bat
 ```
 
 ### **✅ Prerequisites Check:**
@@ -108,7 +108,7 @@ This deployment system is fully integrated with the main `DENTAL_CLINIC_DEVELOPM
 3. No need to update multiple locations
 
 ### **Add New Services:**
-1. Create new folder under `local-deploy/`
+1. Create new folder under `project-root/local-deploy/`
 2. Add `deploy-{service}.md` file
 3. Update auto-categorization rules in main prompts file
 4. Add deployment reference to relevant prompts

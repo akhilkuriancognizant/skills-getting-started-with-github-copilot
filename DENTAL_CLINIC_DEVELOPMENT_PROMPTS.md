@@ -45,7 +45,7 @@ prompts-history/
 ├── backend/YYYY-MM-DD/          # Spring Boot Java files  
 ├── ai-service/YYYY-MM-DD/       # Python FastAPI services
 ├── db-query/YYYY-MM-DD/         # Database schema changes
-└── other-prompts/YYYY-MM-DD/    # Configuration & setup
+└── other-prompts/YYYY-MM-DD/    # Configuration, setup, debugging, troubleshooting, queries
 ```
 
 ### **🎯 AUTO-CATEGORIZATION RULES:**
@@ -53,7 +53,7 @@ prompts-history/
 - **backend/** - Keywords: spring, controller, service, repository, entity, api, security, .java
 - **ai-service/** - Keywords: ai, fastapi, python, chromadb, suggestion, knowledge, .py
 - **db-query/** - Keywords: database, entity, schema, migration, h2, sql, table
-- **other-prompts/** - Everything else: configuration, themes, routing, deployment
+- **other-prompts/** - Everything else: configuration, themes, routing, deployment, debugging, troubleshooting, error resolution, suggestions, queries, doubts
 
 ### **📝 TRACKING FILE TEMPLATE:**
 ```markdown
@@ -97,6 +97,18 @@ prompts-history/
 ### **Medical UI Standards:**
 - ✅/❌ WCAG compliance achieved
 - ✅/❌ Professional healthcare styling
+
+## 🐛 **DEBUGGING & TROUBLESHOOTING** (other-prompts only)
+### **Original Problem:**
+- [Description of the issue/error/doubt]
+### **Investigation Steps:**
+- [What was checked/analyzed]
+### **Root Cause:**
+- [What was causing the problem]
+### **Solution Applied:**
+- [How the issue was resolved]
+### **Prevention:**
+- [How to avoid this issue in future]
 
 ## 🔄 **FOLLOW-UP ACTIONS**
 - [ ] Test functionality
@@ -1425,6 +1437,9 @@ Create production deployment configuration:
 - `prompts-history/backend/2024-01-15/Prompt-01-Create-Backend-Spring-Boot-Project.md`
 - `prompts-history/frontend/2024-01-15/Prompt-17-Create-TailAdmin-Login-Page.md`
 - `prompts-history/ai-service/2024-01-15/Prompt-59-Setup-AI-Service-Project.md`
+- `prompts-history/other-prompts/2024-01-15/Debug-Login-Authentication-Error.md`
+- `prompts-history/other-prompts/2024-01-15/Troubleshoot-TailAdmin-Theme-Issues.md`
+- `prompts-history/other-prompts/2024-01-15/Query-Best-Practices-Medical-UI.md`
 
 #### **STEP 3: Fill Tracking Template**
 Use the template provided above and include:
@@ -1480,11 +1495,13 @@ Use the template provided above and include:
 - **Track improvement** - Agent learning over time
 - **Optimize prompts** - Refine based on success metrics
 
-### **🐛 Issue Documentation:**
+### **🐛 Issue Documentation & Debugging:**
 - **Common problems** - Build knowledge base of recurring issues
-- **Solution patterns** - Document effective fixes
-- **Prevention strategies** - Avoid repeated mistakes
+- **Solution patterns** - Document effective fixes and troubleshooting steps
+- **Error resolution** - Track debugging processes and root cause analysis
+- **Prevention strategies** - Avoid repeated mistakes through documented solutions
 - **Agent limitations** - Understand what each agent struggles with
+- **Q&A tracking** - Document questions, doubts, and their resolutions
 
 ### **📋 Project Management:**
 - **Progress tracking** - Clear visibility of development status
@@ -1552,6 +1569,8 @@ Use the template provided above and include:
 ✅ **Performance Metrics** - Agent comparison and optimization
 ✅ **Medical Compliance** - HIPAA and accessibility tracking
 ✅ **Issue Documentation** - Problem/solution knowledge base
+✅ **Debugging Support** - Troubleshooting and error resolution tracking
+✅ **Q&A Documentation** - Questions, doubts, and clarifications tracking
 ✅ **Progress Monitoring** - Real-time development status
 ✅ **Quality Assurance** - Medical-grade standards enforcement
 

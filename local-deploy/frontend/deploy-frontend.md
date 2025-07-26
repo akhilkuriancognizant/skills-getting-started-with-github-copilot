@@ -2,7 +2,15 @@
 
 ## 📁 **TARGET LOCATION:** `frontend/`
 
-### **🎯 DEPLOYMENT COMMANDS:**
+### **🎯 AUTOMATED DEPLOYMENT:**
+
+**For Agents - Execute this command:**
+```batch
+# Run automated deployment script
+local-deploy/frontend/deploy-frontend.bat
+```
+
+### **🎯 MANUAL DEPLOYMENT COMMANDS:**
 
 ```bash
 # Navigate to frontend directory
@@ -17,27 +25,22 @@ npm install @headlessui/react @heroicons/react recharts axios react-router-dom
 # Install development dependencies
 npm install -D @types/node @vitejs/plugin-react
 
-# Start development server
+# Start local development server
 npm run dev
-
-# Build for production (optional)
-npm run build
-
-# Preview production build (optional)
-npm run preview
 ```
 
-### **📋 REQUIRED ENVIRONMENT SETUP:**
+### **📋 LOCAL ENVIRONMENT REQUIREMENTS:**
 
-#### **1. Node.js Version:**
+#### **1. Node.js (Required):**
 ```bash
-# Check Node.js version (Required: 18.x or higher)
+# Check Node.js version (Required: 18.x or higher for local development)
 node --version
 
 # If not installed, download from: https://nodejs.org/
 ```
 
-#### **2. Package.json Verification:**
+#### **2. Expected Package.json Structure:**
+The automated script expects this package.json structure in `frontend/` folder:
 ```json
 {
   "name": "dental-clinic-frontend",
@@ -47,8 +50,7 @@ node --version
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 3000",
     "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview --port 3000"
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -62,8 +64,6 @@ node --version
   "devDependencies": {
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
     "@vitejs/plugin-react": "^3.1.0",
     "typescript": "^4.9.0",
     "vite": "^4.1.0",
@@ -74,7 +74,7 @@ node --version
 }
 ```
 
-#### **3. Vite Configuration (vite.config.ts):**
+#### **3. Required Vite Configuration (vite.config.ts):**
 ```typescript
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
@@ -91,17 +91,13 @@ export default defineConfig({
         secure: false
       }
     }
-  },
-  build: {
-    outDir: 'dist',
-    sourcemap: true
   }
 })
 ```
 
-### **🎨 TAILWIND CSS SETUP:**
+### **🎨 REQUIRED TAILWIND CSS SETUP:**
 
-#### **tailwind.config.js:**
+#### **Expected tailwind.config.js (auto-created by prompts):**
 ```javascript
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -135,38 +131,41 @@ export default {
 }
 ```
 
-### **🔧 TROUBLESHOOTING:**
+### **🔧 LOCAL DEPLOYMENT TROUBLESHOOTING:**
 
-#### **Common Issues & Solutions:**
+#### **Common Local Issues & Solutions:**
 
 1. **Port 3000 already in use:**
    ```bash
-   # Use different port
+   # Kill process using port 3000
+   npx kill-port 3000
+   # Or use different port
    npm run dev -- --port 3001
    ```
 
-2. **Module not found errors:**
+2. **Node modules issues:**
    ```bash
    # Clear node_modules and reinstall
-   rm -rf node_modules package-lock.json
+   rmdir /s node_modules
+   del package-lock.json
    npm install
    ```
 
-3. **TailwindCSS not working:**
+3. **TailwindCSS not loading:**
    ```bash
-   # Ensure Tailwind is properly configured
-   npx tailwindcss init -p
+   # Restart the dev server
+   # Press Ctrl+C and run npm run dev again
    ```
 
-4. **TypeScript errors:**
+4. **TypeScript compilation errors:**
    ```bash
-   # Check TypeScript configuration
+   # Check for TypeScript errors
    npx tsc --noEmit
    ```
 
-### **📊 HEALTH CHECK:**
+### **📊 LOCAL DEPLOYMENT VERIFICATION:**
 
-#### **Verify Deployment Success:**
+#### **Check if Frontend is Running Successfully:**
 1. ✅ Server starts on `http://localhost:3000`
 2. ✅ TailAdmin styles load correctly
 3. ✅ API calls reach backend at `localhost:8080`
@@ -174,28 +173,17 @@ export default {
 5. ✅ No console errors in browser
 6. ✅ All pages route correctly
 
-#### **Performance Checks:**
-```bash
-# Bundle size analysis
-npm run build
-npx vite-bundle-analyzer dist
+### **🌐 LOCAL ACCESS URLS:**
+- **Local Development**: `http://localhost:3000`
+- **Network Access**: `http://[YOUR_LOCAL_IP]:3000`
 
-# Development server performance
+### **📝 LOCAL DEPLOYMENT LOGS:**
+```bash
+# View detailed Vite logs
 npm run dev -- --debug
-```
 
-### **🌐 ACCESS URLS:**
-- **Development**: `http://localhost:3000`
-- **Production Preview**: `http://localhost:3000` (after `npm run preview`)
-- **Network Access**: `http://[YOUR_IP]:3000`
-
-### **📝 DEPLOYMENT LOGS:**
-```bash
-# Enable verbose logging
-DEBUG=vite:* npm run dev
-
-# Check build output
-npm run build 2>&1 | tee build.log
+# Check for TypeScript errors
+npx tsc --noEmit
 ```
 
 ---

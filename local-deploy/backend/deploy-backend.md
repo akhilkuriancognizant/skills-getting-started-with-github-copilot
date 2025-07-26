@@ -2,39 +2,44 @@
 
 ## 📁 **TARGET LOCATION:** `backend/`
 
-### **🎯 DEPLOYMENT COMMANDS:**
+### **🎯 AUTOMATED DEPLOYMENT:**
+
+**For Agents - Execute this command:**
+```batch
+# Run automated deployment script
+local-deploy/backend/deploy-backend.bat
+```
+
+### **🎯 MANUAL DEPLOYMENT COMMANDS:**
 
 ```bash
 # Navigate to backend directory
 cd backend/
 
-# Using Maven Wrapper (Recommended)
+# Using Maven Wrapper (Recommended for local)
 ./mvnw clean install
 ./mvnw spring-boot:run
 
-# Using Maven (if installed globally)
+# Alternative: Using Maven (if installed globally)
 mvn clean install
 mvn spring-boot:run
-
-# Using Gradle (Alternative)
-./gradlew clean build
-./gradlew bootRun
 ```
 
-### **📋 REQUIRED ENVIRONMENT SETUP:**
+### **📋 LOCAL ENVIRONMENT REQUIREMENTS:**
 
-#### **1. Java Version:**
+#### **1. Java (Required):**
 ```bash
-# Check Java version (Required: Java 17 or higher)
+# Check Java version (Required: Java 17 or higher for local development)
 java --version
 
 # Check JAVA_HOME
-echo $JAVA_HOME
+echo %JAVA_HOME%
 
 # If not installed, download from: https://adoptium.net/
 ```
 
-#### **2. Maven Configuration (pom.xml):**
+#### **2. Expected Maven Configuration (pom.xml):**
+The automated script expects this structure in `backend/` folder:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -135,7 +140,8 @@ echo $JAVA_HOME
 </project>
 ```
 
-#### **3. Application Configuration (application.yml):**
+#### **3. Required Application Configuration (application.yml):**
+Expected configuration for local development in `backend/src/main/resources/`:
 ```yaml
 server:
   port: 8080
@@ -161,15 +167,7 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
         
-  security:
-    user:
-      name: admin
-      password: admin123
-      
 jwt:
   secret: dGhlLWRlbnRhbC1jbGluaWMtc2VjcmV0LWtleS1mb3Itand0LXNpZ25pbmc=
   expiration: 86400000 # 24 hours
@@ -182,105 +180,45 @@ cors:
 logging:
   level:
     com.dentalclinic: DEBUG
-    org.springframework.security: DEBUG
-    org.hibernate.SQL: DEBUG
 ```
 
-### **🔧 ENVIRONMENT PROFILES:**
+### **🗄️ LOCAL DATABASE SETUP:**
 
-#### **Development Profile (application-dev.yml):**
-```yaml
-spring:
-  datasource:
-    url: jdbc:h2:mem:dentalclinic-dev
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-    show-sql: true
-    
-logging:
-  level:
-    root: INFO
-    com.dentalclinic: DEBUG
+#### **H2 Database (Local Development):**
+H2 runs embedded with Spring Boot - no separate installation needed.
+
+**H2 Console Access:**
 ```
-
-#### **Production Profile (application-prod.yml):**
-```yaml
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/dentalclinic
-    username: ${DB_USERNAME:dental_user}
-    password: ${DB_PASSWORD:dental_password}
-  jpa:
-    hibernate:
-      ddl-auto: validate
-    show-sql: false
-    
-logging:
-  level:
-    root: WARN
-    com.dentalclinic: INFO
-```
-
-### **🗄️ DATABASE SETUP:**
-
-#### **H2 Database (Development):**
-```bash
-# H2 Console Access
-http://localhost:8080/api/h2-console
-
-# Connection Settings:
+URL: http://localhost:8080/api/h2-console
 JDBC URL: jdbc:h2:mem:dentalclinic
 Username: sa
 Password: password
 ```
 
-#### **PostgreSQL (Production):**
-```bash
-# Install PostgreSQL
-# Ubuntu/Debian:
-sudo apt update
-sudo apt install postgresql postgresql-contrib
+### **🔧 LOCAL DEPLOYMENT TROUBLESHOOTING:**
 
-# macOS:
-brew install postgresql
-brew services start postgresql
-
-# Create database and user
-sudo -u postgres psql
-CREATE DATABASE dentalclinic;
-CREATE USER dental_user WITH PASSWORD 'dental_password';
-GRANT ALL PRIVILEGES ON DATABASE dentalclinic TO dental_user;
-\q
-```
-
-### **🔧 TROUBLESHOOTING:**
-
-#### **Common Issues & Solutions:**
+#### **Common Local Issues & Solutions:**
 
 1. **Port 8080 already in use:**
    ```bash
-   # Change port in application.yml or use environment variable
-   SERVER_PORT=8081 ./mvnw spring-boot:run
+   # Use different port
+   set SERVER_PORT=8081
+   ./mvnw spring-boot:run
    ```
 
-2. **Java version mismatch:**
+2. **Java version issues:**
    ```bash
    # Check Java version
    java --version
-   javac --version
    
-   # Set JAVA_HOME (Linux/macOS)
-   export JAVA_HOME=/path/to/java17
+   # Set JAVA_HOME (Windows)
+   set JAVA_HOME=C:\Program Files\Java\jdk-17
    ```
 
-3. **Database connection issues:**
+3. **H2 Database console not accessible:**
    ```bash
-   # Check H2 console
-   http://localhost:8080/api/h2-console
-   
-   # For PostgreSQL, ensure service is running
-   sudo systemctl status postgresql
+   # Check if application is running
+   # Access: http://localhost:8080/api/h2-console
    ```
 
 4. **Maven build failures:**
@@ -290,11 +228,11 @@ GRANT ALL PRIVILEGES ON DATABASE dentalclinic TO dental_user;
    ./mvnw dependency:resolve
    ```
 
-5. **CORS errors:**
+5. **Frontend connection issues:**
    ```yaml
-   # Update application.yml
+   # Ensure CORS is configured in application.yml
    cors:
-     allowed-origins: "http://localhost:3000,http://localhost:3001"
+     allowed-origins: "http://localhost:3000"
    ```
 
 ### **📊 HEALTH CHECK:**

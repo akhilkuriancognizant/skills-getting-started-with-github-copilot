@@ -40,13 +40,18 @@ project-root/
 ```
 local-deploy/
 ├── frontend/
+│   ├── deploy-frontend.bat       # Auto deployment script
 │   └── deploy-frontend.md        # React + TailAdmin deployment guide
 ├── backend/
+│   ├── deploy-backend.bat        # Auto deployment script
 │   └── deploy-backend.md         # Spring Boot deployment guide
 ├── ai-service/
+│   ├── deploy-ai-service.bat     # Auto deployment script
 │   └── deploy-ai-service.md      # FastAPI + ChromaDB deployment guide
-└── db/
-    └── deploy-database.md        # H2 + PostgreSQL deployment guide
+├── db/
+│   └── deploy-database.md        # H2 database deployment guide
+├── start-all-services.bat        # Deploy all services at once
+└── README.md                     # Quick reference guide
 ```
 
 ### **🎯 AUTO-DEPLOYMENT INTEGRATION:**
@@ -55,6 +60,7 @@ local-deploy/
 
 #### **Frontend Deployment Reference:**
 ```markdown
+🚀 AUTO DEPLOY: Execute `local-deploy/frontend/deploy-frontend.bat`
 📚 DEPLOYMENT GUIDE: Refer to `local-deploy/frontend/deploy-frontend.md` for:
 - Node.js setup and version requirements
 - npm/yarn dependency installation
@@ -66,17 +72,19 @@ local-deploy/
 
 #### **Backend Deployment Reference:**
 ```markdown
+🚀 AUTO DEPLOY: Execute `local-deploy/backend/deploy-backend.bat`
 📚 DEPLOYMENT GUIDE: Refer to `local-deploy/backend/deploy-backend.md` for:
 - Java 17+ installation and JAVA_HOME setup
 - Maven wrapper and dependency management
 - Spring Boot application.yml configuration
-- H2/PostgreSQL database setup
+- H2 database setup (local only)
 - JWT and security configuration
 - API testing and health checks
 ```
 
 #### **AI Service Deployment Reference:**
 ```markdown
+🚀 AUTO DEPLOY: Execute `local-deploy/ai-service/deploy-ai-service.bat`
 📚 DEPLOYMENT GUIDE: Refer to `local-deploy/ai-service/deploy-ai-service.md` for:
 - Python 3.9+ and virtual environment setup
 - FastAPI and uvicorn server configuration
@@ -89,8 +97,7 @@ local-deploy/
 #### **Database Deployment Reference:**
 ```markdown
 📚 DEPLOYMENT GUIDE: Refer to `local-deploy/db/deploy-database.md` for:
-- H2 in-memory database setup (development)
-- PostgreSQL installation and configuration (production)
+- H2 in-memory database setup (local only)
 - Database schema creation and sample data
 - Migration scripts and backup procedures
 - Performance optimization and indexing
@@ -99,9 +106,10 @@ local-deploy/
 ### **🔄 DEPLOYMENT UPDATE WORKFLOW:**
 
 1. **Agent Creates/Modifies Code** → Execute prompt normally
-2. **Agent Encounters Deployment Issue** → Reference appropriate deployment guide
-3. **Deployment Guide Updated** → Automatically reflects in all future deployments
-4. **No External Tools Required** → Everything integrated in this system
+2. **Agent Needs to Deploy Service** → Execute appropriate .bat file OR reference deployment guide
+3. **Quick Deployment** → Use `local-deploy/start-all-services.bat` for all services
+4. **Deployment Issue Encountered** → Reference specific deployment guide for troubleshooting
+5. **No External Tools Required** → Everything integrated and automated
 
 ---
 

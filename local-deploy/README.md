@@ -6,16 +6,30 @@ This folder contains comprehensive deployment guides for all components of the D
 
 ## 📁 **DEPLOYMENT GUIDES**
 
-| Service | Guide | Description | Port |
-|---------|-------|-------------|------|
-| **Frontend** | [`deploy-frontend.md`](frontend/deploy-frontend.md) | React + TailAdmin + Vite setup | 3000 |
-| **Backend** | [`deploy-backend.md`](backend/deploy-backend.md) | Spring Boot + H2/PostgreSQL setup | 8080 |
-| **AI Service** | [`deploy-ai-service.md`](ai-service/deploy-ai-service.md) | FastAPI + ChromaDB + OpenAI setup | 8000 |
-| **Database** | [`deploy-database.md`](db/deploy-database.md) | H2 (dev) + PostgreSQL (prod) setup | 5432 |
+| Service | Auto Deploy | Guide | Description | Port |
+|---------|-------------|-------|-------------|------|
+| **Frontend** | [`deploy-frontend.bat`](frontend/deploy-frontend.bat) | [`deploy-frontend.md`](frontend/deploy-frontend.md) | React + TailAdmin + Vite local setup | 3000 |
+| **Backend** | [`deploy-backend.bat`](backend/deploy-backend.bat) | [`deploy-backend.md`](backend/deploy-backend.md) | Spring Boot + H2 local setup | 8080 |
+| **AI Service** | [`deploy-ai-service.bat`](ai-service/deploy-ai-service.bat) | [`deploy-ai-service.md`](ai-service/deploy-ai-service.md) | FastAPI + ChromaDB local setup | 8000 |
+| **All Services** | [`start-all-services.bat`](start-all-services.bat) | - | Start all services at once | - |
 
-## 🎯 **QUICK START**
+## 🎯 **QUICK START FOR AGENTS**
 
-### **1. Prerequisites Check:**
+### **🚀 One-Click Deployment (Recommended):**
+```batch
+# Start all services at once
+local-deploy/start-all-services.bat
+```
+
+### **📋 Individual Service Deployment:**
+```batch
+# Deploy individual services
+local-deploy/frontend/deploy-frontend.bat
+local-deploy/backend/deploy-backend.bat
+local-deploy/ai-service/deploy-ai-service.bat
+```
+
+### **✅ Prerequisites Check:**
 ```bash
 # Node.js 18+ for Frontend
 node --version
@@ -25,61 +39,42 @@ java --version
 
 # Python 3.9+ for AI Service
 python --version
-
-# PostgreSQL (optional, for production)
-psql --version
 ```
 
-### **2. Sequential Deployment:**
-```bash
-# 1. Start Backend (Database included)
-cd backend/
-./mvnw spring-boot:run
-
-# 2. Start AI Service
-cd ai-service/
-source venv/bin/activate
-uvicorn app.main:app --reload
-
-# 3. Start Frontend
-cd frontend/
-npm run dev
-```
-
-### **3. Health Check URLs:**
+### **🌐 Local Service URLs:**
 - **Frontend**: http://localhost:3000
 - **Backend API**: http://localhost:8080/api
 - **AI Service**: http://localhost:8000/docs
 - **H2 Console**: http://localhost:8080/api/h2-console
 
-## 🔧 **COMMON ISSUES & SOLUTIONS**
+## 🔧 **COMMON LOCAL DEPLOYMENT ISSUES**
 
 ### **Port Conflicts:**
-```bash
-# Frontend
-npm run dev -- --port 3001
+```batch
+# Kill processes using ports
+taskkill /f /im node.exe
+taskkill /f /im java.exe
+taskkill /f /im python.exe
 
-# Backend
-SERVER_PORT=8081 ./mvnw spring-boot:run
-
-# AI Service
-uvicorn app.main:app --port 8001
+# Or restart the respective .bat files which handle port conflicts
 ```
 
-### **Database Issues:**
-```bash
-# Reset H2 Database
-# Simply restart Spring Boot application
+### **Service Not Starting:**
+```batch
+# Check if .bat files have proper permissions
+# Run as Administrator if needed
 
-# PostgreSQL Connection
-sudo systemctl restart postgresql
+# Check individual service logs in the opened command windows
 ```
 
-### **Node.js Issues:**
-```bash
-# Clear cache and reinstall
-rm -rf node_modules package-lock.json
-npm install
+### **Dependencies Issues:**
+```batch
+# For Frontend: Delete node_modules and reinstall
+rmdir /s frontend\node_modules
+del frontend\package-lock.json
+
+# For AI Service: Recreate virtual environment
+rmdir /s ai-service\venv
 ```
 
 ## 📊 **SYSTEM ARCHITECTURE**

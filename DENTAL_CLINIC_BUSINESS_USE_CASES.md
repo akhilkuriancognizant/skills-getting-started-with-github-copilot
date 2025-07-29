@@ -80,10 +80,10 @@
 2. Monitor daily appointment schedule with patient details
 3. Track patient check-ins and waiting room status
 4. Access patient contact information for manual confirmations
-5. View billing status and outstanding balances for cash collection
+5. View daily cash collections and payment tracking
 6. Handle appointment rescheduling and cancellations manually
 7. Monitor medicine inventory levels and dispensing requirements
-8. Track insurance verification status for upcoming appointments
+8. Access standard pricing for patient cost estimates
 9. Manage cash drawer and daily payment collections
 
 **Business Value**: Centralized reception operations managing scheduling, billing, inventory, and patient communication efficiently.
@@ -321,31 +321,29 @@
 
 ## **💰 BILLING & FINANCIAL MANAGEMENT**
 
-### **UC-016: Receptionist Billing & Cash Collection**
+### **UC-016: Receptionist Immediate Payment Collection**
 
 **Primary Actor**: Receptionist
 
 **Business Flow**:
 1. After treatment completion, doctor informs receptionist of procedures performed
-2. Receptionist manually creates invoice including:
-   - Specific procedures performed with medical codes
-   - Professional fees and facility charges
-   - Materials and medication costs used
-   - Insurance coverage calculations (manual verification)
+2. Receptionist creates simple invoice including:
+   - Procedures performed with clear descriptions
+   - Standard clinic fees for each procedure
+   - Total amount due
 3. Receptionist presents bill to patient at checkout
-4. Payment collection methods:
-   - Cash payments (primary method)
-   - Personal checks with ID verification
-   - Manual credit card processing (if available)
-5. Receptionist issues handwritten or printed receipt
-6. Outstanding balances tracked in manual ledger system
-7. Insurance claims prepared manually for submission
+4. Patient pays immediately via:
+   - Cash payment (preferred method)
+   - Personal check with ID verification
+5. Receptionist issues receipt for payment
+6. Payment recorded in daily cash log
+7. No treatment provided without immediate payment
 
 **Business Rules**:
-- All billing must comply with insurance requirements
-- Payment plans arranged through receptionist discussion
-- Manual follow-up calls for outstanding balances
-- Detailed cost breakdowns provided verbally and in writing
+- Payment required at time of service
+- No outstanding balances or credit accounts
+- Emergency treatments require payment guarantee
+- Clear pricing displayed in reception area
 
 ### **UC-017: Financial Reporting & Analytics**
 
@@ -365,47 +363,30 @@
 
 **Business Value**: Complete financial visibility enabling strategic business decisions.
 
-### **UC-018: Manual Insurance Verification & Claims**
+### **UC-018: Simple Treatment Billing**
 
 **Primary Actor**: Receptionist
 
 **Business Flow**:
-1. Receptionist manually verifies patient insurance information by phone
-2. Pre-authorization requests made via phone calls for major procedures
-3. Insurance claims manually prepared using paper forms or basic software
-4. Claims mailed or faxed to insurance providers
-5. Receptionist tracks claim status through phone follow-ups
-6. Manual payment posting when insurance payments received
-7. Denial management through phone calls and written appeals
+1. After treatment completion, doctor informs receptionist of procedures performed
+2. Receptionist creates simple invoice including:
+   - Procedures performed with clear descriptions
+   - Standard clinic fees for each procedure
+   - Total amount due
+3. Receptionist presents bill to patient at checkout
+4. Patient pays immediately via:
+   - Cash payment (preferred method)
+   - Personal check with ID verification
+5. Receptionist issues receipt for payment
+6. Payment recorded in daily cash log
 
-**Business Value**: Personal relationship building with insurance providers through direct communication.
-
-### **UC-019: Receptionist Billing Verification & Patient Education**
-
-**Primary Actor**: Receptionist
-
-**Business Flow**:
-1. Before patient treatment, receptionist reviews treatment plan costs
-2. Receptionist verifies insurance coverage by calling insurance company:
-   - Confirms patient eligibility and active coverage
-   - Verifies benefits for specific procedures planned
-   - Determines patient copay and deductible amounts
-3. Receptionist explains costs to patient before treatment:
-   - Breaks down total treatment costs
-   - Explains insurance coverage and patient responsibility
-   - Discusses payment options and plans if needed
-4. Patient confirms understanding and agreement to proceed
-5. Receptionist documents insurance verification details
-6. Treatment cost estimates saved for billing reference
-7. Pre-collection of estimated patient portion when possible
-
-**Business Value**: Transparent cost communication preventing billing surprises and improving payment collection rates.
+**Business Value**: Simple, immediate payment collection with transparent pricing.
 
 ---
 
 ## **🤖 AI-POWERED MEDICAL ASSISTANCE**
 
-### **UC-020: AI Medical Knowledge Base**
+### **UC-019: AI Medical Knowledge Base**
 
 **Primary Actor**: Doctor
 
@@ -426,7 +407,7 @@
 - All AI interactions logged for quality assurance
 - Patient privacy maintained in AI processing
 
-### **UC-021: Intelligent Chat Assistant**
+### **UC-020: Intelligent Chat Assistant**
 
 **Primary Actor**: Doctor, Admin
 
@@ -442,7 +423,7 @@
 
 **Business Value**: Instant access to medical knowledge improving treatment quality and efficiency.
 
-### **UC-022: Predictive Analytics & Insights**
+### **UC-021: Predictive Analytics & Insights**
 
 **Primary Actor**: Admin, Doctor
 
@@ -463,7 +444,7 @@
 
 ## **📊 ANALYTICS & REPORTING**
 
-### **UC-023: Clinic Performance Analytics**
+### **UC-022: Clinic Performance Analytics**
 
 **Primary Actor**: Admin, Clinic Owner
 
@@ -481,7 +462,7 @@
 
 **Business Value**: Evidence-based performance management enabling continuous clinic improvement.
 
-### **UC-024: Medical Reporting & Documentation**
+### **UC-023: Medical Reporting & Documentation**
 
 **Primary Actor**: Doctor, Admin
 
@@ -502,7 +483,7 @@
 
 ## **🔧 SYSTEM ADMINISTRATION & MAINTENANCE**
 
-### **UC-025: User Management & Access Control**
+### **UC-024: User Management & Access Control**
 
 **Primary Actor**: System Administrator
 
@@ -521,7 +502,7 @@
 - Strong password requirements for security
 - Failed login attempt monitoring and lockout
 
-### **UC-026: Data Backup & Security Management**
+### **UC-025: Data Backup & Security Management**
 
 **Primary Actor**: System Administrator
 
@@ -536,7 +517,7 @@
 
 **Business Value**: Medical data protection and business continuity assurance.
 
-### **UC-027: System Health Monitoring**
+### **UC-026: System Health Monitoring**
 
 **Primary Actor**: System Administrator
 
@@ -553,45 +534,9 @@
 
 ---
 
-## **📱 MOBILE & ACCESSIBILITY FEATURES**
-
-### **UC-028: Mobile Access for Medical Staff**
-
-**Primary Actor**: Doctor, Receptionist
-
-**Business Flow**:
-1. Medical staff access system via mobile devices
-2. Responsive interface optimized for tablets and phones
-3. Critical functions available on mobile:
-   - Patient lookup and medical history
-   - Appointment scheduling and calendar access
-   - Basic billing and payment processing
-   - Emergency patient information access
-4. Offline capability for critical patient data
-5. Secure authentication and session management
-
-**Business Value**: Flexible access enabling efficient care delivery across clinic locations.
-
-### **UC-029: Accessibility Compliance**
-
-**Primary Actor**: All system users including those with disabilities
-
-**Business Flow**:
-1. System designed for universal accessibility
-2. Screen reader compatibility for visually impaired users
-3. Keyboard navigation for users with mobility limitations
-4. High contrast and large text options
-5. Voice input capabilities where appropriate
-6. Multi-language support for diverse patient populations
-7. Regular accessibility testing and compliance verification
-
-**Business Value**: Inclusive system design ensuring equal access for all clinic staff.
-
----
-
 ## **🚀 PRODUCTION DEPLOYMENT & SCALING**
 
-### **UC-030: Multi-Location Clinic Support**
+### **UC-027: Multi-Location Clinic Support**
 
 **Primary Actor**: Clinic Owner, System Administrator
 
@@ -606,7 +551,7 @@
 
 **Business Value**: Enterprise-level support enabling clinic network expansion.
 
-### **UC-031: Integration with External Systems**
+### **UC-028: Integration with External Systems**
 
 **Primary Actor**: System Administrator, IT Support
 
@@ -627,7 +572,7 @@
 
 ## **📋 COMPLIANCE & AUDIT SUPPORT**
 
-### **UC-032: HIPAA Compliance Management**
+### **UC-029: HIPAA Compliance Management**
 
 **Primary Actor**: Compliance Officer, System Administrator
 
@@ -646,7 +591,7 @@
 - Regular risk assessments and mitigation planning
 - Staff HIPAA training requirements and tracking
 
-### **UC-033: Medical Audit & Quality Assurance**
+### **UC-030: Medical Audit & Quality Assurance**
 
 **Primary Actor**: Quality Assurance Manager, Medical Director
 
@@ -672,9 +617,9 @@
 - **30% reduction** in appointment scheduling conflicts
 
 ### **Financial Performance Metrics**:
-- **95% cash collection rate** at time of service
-- **20% reduction** in accounts receivable through immediate payment collection
-- **25% improvement** in insurance verification accuracy
+- **100% cash collection rate** at time of service
+- **Zero accounts receivable** through immediate payment policy
+- **25% reduction** in billing disputes through transparent pricing
 - **15% decrease** in medication waste through careful inventory management
 
 ### **Patient Experience Metrics**:
@@ -697,11 +642,11 @@ This comprehensive dental clinic management system enhances traditional dental p
 
 **Key Business Benefits**:
 - **Receptionist-Centered Operations**: Empowered front desk managing scheduling, billing, and inventory
-- **Personal Patient Service**: Direct communication and manual verification building patient relationships
-- **Cash Flow Optimization**: Immediate cash collection and manual payment processing
-- **Manual Quality Control**: Personal verification of insurance, billing, and medication dispensing
-- **Flexible Operations**: Adaptable manual processes with digital record backup
-- **Cost-Effective Management**: Reduced dependence on automated systems and integrations
+- **Personal Patient Service**: Direct communication and manual processes building patient relationships
+- **Immediate Payment Collection**: 100% cash collection at time of service with zero receivables
+- **Manual Quality Control**: Personal verification of billing and careful medication dispensing
+- **Simplified Operations**: Browser-based responsive system with no mobile app complexity
+- **Cost-Effective Management**: No insurance integrations, payment gateways, or complex automation
 
 **Target ROI**: 150-200% return on investment within 12 months through improved cash collection, reduced no-shows via personal contact, and enhanced operational efficiency through receptionist multitasking.
 

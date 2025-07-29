@@ -149,7 +149,7 @@ project-root/prompts-history/
 ```
 
 **Example file paths:**
-- ✅ `project-root/frontend/src/components/admin/UserManagement.tsx`
+
 - ✅ `project-root/backend/src/main/java/com/dentalclinic/controller/UserController.java`
 - ✅ `project-root/ai-service/app/services/medical_nlp.py`
 
@@ -436,22 +436,18 @@ Create H2 database configuration in backend/ folder:
 ```
 🎯 TASK: Create TailAdmin layout components - frontend/src/layouts/
 
-🎨 **PRIMARY REFERENCE**: Copy layout structure from `ux/tailadmin-reference/src/layout/`
-
-📁 CREATE FILE: frontend/src/layouts/DefaultLayout.tsx
-- **COPY BASE**: Reference `ux/tailadmin-reference/src/layout/DefaultLayout.tsx`
+📁 CREATE FILE: frontend/src/app/layouts/default-layout.component.ts
 - Main layout container with sidebar + header + content area
 - Responsive design: sidebar collapses on mobile
 - Theme-aware: `bg-white dark:bg-boxdark` transitions (exact TailAdmin classes)
 
-📁 CREATE FILE: frontend/src/layouts/Sidebar.tsx
-- **COPY SIDEBAR**: Reference `ux/tailadmin-reference/src/components/Sidebar/`
+📁 CREATE FILE: frontend/src/app/layouts/sidebar.component.ts
 - Adapt TailAdmin sidebar for medical navigation menu
 - Medical icons: Dashboard, Patients, Appointments, Treatments, Inventory, Analytics
 - Active state styling with medical-blue accent
 - Role-based menu items (Admin vs Doctor vs Receptionist)
 
-📁 CREATE FILE: frontend/src/layouts/Header.tsx
+📁 CREATE FILE: frontend/src/app/layouts/header.component.ts
 - **COPY HEADER**: Reference `ux/tailadmin-reference/src/components/Header/`
 - User profile dropdown with avatar (use TailAdmin dropdown pattern)
 - **THEME TOGGLE BUTTON**: Light/Dark mode switcher with icon (TailAdmin style)
@@ -474,7 +470,7 @@ Create H2 database configuration in backend/ folder:
 ```
 🎯 TASK: Create COMPLETE theme system with Light/Dark toggle - frontend/src/
 
-📁 CREATE FILE: frontend/src/context/ThemeContext.tsx
+📁 CREATE FILE: frontend/src/app/services/theme.service.ts
 - Default: LIGHT theme (primary mode)
 - Toggle functionality: Light ↔ Dark
 - localStorage persistence: 'dental-clinic-theme'
@@ -525,29 +521,28 @@ Create TypeScript interfaces in frontend/src/types/:
 ```
 🎯 TASK: Create medical-grade UI components - frontend/src/components/ui/
 
-🎨 **PRIMARY REFERENCE**: Copy component patterns from `ux/tailadmin-reference/src/components/`
 
-📁 CREATE FILE: frontend/src/components/ui/Button.tsx
-- **COPY BASE**: Reference `ux/tailadmin-reference/src/components/Buttons/`
+
+📁 CREATE FILE: frontend/src/app/components/ui/button.component.ts
 - Adapt TailAdmin button styles for medical variants: primary (blue), success (green), danger (red), warning (amber)
 - Use TailAdmin sizing classes: sm, md, lg with proper medical touch targets (44px minimum)
 - Loading states with spinner for medical operations (use TailAdmin loader patterns)
 - Accessibility: ARIA labels, keyboard navigation (follow TailAdmin accessibility)
 
-📁 CREATE FILE: frontend/src/components/ui/Input.tsx
+📁 CREATE FILE: frontend/src/app/components/ui/input.component.ts
 - **COPY BASE**: Reference `ux/tailadmin-reference/src/components/Forms/`
 - Use TailAdmin form styling: clean borders, focus states
 - Validation states: error (red), success (green), neutral (TailAdmin validation classes)
 - Medical field types: email, phone, date, medical ID
 - Theme support: `bg-white dark:bg-form-input` (exact TailAdmin theme classes)
 
-📁 CREATE FILE: frontend/src/components/ui/Card.tsx
+📁 CREATE FILE: frontend/src/app/components/ui/card.component.ts
 - **COPY BASE**: Reference `ux/tailadmin-reference/src/components/Cards/`
 - Adapt TailAdmin cards for medical variants: patient-card, appointment-card, treatment-card
 - Use TailAdmin shadows and borders: `shadow-default`, `border-stroke`
 - Status indicators: urgent (red), normal (blue), completed (green)
 
-📁 CREATE FILE: frontend/src/components/ui/Modal.tsx
+📁 CREATE FILE: frontend/src/app/components/ui/modal.component.ts
 - **COPY BASE**: Reference `ux/tailadmin-reference/src/components/Modals/`
 - Use TailAdmin modal styling: professional, clean, accessible
 - TailAdmin overlay patterns with proper contrast ratios
@@ -713,7 +708,7 @@ Create authentication service in frontend/src/services/auth/AuthService.ts:
 ```
 🎯 TASK: Create COMPLETE login page - frontend/src/pages/auth/LoginPage.tsx
 
-🎨 **PRIMARY REFERENCE**: Copy login patterns from `ux/tailadmin-reference/src/pages/Authentication/`
+
 
 📋 EXACT REQUIREMENTS:
 - **COPY LAYOUT**: Reference `ux/tailadmin-reference/src/pages/Authentication/SignIn.tsx`
@@ -1833,7 +1828,7 @@ Create production deployment configuration:
 ```
 🎯 TASK: Create professional loading components - frontend/src/components/ui/
 
-🎨 **PRIMARY REFERENCE**: Copy loading patterns from `ux/tailadmin-reference/src/components/`
+
 
 📁 CREATE FILE: frontend/src/components/ui/LoadingSpinner.tsx
 - **COPY BASE**: Reference TailAdmin spinner components
@@ -1870,7 +1865,7 @@ Create production deployment configuration:
 ```
 🎯 TASK: Create toast notification system - frontend/src/components/ui/
 
-🎨 **PRIMARY REFERENCE**: Copy notification patterns from `ux/tailadmin-reference/src/components/`
+
 
 📁 CREATE FILE: frontend/src/components/ui/Toast.tsx
 - **COPY BASE**: Reference TailAdmin notification components
@@ -1904,7 +1899,7 @@ Create production deployment configuration:
 ```
 🎯 TASK: Create medical date/time pickers - frontend/src/components/ui/
 
-🎨 **PRIMARY REFERENCE**: Copy form patterns from `ux/tailadmin-reference/src/components/Forms/`
+
 
 📁 CREATE FILE: frontend/src/components/ui/DatePicker.tsx
 - **COPY BASE**: Reference TailAdmin date input components
@@ -1940,7 +1935,7 @@ Create production deployment configuration:
 ```
 🎯 TASK: Create navigation components - frontend/src/components/ui/
 
-🎨 **PRIMARY REFERENCE**: Copy navigation patterns from `ux/tailadmin-reference/src/components/`
+
 
 📁 CREATE FILE: frontend/src/components/ui/Breadcrumb.tsx
 - **COPY BASE**: Reference TailAdmin breadcrumb components
@@ -1976,7 +1971,7 @@ Create production deployment configuration:
 ```
 🎯 TASK: Create medical data visualization - frontend/src/components/charts/
 
-🎨 **PRIMARY REFERENCE**: Copy chart patterns from `ux/tailadmin-reference/src/components/Charts/`
+
 
 📁 CREATE FILE: frontend/src/components/charts/MedicalChart.tsx
 - **COPY BASE**: Reference TailAdmin chart components
@@ -2012,7 +2007,7 @@ Create production deployment configuration:
 ```
 🎯 TASK: Create accessibility components - frontend/src/components/ui/
 
-🎨 **PRIMARY REFERENCE**: Copy accessibility patterns from `ux/tailadmin-reference/src/components/`
+
 
 📁 CREATE FILE: frontend/src/components/ui/Tooltip.tsx
 - **COPY BASE**: Reference TailAdmin tooltip components

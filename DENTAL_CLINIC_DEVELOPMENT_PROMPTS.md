@@ -7,11 +7,9 @@
 
 ```
 project-root/
-├── frontend/          # React TypeScript application (TailAdmin style)
+├── frontend/          # Angular TypeScript application (Material Design)
 ├── backend/           # Spring Boot application  
-├── ai-service/        # Python FastAPI AI service
-└── ux/
-    └── tailadmin-reference/  # 🎨 PRIMARY UI REFERENCE - TailAdmin FREE template clone
+└── ai-service/        # Python FastAPI AI service
 ```
 
 **🤖 AGENT OPTIMIZATION RULES:**
@@ -21,42 +19,43 @@ project-root/
 - 🎯 **Explicit Imports**: Always include ALL required imports
 - 🎯 **Complete Code**: No placeholders - generate FULL working code
 - 🎯 **Auto-Testing**: Include basic error handling in every component
-- 🎯 **TailAdmin React**: Use exact TailAdmin FREE template patterns
+- 🎯 **Angular Material**: Use Angular Material Design System patterns
 
 
 
 **🎨 DESIGN SYSTEM REFERENCE - PRIMARY SOURCE:**
 
 ## 🚨 **CRITICAL UI DEVELOPMENT RULE** 🚨
-**📁 ALWAYS REFERENCE: `project-root/ux/tailadmin-reference/`**
+**📱 ALWAYS USE: Angular Material Design System (Material Design 3)**
 
-### **🎯 TAILADMIN TEMPLATE REPOSITORY (FIRST PRIORITY):**
-- **📂 LOCAL CLONE**: `project-root/ux/tailadmin-reference/` contains COMPLETE TailAdmin FREE template
-- **🎨 UI COMPONENTS**: Reference `ux/tailadmin-reference/src/components/` for ALL component patterns
-- **🎭 THEME SYSTEM**: Reference `ux/tailadmin-reference/src/css/` for theme classes and variables
-- **📱 LAYOUTS**: Reference `ux/tailadmin-reference/src/layout/` for sidebar, header, and page layouts
-- **🎪 PAGES**: Reference `ux/tailadmin-reference/src/pages/` for complete page examples
-- **🎨 STYLING**: Reference `ux/tailadmin-reference/tailwind.config.js` for exact color schemes
+### **🎯 ANGULAR MATERIAL DESIGN SYSTEM (FIRST PRIORITY):**
+- **🅰️ FRAMEWORK**: Angular 17+ with TypeScript and Standalone Components
+- **🎨 UI LIBRARY**: @angular/material (Latest version with Material Design 3)
+- **🎭 THEMING**: Angular Material Theme System with custom SCSS
+- **📱 COMPONENTS**: Angular Material Components (mat-button, mat-card, mat-table, etc.)
+- **🎪 LAYOUTS**: Angular Material Layout patterns (mat-sidenav, mat-toolbar, etc.)
+- **🎨 ICONS**: @angular/material/icon with Material Icons + custom medical icons
 
 ### **🏥 MEDICAL SYSTEM ADAPTATIONS:**
-- **Base Colors**: Use exact TailAdmin colors from `ux/tailadmin-reference/`
-- **Medical Colors**: Extend with `medical-blue` (#2563EB), `medical-green` (#059669), `medical-red` (#DC2626)
-- **Primary Theme**: LIGHT mode (default) → DARK mode (toggle) - follow TailAdmin patterns
-- **Medical Icons**: `@heroicons/react/24/outline` + custom medical SVGs
+- **Primary Colors**: Material Blue (#1976d2) with medical blue variants
+- **Medical Colors**: Medical Green (#4caf50), Medical Red (#f44336), Warning (#ff9800)
+- **Theme System**: Light/Dark mode using Angular Material theming
+- **Medical Icons**: Material Icons + custom medical SVG icon set
+- **Typography**: Material Typography with medical readability focus
 
 ### **🎯 DEVELOPMENT WORKFLOW:**
-1. **📂 FIRST**: Check `ux/tailadmin-reference/` for existing component patterns
-2. **🎨 ADAPT**: Modify TailAdmin components for medical context
-3. **🏥 EXTEND**: Add medical-specific features while maintaining TailAdmin structure
-4. **🎭 THEME**: Ensure dark/light mode compatibility using TailAdmin classes
+1. **📱 FIRST**: Use Angular Material components as foundation
+2. **🎨 CUSTOMIZE**: Apply medical theme using Angular Material theming system
+3. **🏥 EXTEND**: Add medical-specific features using Material Design patterns
+4. **🎭 THEME**: Implement light/dark mode using Angular Material theme switching
 
 ### **❌ WHAT NOT TO DO:**
-- ❌ **Don't create custom styling** - Use TailAdmin reference first
-- ❌ **Don't guess component structure** - Copy from `ux/tailadmin-reference/`
-- ❌ **Don't improvise layouts** - Follow TailAdmin layout patterns
-- ❌ **Don't ignore theme system** - Maintain TailAdmin dark/light compatibility
+- ❌ **Don't create custom components** - Use Angular Material components first
+- ❌ **Don't ignore Material Design guidelines** - Follow Material Design 3 principles
+- ❌ **Don't use external UI libraries** - Stick to Angular Material ecosystem
+- ❌ **Don't create custom theming** - Use Angular Material theme system
 
-**💡 CRITICAL**: ALL UI/CSS/component generation MUST reference `ux/tailadmin-reference/` as PRIMARY source
+**💡 CRITICAL**: ALL UI/component generation MUST use Angular Material as PRIMARY design system
 
 ---
 
@@ -67,7 +66,7 @@ project-root/
 ### **📁 TRACKING FOLDER STRUCTURE:**
 ```
 project-root/prompts-history/
-├── frontend/YYYY-MM-DD/         # React/TailAdmin components
+├── frontend/YYYY-MM-DD/         # Angular/Material components
 ├── backend/YYYY-MM-DD/          # Spring Boot Java files  
 ├── ai-service/YYYY-MM-DD/       # Python FastAPI services
 ├── db-query/YYYY-MM-DD/         # Database schema changes
@@ -75,7 +74,7 @@ project-root/prompts-history/
 ```
 
 ### **🎯 AUTO-CATEGORIZATION RULES:**
-- **frontend/** - Keywords: react, component, tailadmin, ui, page, modal, chart, dashboard, .tsx/.ts
+- **frontend/** - Keywords: angular, component, material, ui, page, modal, chart, dashboard, .ts/.html/.scss
 - **backend/** - Keywords: spring, controller, service, repository, entity, api, security, .java
 - **ai-service/** - Keywords: ai, fastapi, python, chromadb, suggestion, knowledge, .py
 - **db-query/** - Keywords: database, entity, schema, migration, h2, sql, table
@@ -121,15 +120,15 @@ project-root/prompts-history/
 - [What needed fixes]
 
 ## 🎨 **STYLING & UI NOTES** (frontend only)
-### **TailAdmin Reference Compliance:**
-- ✅/❌ Referenced `ux/tailadmin-reference/` for component patterns
-- ✅/❌ Used exact TailAdmin classes and structure
-- ✅/❌ Proper theme classes applied (light/dark mode)
-- ✅/❌ Medical color palette extended correctly
+### **Angular Material Design Compliance:**
+- ✅/❌ Used Angular Material components as foundation
+- ✅/❌ Applied Material Design 3 principles correctly
+- ✅/❌ Proper Material theming implemented (light/dark mode)
+- ✅/❌ Medical color palette applied to Material theme
 ### **Medical UI Standards:**
 - ✅/❌ WCAG compliance achieved
 - ✅/❌ Professional healthcare styling
-- ✅/❌ TailAdmin foundation maintained
+- ✅/❌ Material Design accessibility guidelines followed
 
 ## 🐛 **DEBUGGING & TROUBLESHOOTING** (other-prompts only)
 ### **Original Problem:**
@@ -163,12 +162,12 @@ project-root/prompts-history/
 Sequential Order: 1 → 2 → 3 → 4 → 5 → 6
 Dependencies: UI reference first, then backend, then frontend implementation
 ```
-- **Prompt 1**: Clone TailAdmin Template Repository (UI Reference Foundation)
+- **Prompt 1**: Setup Angular Material Frontend Project (UI Foundation)
 - **Prompt 2**: Create Backend Spring Boot Project (Backend Foundation)
 - **Prompt 3**: Backend Database Configuration (Requires Prompt 2)
-- **Prompt 4**: Create TailAdmin React Project (Frontend Foundation, Requires Prompt 1)
-- **Prompt 5**: Setup TailAdmin Base Layout (Requires Prompt 1,4)
-- **Prompt 6**: Configure TailAdmin Theme System (Requires Prompt 1,4,5)
+- **Prompt 4**: Create Angular Material Base Layout (Frontend Foundation, Requires Prompt 1)
+- **Prompt 5**: Setup Material Design Layout Components (Requires Prompt 1,4)
+- **Prompt 6**: Configure Angular Material Theme System (Requires Prompt 1,4,5)
 
 #### **PHASE 2: CORE ENTITIES & SECURITY (Prompts 7-12)**
 ```
@@ -397,43 +396,48 @@ PHASE 15 (Production):       81 → 82 → 83
 
 # **SIMPLIFIED DEVELOPMENT PROMPTS (1-106)**
 
-## **PHASE 1: PROJECT SETUP & TAILADMIN INTEGRATION (Prompts 1-12)**
+## **PHASE 1: PROJECT SETUP & ANGULAR MATERIAL INTEGRATION (Prompts 1-12)**
 
-### **Prompt 1: Clone TailAdmin Template Repository**
+### **Prompt 1: Setup Angular Material Frontend Project**
 ```
-🎯 TASK: Clone TailAdmin FREE template for UI reference - project-root/ux/
+🎯 TASK: Create Angular 17+ project with Material Design for medical system
 
-📁 CLONE REPOSITORY: ux/tailadmin-reference/
-- Clone TailAdmin FREE React template from official repository
-- Location: `project-root/ux/tailadmin-reference/`
-- This will serve as PRIMARY UI REFERENCE for all frontend development
+📁 CREATE PROJECT: frontend/
+- Angular 17+ with TypeScript and Standalone Components
+- Angular Material (Material Design 3) for UI components
+- Angular CLI with modern build system and Signal-based architecture
 
 🔧 SETUP COMMANDS:
 ```bash
 cd project-root
-mkdir -p ux
-cd ux
-git clone [TailAdmin-Free-React-URL] tailadmin-reference
-cd tailadmin-reference
-npm install
+npx @angular/cli@latest new frontend --routing --style=scss --standalone
+cd frontend
+ng add @angular/material
+ng add @angular/cdk
+```
+
+📦 ADDITIONAL DEPENDENCIES:
+```bash
+npm install @angular/animations @angular/forms @angular/common/http
+npm install @angular/material-moment-adapter moment
+npm install chart.js ng2-charts
+npm install rxjs@latest
 ```
 
 📂 VERIFY STRUCTURE:
-- ✅ `ux/tailadmin-reference/src/components/` - Component patterns
-- ✅ `ux/tailadmin-reference/src/layout/` - Layout components  
-- ✅ `ux/tailadmin-reference/src/pages/` - Page examples
-- ✅ `ux/tailadmin-reference/src/css/` - Theme and styles
-- ✅ `ux/tailadmin-reference/tailwind.config.js` - Color schemes
-- ✅ `ux/tailadmin-reference/package.json` - Dependencies
+- ✅ `frontend/src/app/` - Angular components and services
+- ✅ `frontend/src/styles.scss` - Global Material theme styles
+- ✅ `frontend/angular.json` - Angular CLI configuration
+- ✅ `frontend/package.json` - Angular and Material dependencies
 
-🎨 **PRIMARY UI REFERENCE ESTABLISHED**:
-- ALL frontend prompts will reference this directory
-- Component patterns, styling, and structure will be copied from here
-- Medical UI will extend TailAdmin foundation
+🎨 **MATERIAL DESIGN SYSTEM ESTABLISHED**:
+- Angular Material as primary UI component library
+- Material Design 3 theming with medical color adaptations
+- Responsive layouts with Material Layout components
 
 ⚠️ **CRITICAL**: This must be completed FIRST before any frontend development
 
-✅ COMPLETE: TailAdmin template cloned and ready as UI reference
+✅ COMPLETE: Angular Material project setup and ready for medical UI development
 ```
 
 ### **Prompt 2: Create Backend Spring Boot Project**
@@ -476,44 +480,45 @@ Create H2 database configuration in backend/ folder:
 - Setup database schema for medical entities
 ```
 
-### **Prompt 4: Create TailAdmin React Project**
+### **Prompt 4: Create Angular Material Base Layout**
 ```
-🎯 TASK: Create React TypeScript project in frontend/ folder - COMPLETE TAILADMIN SETUP
+🎯 TASK: Setup Angular Material base layout structure and theming
 
-🎨 **PRIMARY REFERENCE**: Copy structure from `project-root/ux/tailadmin-reference/`
+🎨 **MATERIAL DESIGN FOUNDATION**: Use Angular Material components and theming
 
-📁 CREATE FILE: frontend/package.json
-- **COPY DEPENDENCIES**: Reference `ux/tailadmin-reference/package.json` for exact versions
-- React 18.2.0, TypeScript 5.0.0, Vite 4.4.0 (match TailAdmin reference)
-- TailAdmin Dependencies: @headlessui/react, @heroicons/react (exact versions from reference)
-- Core Dependencies: react-router-dom, axios, tailwindcss (match reference versions)
-- Form Libraries: react-hook-form, @hookform/resolvers, yup
-- Charts: recharts, chart.js, react-chartjs-2
-- Medical UI: date-fns, clsx, @tailwindcss/forms
-- Scripts: dev, build, preview, type-check, test
+📁 CREATE FILE: frontend/src/app/app.component.ts
+- Angular standalone component with Material Design layout
+- Import MatToolbarModule, MatSidenavModule, MatButtonModule
+- Implement responsive sidenav layout with Material Design
+- Include navigation structure for medical system
 
-📁 CREATE FILE: frontend/tailwind.config.js
-- **COPY BASE CONFIG**: Reference `ux/tailadmin-reference/tailwind.config.js`
-- Use EXACT TailAdmin color scheme from reference
-- Extend with medical colors: medical-blue: #2563EB, medical-green: #059669, medical-red: #DC2626
-- Include ./src/**/*.{js,ts,jsx,tsx} in content
+📁 CREATE FILE: frontend/src/styles.scss
+- Import Angular Material theme
+- Define custom medical color palette:
+  - Primary: Material Blue (#1976d2)
+  - Accent: Light Blue (#03a9f4)  
+  - Warn: Material Red (#f44336)
+- Apply Material Design typography
+- Add medical-specific CSS variables
 
-📁 CREATE FILE: frontend/src/main.tsx
-- **COPY PATTERN**: Reference `ux/tailadmin-reference/src/main.tsx`
-- React 18 StrictMode setup
-- Import './index.css' for TailAdmin styles
+📁 CREATE FILE: frontend/src/app/shared/material.module.ts
+- Central module for all Angular Material imports
+- Include: MatToolbarModule, MatSidenavModule, MatButtonModule, MatIconModule
+- Include: MatCardModule, MatTableModule, MatFormFieldModule, MatInputModule
+- Include: MatDatepickerModule, MatSelectModule, MatCheckboxModule
 
-📁 CREATE FOLDERS (match TailAdmin reference structure):
-- frontend/src/components/ui/
-- frontend/src/pages/auth/
-- frontend/src/layouts/
-- frontend/src/hooks/
-- frontend/src/types/
+📁 CREATE FOLDER STRUCTURE:
+- frontend/src/app/components/
+- frontend/src/app/pages/
+- frontend/src/app/layouts/
+- frontend/src/app/services/
+- frontend/src/app/shared/
+- frontend/src/app/models/
 
-✅ COMPLETE: Working React app with TailAdmin styling that runs on localhost:5173
+✅ COMPLETE: Angular Material base layout with medical theming
 ```
 
-### **Prompt 4: Setup TailAdmin Base Layout**
+### **Prompt 5: Setup Material Design Layout Components**
 ```
 🎯 TASK: Create TailAdmin layout components - frontend/src/layouts/
 
@@ -862,7 +867,7 @@ Create add user modal in frontend/src/components/admin/AddUserModal.tsx:
 ```
 Create routing setup in frontend/src/App.tsx:
 
-- React Router configuration with TailAdmin layout
+- Angular Router configuration with Material layout
 - Protected routes for admin/doctor/receptionist
 - Public routes for login
 - Role-based redirects and navigation
@@ -2525,10 +2530,10 @@ Use the template provided above and include:
 ## **🚀 KEY FEATURES DELIVERED:**
 
 ### **🎨 FRONTEND & UX/UI:**
-✅ **TailAdmin React Template Integration** - Professional admin design
+✅ **Angular Material Design Integration** - Professional Material Design 3
 ✅ **Medical-Grade UI Components** - Professional healthcare styling
-✅ **Dark/Light Theme Toggle** - TailAdmin standard feature
-✅ **Responsive Mobile Design** - Works on all devices
+✅ **Dark/Light Theme Toggle** - Material Design theming system
+✅ **Responsive Mobile Design** - Material Design responsive layouts
 ✅ **Loading & Skeleton Components** - Professional loading states
 ✅ **Toast Notifications** - Medical alerts and confirmations
 ✅ **Date/Time Pickers** - Medical scheduling optimization
@@ -2564,13 +2569,13 @@ Use the template provided above and include:
 ✅ **Automated Tracking System** - Built-in progress monitoring
 ✅ **Comprehensive Testing** - Medical compliance validation
 
-### **⚠️ IMPORTANT NOTE: PROMPT RENUMBERING**
-**Due to adding the TailAdmin clone as Prompt 1, all subsequent prompt numbers have been increased by 1:**
-- Original Prompt 1 → New Prompt 2
-- Original Prompt 2 → New Prompt 3  
-- Original Prompt 3 → New Prompt 4
-- And so on... (all prompts +1)
+### **⚠️ IMPORTANT NOTE: TECHNOLOGY MIGRATION**
+**The system has been migrated from React/TailAdmin to Angular/Material Design:**
+- **Frontend Framework**: Angular 17+ (instead of React 18)
+- **UI Library**: Angular Material (instead of TailAdmin)  
+- **Design System**: Material Design 3 (instead of TailAdmin patterns)
+- **Theming**: Angular Material theming (instead of Tailwind CSS)
 
-**The sequential execution order above reflects the correct new numbering.**
+**All prompts have been updated to reflect the new Angular Material technology stack.**
 
 **🏥 Ready for professional dental clinic development with complete tracking! 💻📊🚀**

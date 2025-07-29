@@ -86,9 +86,11 @@ project-root/prompts-history/
 # Prompt {X}: {Title}
 
 ## 🎯 **PROMPT EXECUTED**
-**Date:** YYYY-MM-DD HH:MM  
+**Date:** YYYY-MM-DD  
 **Agent Used:** [Agent Name]  
-**Estimated Time:** X minutes  
+**Start Time:** HH:MM:SS  
+**End Time:** HH:MM:SS  
+**Total Time Taken:** X minutes Y seconds  
 
 ## 📋 **ORIGINAL PROMPT**
 [Copy of the exact prompt]
@@ -1664,8 +1666,10 @@ Create production deployment configuration:
 ### **🤖 FOR ALL AI AGENTS - AUTOMATED TRACKING WORKFLOW:**
 
 #### **STEP 1: Execute the Prompt**
+- **RECORD START TIME**: Note exact start time (HH:MM:SS) when beginning prompt execution
 - Generate the code/files as specified in the prompt
-- Note start time, completion time, and any issues
+- **RECORD END TIME**: Note exact end time (HH:MM:SS) when prompt execution is complete
+- **CALCULATE TOTAL TIME**: Calculate actual time taken (minutes and seconds)
 
 #### **STEP 2: Auto-Create Tracking File**
 **File Name Format:** `Prompt-{XX}-{Title-Kebab-Case}.md`
@@ -1673,15 +1677,21 @@ Create production deployment configuration:
 
 **Examples:**
 - `project-root/prompts-history/backend/2024-01-15/Prompt-01-Create-Backend-Spring-Boot-Project.md`
-- `project-root/prompts-history/frontend/2024-01-15/Prompt-17-Create-TailAdmin-Login-Page.md`
+- `project-root/prompts-history/frontend/2024-01-15/Prompt-18-Create-TailAdmin-Login-Page.md`
 - `project-root/prompts-history/ai-service/2024-01-15/Prompt-64-Setup-AI-Service-Project.md`
 - `project-root/prompts-history/other-prompts/2024-01-15/Debug-Login-Authentication-Error.md`
 - `project-root/prompts-history/other-prompts/2024-01-15/Troubleshoot-TailAdmin-Theme-Issues.md`
 - `project-root/prompts-history/other-prompts/2024-01-15/Query-Best-Practices-Medical-UI.md`
 
+**Sample Time Tracking Format:**
+- **Start Time:** 14:23:15
+- **End Time:** 14:26:42  
+- **Total Time Taken:** 3 minutes 27 seconds
+
 #### **STEP 3: Fill Tracking Template**
 Use the template provided above and include:
-- **Execution metrics** (time, success rate, iterations)
+- **Execution timing** (start time, end time, total duration)
+- **Success metrics** (success rate, iterations needed)
 - **Files created** with exact paths and descriptions
 - **Technical details** (dependencies, configurations, database changes)
 - **Issues encountered** and their resolutions

@@ -168,7 +168,7 @@ project-root/prompts-history/
 #### **PHASE 2: CORE ENTITIES & SECURITY (Prompts 7-12)**
 - **Prompt 7**: Create User Entity (Core Entity)
 - **Prompt 10**: Backend Security Configuration (Required before auth)
-- **Prompt 8**: Create TypeScript Types for TailAdmin (Frontend types)
+- **Prompt 8**: Create Angular Material Medical UI Components (Frontend components)
 - **Prompt 9**: Setup Medical-Grade UI Components Library (Base UI, Requires Prompt 1)
 - **Prompt 11**: Create Theme Toggle Component (Requires Prompt 6,9)
 - **Prompt 12**: Frontend API Client Setup (Requires Prompt 9,10)
@@ -178,12 +178,12 @@ project-root/prompts-history/
 - **Prompt 14**: Create Auth Controller (Requires Prompt 10,13)
 - **Prompt 15**: Create User Service (Requires Prompt 13)
 - **Prompt 16**: Create Admin Controller (Requires Prompt 14,15)
-- **Prompt 17**: Create TailAdmin Auth Context (Requires Prompt 8,12)
+- **Prompt 17**: Create Angular Auth Service (Requires Prompt 8,12)
 - **Prompt 18**: Create Auth Service (Requires Prompt 12,17)
-- **Prompt 19**: Create TailAdmin Login Page (Requires Prompt 1,9,18)
-- **Prompt 20**: Create Protected Route Component (Requires Prompt 17,18)
-- **Prompt 23**: Setup TailAdmin Routing (Requires Prompt 19,20)
-- **Prompt 21**: Create TailAdmin User Management Page (Requires Prompt 16,23)
+- **Prompt 19**: Create Angular Material Login Page (Requires Prompt 1,9,18)
+- **Prompt 20**: Create Protected Route Guard (Requires Prompt 17,18)
+- **Prompt 23**: Setup Angular Routing (Requires Prompt 19,20)
+- **Prompt 21**: Create Angular Material User Management Page (Requires Prompt 16,23)
 - **Prompt 22**: Create Add User Modal (Requires Prompt 9,21)
 
 #### **PHASE 4: ERROR HANDLING & CORE MEDICAL ENTITIES (Prompts 24-28)**
@@ -196,7 +196,7 @@ project-root/prompts-history/
 #### **PHASE 5: PATIENT MANAGEMENT UI (Prompts 28-35)**
 - **Prompt 28**: Create Patient Types (Frontend types for Patient)
 - **Prompt 29**: Create Patient Frontend Service (Requires Prompt 27,28)
-- **Prompt 30**: Create TailAdmin Patient List Page (Requires Prompt 29)
+- **Prompt 30**: Create Angular Material Patient Management Dashboard (Requires Prompt 29)
 - **Prompt 32**: Create Add Patient Modal (Requires Prompt 8,29)
 - **Prompt 33**: Create Patient Search Component (Requires Prompt 29)
 - **Prompt 31**: Create Patient Profile Component (Requires Prompt 30,32,33)
@@ -210,7 +210,7 @@ project-root/prompts-history/
 - **Prompt 39**: Create Appointment Controller (Requires Prompt 38)
 - **Prompt 40**: Create Treatment Entity (Requires Prompt 36 - linked)
 - **Prompt 41**: Create Treatment Repository (Requires Prompt 40)
-- **Prompt 42**: Create TailAdmin Appointment Calendar (Requires Prompt 39)
+- **Prompt 42**: Create Angular Material Medical Calendar System (Requires Prompt 39)
 - **Prompt 43**: Create Schedule Appointment Modal (Requires Prompt 39,42)
 - **Prompt 44**: Create Treatment Form (Requires Prompt 41)
 - **Prompt 45**: Create Treatment History Component (Requires Prompt 41,44)
@@ -222,7 +222,7 @@ project-root/prompts-history/
 - **Prompt 49**: Create Inventory Service (Requires Prompt 48)
 - **Prompt 50**: Create Invoice Entity (Billing Foundation)
 - **Prompt 51**: Create Billing Service (Requires Prompt 50)
-- **Prompt 52**: Create TailAdmin Inventory Management (Requires Prompt 49)
+- **Prompt 52**: Create Angular Material Inventory Management (Requires Prompt 49)
 - **Prompt 53**: Create Billing Dashboard (Requires Prompt 51)
 - **Prompt 54**: Create Invoice Component (Requires Prompt 51,53)
 
@@ -441,36 +441,36 @@ Create H2 database configuration in backend/ folder:
 
 ### **Prompt 5: Setup Material Design Layout Components**
 ```
-🎯 TASK: Create TailAdmin layout components - frontend/src/layouts/
+🎯 TASK: Create Angular Material layout components - frontend/src/app/layouts/
 
 📁 CREATE FILE: frontend/src/app/layouts/default-layout.component.ts
 - Main layout container with sidebar + header + content area
-- Responsive design: sidebar collapses on mobile
-- Theme-aware: `bg-white dark:bg-boxdark` transitions (exact TailAdmin classes)
+- Responsive design using Angular Material breakpoints
+- Theme-aware using Angular Material theming system
 
 📁 CREATE FILE: frontend/src/app/layouts/sidebar.component.ts
-- Adapt TailAdmin sidebar for medical navigation menu
-- Medical icons: Dashboard, Patients, Appointments, Treatments, Inventory, Analytics
-- Active state styling with medical-blue accent
-- Role-based menu items (Admin vs Doctor vs Receptionist)
+- Angular Material sidenav for medical navigation menu
+- Medical icons using Material Design icons
+- Active state styling with Material Design accent colors
+- Role-based menu items using Angular router guards
 
 📁 CREATE FILE: frontend/src/app/layouts/header.component.ts
-- **COPY HEADER**: Reference `ux/tailadmin-reference/src/components/Header/`
-- User profile dropdown with avatar (use TailAdmin dropdown pattern)
-- **THEME TOGGLE BUTTON**: Light/Dark mode switcher with icon (TailAdmin style)
-- Notifications bell with badge (TailAdmin notification pattern)
-- Search functionality (TailAdmin search component)
+- Angular Material toolbar for header layout
+- User profile dropdown using mat-menu with avatar
+- Theme toggle using mat-slide-toggle with Material Design icons
+- Notifications bell using mat-badge for notification count
+- Search functionality using mat-autocomplete
 - Responsive hamburger menu for mobile
 
-🎨 MEDICAL NAVIGATION ICONS (adapt TailAdmin icon usage):
-- Dashboard: `HomeIcon`
-- Patients: `UserGroupIcon` 
-- Appointments: `CalendarDaysIcon`
-- Treatments: `BeakerIcon`
-- Inventory: `CubeIcon`
-- Chat AI: `ChatBubbleLeftRightIcon`
+🎨 MEDICAL NAVIGATION ICONS (Material Design icons):
+- Dashboard: `dashboard`
+- Patients: `people`
+- Appointments: `event`
+- Treatments: `medical_services`
+- Inventory: `inventory`
+- Chat AI: `chat`
 
-✅ COMPLETE: Professional medical layout with working theme toggle and responsive design
+✅ COMPLETE: Professional medical layout with Angular Material components and responsive design
 ```
 
 ### **Prompt 5: Create Medical Authentication System**
@@ -712,16 +712,16 @@ Create admin controller in backend/src/main/java/com/dentalclinic/controller/Adm
 - Admin-only access with @PreAuthorize
 ```
 
-### **Prompt 16: Create TailAdmin Auth Context**
+### **Prompt 16: Create Angular Auth Service**
 ```
 Create authentication service in frontend/src/app/services/auth.service.ts:
 
-- User state management with TailAdmin patterns
-- Login/logout functions with loading states
-- Token storage in localStorage
+- User state management with Angular BehaviorSubject
+- Login/logout functions with Angular Material loading states
+- JWT token storage in localStorage
 - Auto-logout on token expiry
-- Role-based navigation helpers
-- Theme preference persistence
+- Role-based navigation guards for Angular routing
+- Theme preference persistence with Angular services
 ```
 
 ### **Prompt 17: Create Auth Service**
@@ -736,27 +736,26 @@ Create authentication service in frontend/src/services/auth/AuthService.ts:
 - Role permission checking utilities
 ```
 
-### **Prompt 18: Create TailAdmin Login Page**
+### **Prompt 18: Create Angular Material Login Page**
 ```
 🎯 TASK: Create COMPLETE login page - frontend/src/app/pages/auth/login-page.component.ts
 
 
 
-📋 EXACT REQUIREMENTS:
-- **COPY LAYOUT**: Reference `ux/tailadmin-reference/src/pages/Authentication/SignIn.tsx`
-- Split-screen: LEFT = login form, RIGHT = medical imagery
-- Form fields: email (validation), password (toggle visibility)
-- Submit button with loading spinner when authenticating
-- Error messages display below form
-- Auto-redirect: admin → /admin/dashboard, doctor → /doctor/dashboard
+📋 ANGULAR MATERIAL REQUIREMENTS:
+- Use mat-card for professional login form layout
+- Split-screen layout using Angular Material grid system
+- Form fields: mat-form-field with email validation and password toggle
+- Submit button: mat-raised-button with mat-progress-spinner for loading
+- Error messages using mat-error below form fields
+- Auto-redirect using Angular Router based on user roles
 
-🎨 EXACT STYLING (Copy from TailAdmin Authentication):
-- **COPY CONTAINER**: Use exact TailAdmin auth page layout
-- Container: `min-h-screen bg-white dark:bg-boxdark` (exact TailAdmin theme classes)
-- Form: `rounded-lg border border-stroke bg-white shadow-md dark:border-strokedark dark:bg-boxdark`
-- Input: `w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 focus:border-primary`
-- Button: `w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white hover:bg-opacity-90`
-- Use EXACT TailAdmin color variables from `ux/tailadmin-reference/`
+🎨 ANGULAR MATERIAL STYLING:
+- Use mat-card for form container with elevation
+- Medical color theme using Angular Material primary colors
+- Responsive layout using Angular Material breakpoints
+- Form validation with Angular Material error states
+- Professional medical design with Material Design principles
 
 📁 IMPORTS REQUIRED (match TailAdmin auth page):
 📁 ANGULAR IMPORTS:
@@ -764,7 +763,7 @@ Create authentication service in frontend/src/services/auth/AuthService.ts:
 - Import Router for Angular navigation
 - Use Material Design icons for password visibility toggle
 
-✅ COMPLETE: Fully functional login page with TailAdmin styling, form validation, and role-based routing
+✅ COMPLETE: Fully functional login page with Angular Material styling, form validation, and role-based routing
 ```
 
 ### **Prompt 19: Create Protected Route Component**
@@ -779,7 +778,7 @@ Create protected route guard in frontend/src/app/guards/auth.guard.ts:
 - Permission-based component rendering
 ```
 
-### **Prompt 20: Create TailAdmin User Management Page**
+### **Prompt 20: Create Angular Material User Management Page**
 ```
 Create user management page in frontend/src/app/pages/admin/user-management.component.ts:
 
@@ -803,9 +802,9 @@ Create add user dialog in frontend/src/app/components/admin/add-user-dialog.comp
 - Success/error handling with TailAdmin notifications
 ```
 
-### **Prompt 22: Setup TailAdmin Routing**
+### **Prompt 22: Setup Angular Routing**
 ```
-Create routing setup in frontend/src/App.tsx:
+Create routing setup in frontend/src/app/app-routing.module.ts:
 
 - Angular Router configuration with Material layout
 - Protected routes for admin/doctor/receptionist
@@ -1202,17 +1201,17 @@ Create Billing service in backend/src/main/java/com/dentalclinic/service/Billing
 - sendPaymentReminders() automated system
 ```
 
-### **Prompt 52: Create TailAdmin Inventory Management**
+### **Prompt 52: Create Angular Material Inventory Management**
 ```
-Create Inventory management in frontend/src/pages/admin/InventoryManagement.tsx:
+Create Inventory management in frontend/src/app/pages/admin/inventory-management.component.ts:
 
-- TailAdmin dashboard layout for inventory
-- Medicine list with stock level indicators
-- Low stock alerts with notification badges
-- Add/edit medicine modal with form validation
-- Expiry date tracking with color-coded warnings
-- Supplier management and contact information
-- Barcode scanning simulation for updates
+- Angular Material dashboard layout for inventory
+- Medicine list using mat-table with stock level indicators
+- Low stock alerts using mat-badge with notification colors
+- Add/edit medicine dialog using mat-dialog with form validation
+- Expiry date tracking with color-coded mat-chip warnings
+- Supplier management with Angular Material cards
+- Barcode scanning simulation using Angular Material inputs
 ```
 
 ### **Prompt 53: Create Billing Dashboard**

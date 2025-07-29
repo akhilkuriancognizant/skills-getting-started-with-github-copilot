@@ -1,5 +1,41 @@
 # 🦷 DENTAL CLINIC MANAGEMENT SYSTEM - DEVELOPMENT PHASES
 
+# 📋 **AUTOMATED PROMPT TRACKING SYSTEM**
+**🤖 FOR AI AGENTS:** After completing each prompt, automatically create a tracking file in the appropriate category:
+### **📁 TRACKING FOLDER STRUCTURE:**
+```
+project-root/prompts-history/
+├── frontend/YYYY-MM-DD/         # Angular/Material components
+├── backend/YYYY-MM-DD/          # Spring Boot Java files  
+├── ai-service/YYYY-MM-DD/       # Python FastAPI services
+├── db-query/YYYY-MM-DD/         # Database schema changes
+└── other-prompts/YYYY-MM-DD/    # Configuration, setup, debugging, troubleshooting, queries
+```
+### **🎯 AUTO-CATEGORIZATION RULES:**
+- **frontend/** - Keywords: Angular,material,sidebar,navbar, component, chart, ui, page, modal, chart, dashboard, .html/.css/.ts
+- **backend/** - Keywords: spring, controller, service, repository, entity, api, security, .java
+- **ai-service/** - Keywords: ai, fastapi, python, chromadb, suggestion, knowledge, .py
+- **db-query/** - Keywords: database, entity, schema, migration, h2, sql, table
+- **other-prompts/** - Everything else: configuration, themes, routing, debugging, troubleshooting, error resolution, suggestions, queries, doubts
+### **📝 TRACKING FILE TEMPLATE:**
+```markdown
+# Prompt {X}: {Title}
+## 🎯 **PROMPT EXECUTED**
+**Date:** YYYY-MM-DD  
+**Agent Used:** [Agent Name]  
+**Start Time:** HH:MM:SS  
+**End Time:** HH:MM:SS  
+**Total Time Taken:** X minutes Y seconds  
+## 📋 **ORIGINAL PROMPT**
+[Copy of the exact prompt]
+**Example file paths:**
+- ✅ `project-root/frontend/src/components/admin/UserManagement.ts
+- ✅ `project-root/backend/src/main/java/com/dentalclinic/controller/UserController.java`
+- ✅ `project-root/ai-service/app/services/medical_nlp.py`
+```
+
+---
+
 ## 📋 **PROJECT STRUCTURE OVERVIEW**
 ```
 dental-clinic-management/

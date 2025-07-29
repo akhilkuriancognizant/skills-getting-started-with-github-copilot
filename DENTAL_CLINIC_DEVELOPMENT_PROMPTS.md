@@ -9,7 +9,9 @@
 project-root/
 ├── frontend/          # React TypeScript application (TailAdmin style)
 ├── backend/           # Spring Boot application  
-└── ai-service/        # Python FastAPI AI service
+├── ai-service/        # Python FastAPI AI service
+└── ux/
+    └── tailadmin-reference/  # 🎨 PRIMARY UI REFERENCE - TailAdmin FREE template clone
 ```
 
 **🤖 AGENT OPTIMIZATION RULES:**
@@ -23,18 +25,38 @@ project-root/
 
 
 
-**🎨 DESIGN SYSTEM REFERENCE:**
-- **Primary Theme**: LIGHT mode (default) → DARK mode (toggle)
-- **Colors**: `bg-primary-600` (#3C50E0), `bg-success-500` (#10B981), `bg-info-500` (#06B6D4)
-- **Medical Colors**: `bg-medical-blue` (#2563EB), `bg-medical-green` (#059669), `bg-medical-red` (#DC2626)
-- **Typography**: `font-inter text-sm/md/lg/xl/2xl`
-- **Components**: Tailwind CSS + `@headlessui/react`
-- **Theme Classes**: `bg-white dark:bg-boxdark text-black dark:text-bodydark`
-- **Medical Icons**: `@heroicons/react/24/outline` + Stethoscope, Tooth, Heart icons
-- **Layout**: Sidebar `w-72.5` + Main `ml-72.5`
-- **Medical UI**: Rounded corners `rounded-lg`, Shadows `shadow-md`, Professional spacing `p-6 gap-4`
+**🎨 DESIGN SYSTEM REFERENCE - PRIMARY SOURCE:**
 
-**💡 IMPORTANT**: Design system is embedded in each relevant prompt - **NO MANUAL COPYING REQUIRED**
+## 🚨 **CRITICAL UI DEVELOPMENT RULE** 🚨
+**📁 ALWAYS REFERENCE: `project-root/ux/tailadmin-reference/`**
+
+### **🎯 TAILADMIN TEMPLATE REPOSITORY (FIRST PRIORITY):**
+- **📂 LOCAL CLONE**: `project-root/ux/tailadmin-reference/` contains COMPLETE TailAdmin FREE template
+- **🎨 UI COMPONENTS**: Reference `ux/tailadmin-reference/src/components/` for ALL component patterns
+- **🎭 THEME SYSTEM**: Reference `ux/tailadmin-reference/src/css/` for theme classes and variables
+- **📱 LAYOUTS**: Reference `ux/tailadmin-reference/src/layout/` for sidebar, header, and page layouts
+- **🎪 PAGES**: Reference `ux/tailadmin-reference/src/pages/` for complete page examples
+- **🎨 STYLING**: Reference `ux/tailadmin-reference/tailwind.config.js` for exact color schemes
+
+### **🏥 MEDICAL SYSTEM ADAPTATIONS:**
+- **Base Colors**: Use exact TailAdmin colors from `ux/tailadmin-reference/`
+- **Medical Colors**: Extend with `medical-blue` (#2563EB), `medical-green` (#059669), `medical-red` (#DC2626)
+- **Primary Theme**: LIGHT mode (default) → DARK mode (toggle) - follow TailAdmin patterns
+- **Medical Icons**: `@heroicons/react/24/outline` + custom medical SVGs
+
+### **🎯 DEVELOPMENT WORKFLOW:**
+1. **📂 FIRST**: Check `ux/tailadmin-reference/` for existing component patterns
+2. **🎨 ADAPT**: Modify TailAdmin components for medical context
+3. **🏥 EXTEND**: Add medical-specific features while maintaining TailAdmin structure
+4. **🎭 THEME**: Ensure dark/light mode compatibility using TailAdmin classes
+
+### **❌ WHAT NOT TO DO:**
+- ❌ **Don't create custom styling** - Use TailAdmin reference first
+- ❌ **Don't guess component structure** - Copy from `ux/tailadmin-reference/`
+- ❌ **Don't improvise layouts** - Follow TailAdmin layout patterns
+- ❌ **Don't ignore theme system** - Maintain TailAdmin dark/light compatibility
+
+**💡 CRITICAL**: ALL UI/CSS/component generation MUST reference `ux/tailadmin-reference/` as PRIMARY source
 
 ---
 
@@ -97,12 +119,15 @@ project-root/prompts-history/
 - [What needed fixes]
 
 ## 🎨 **STYLING & UI NOTES** (frontend only)
-### **TailAdmin Integration:**
-- ✅/❌ Proper theme classes applied
-- ✅/❌ Medical color palette used
+### **TailAdmin Reference Compliance:**
+- ✅/❌ Referenced `ux/tailadmin-reference/` for component patterns
+- ✅/❌ Used exact TailAdmin classes and structure
+- ✅/❌ Proper theme classes applied (light/dark mode)
+- ✅/❌ Medical color palette extended correctly
 ### **Medical UI Standards:**
 - ✅/❌ WCAG compliance achieved
 - ✅/❌ Professional healthcare styling
+- ✅/❌ TailAdmin foundation maintained
 
 ## 🐛 **DEBUGGING & TROUBLESHOOTING** (other-prompts only)
 ### **Original Problem:**
@@ -188,25 +213,30 @@ Create H2 database configuration in backend/ folder:
 ```
 🎯 TASK: Create React TypeScript project in frontend/ folder - COMPLETE TAILADMIN SETUP
 
+🎨 **PRIMARY REFERENCE**: Copy structure from `project-root/ux/tailadmin-reference/`
+
 📁 CREATE FILE: frontend/package.json
-- React 18.2.0, TypeScript 5.0.0, Vite 4.4.0 (exact versions for stability)
-- TailAdmin Dependencies: @headlessui/react@1.7.17, @heroicons/react@2.0.18
-- Core Dependencies: react-router-dom@6.15.0, axios@1.5.0, tailwindcss@3.3.3
-- Form Libraries: react-hook-form@7.45.4, @hookform/resolvers@3.3.1, yup@1.3.2
-- Charts: recharts@2.8.0, chart.js@4.4.0, react-chartjs-2@5.2.0
-- Medical UI: date-fns@2.30.0, clsx@2.0.0, @tailwindcss/forms@0.5.6
+- **COPY DEPENDENCIES**: Reference `ux/tailadmin-reference/package.json` for exact versions
+- React 18.2.0, TypeScript 5.0.0, Vite 4.4.0 (match TailAdmin reference)
+- TailAdmin Dependencies: @headlessui/react, @heroicons/react (exact versions from reference)
+- Core Dependencies: react-router-dom, axios, tailwindcss (match reference versions)
+- Form Libraries: react-hook-form, @hookform/resolvers, yup
+- Charts: recharts, chart.js, react-chartjs-2
+- Medical UI: date-fns, clsx, @tailwindcss/forms
 - Scripts: dev, build, preview, type-check, test
 
 📁 CREATE FILE: frontend/tailwind.config.js
-- TailAdmin color scheme: primary: #3C50E0, success: #10B981, boxdark: #24303F
-- Extend theme with medical colors and TailAdmin classes
+- **COPY BASE CONFIG**: Reference `ux/tailadmin-reference/tailwind.config.js`
+- Use EXACT TailAdmin color scheme from reference
+- Extend with medical colors: medical-blue: #2563EB, medical-green: #059669, medical-red: #DC2626
 - Include ./src/**/*.{js,ts,jsx,tsx} in content
 
 📁 CREATE FILE: frontend/src/main.tsx
+- **COPY PATTERN**: Reference `ux/tailadmin-reference/src/main.tsx`
 - React 18 StrictMode setup
 - Import './index.css' for TailAdmin styles
 
-📁 CREATE FOLDERS:
+📁 CREATE FOLDERS (match TailAdmin reference structure):
 - frontend/src/components/ui/
 - frontend/src/pages/auth/
 - frontend/src/layouts/
@@ -220,25 +250,30 @@ Create H2 database configuration in backend/ folder:
 ```
 🎯 TASK: Create TailAdmin layout components - frontend/src/layouts/
 
+🎨 **PRIMARY REFERENCE**: Copy layout structure from `ux/tailadmin-reference/src/layout/`
+
 📁 CREATE FILE: frontend/src/layouts/DefaultLayout.tsx
+- **COPY BASE**: Reference `ux/tailadmin-reference/src/layout/DefaultLayout.tsx`
 - Main layout container with sidebar + header + content area
 - Responsive design: sidebar collapses on mobile
-- Theme-aware: `bg-white dark:bg-boxdark` transitions
+- Theme-aware: `bg-white dark:bg-boxdark` transitions (exact TailAdmin classes)
 
 📁 CREATE FILE: frontend/src/layouts/Sidebar.tsx
-- Collapsible medical navigation menu
+- **COPY SIDEBAR**: Reference `ux/tailadmin-reference/src/components/Sidebar/`
+- Adapt TailAdmin sidebar for medical navigation menu
 - Medical icons: Dashboard, Patients, Appointments, Treatments, Inventory, Analytics
 - Active state styling with medical-blue accent
 - Role-based menu items (Admin vs Doctor vs Receptionist)
 
 📁 CREATE FILE: frontend/src/layouts/Header.tsx
-- User profile dropdown with avatar
-- **THEME TOGGLE BUTTON**: Light/Dark mode switcher with icon
-- Notifications bell with badge
-- Search functionality
+- **COPY HEADER**: Reference `ux/tailadmin-reference/src/components/Header/`
+- User profile dropdown with avatar (use TailAdmin dropdown pattern)
+- **THEME TOGGLE BUTTON**: Light/Dark mode switcher with icon (TailAdmin style)
+- Notifications bell with badge (TailAdmin notification pattern)
+- Search functionality (TailAdmin search component)
 - Responsive hamburger menu for mobile
 
-🎨 MEDICAL NAVIGATION ICONS:
+🎨 MEDICAL NAVIGATION ICONS (adapt TailAdmin icon usage):
 - Dashboard: `HomeIcon`
 - Patients: `UserGroupIcon` 
 - Appointments: `CalendarDaysIcon`
@@ -304,40 +339,48 @@ Create TypeScript interfaces in frontend/src/types/:
 ```
 🎯 TASK: Create medical-grade UI components - frontend/src/components/ui/
 
+🎨 **PRIMARY REFERENCE**: Copy component patterns from `ux/tailadmin-reference/src/components/`
+
 📁 CREATE FILE: frontend/src/components/ui/Button.tsx
-- Medical variants: primary (blue), success (green), danger (red), warning (amber)
-- Sizes: sm, md, lg with proper medical touch targets (44px minimum)
-- Loading states with spinner for medical operations
-- Accessibility: ARIA labels, keyboard navigation
+- **COPY BASE**: Reference `ux/tailadmin-reference/src/components/Buttons/`
+- Adapt TailAdmin button styles for medical variants: primary (blue), success (green), danger (red), warning (amber)
+- Use TailAdmin sizing classes: sm, md, lg with proper medical touch targets (44px minimum)
+- Loading states with spinner for medical operations (use TailAdmin loader patterns)
+- Accessibility: ARIA labels, keyboard navigation (follow TailAdmin accessibility)
 
 📁 CREATE FILE: frontend/src/components/ui/Input.tsx
-- Medical form styling: clean borders, focus states
-- Validation states: error (red), success (green), neutral
+- **COPY BASE**: Reference `ux/tailadmin-reference/src/components/Forms/`
+- Use TailAdmin form styling: clean borders, focus states
+- Validation states: error (red), success (green), neutral (TailAdmin validation classes)
 - Medical field types: email, phone, date, medical ID
-- Theme support: `bg-white dark:bg-form-input`
+- Theme support: `bg-white dark:bg-form-input` (exact TailAdmin theme classes)
 
 📁 CREATE FILE: frontend/src/components/ui/Card.tsx
-- Medical card variants: patient-card, appointment-card, treatment-card
-- Professional shadows and borders
+- **COPY BASE**: Reference `ux/tailadmin-reference/src/components/Cards/`
+- Adapt TailAdmin cards for medical variants: patient-card, appointment-card, treatment-card
+- Use TailAdmin shadows and borders: `shadow-default`, `border-stroke`
 - Status indicators: urgent (red), normal (blue), completed (green)
 
 📁 CREATE FILE: frontend/src/components/ui/Modal.tsx
-- Medical modal styling: professional, clean, accessible
-- Overlay with proper contrast ratios
-- Close button with X icon and ESC key support
+- **COPY BASE**: Reference `ux/tailadmin-reference/src/components/Modals/`
+- Use TailAdmin modal styling: professional, clean, accessible
+- TailAdmin overlay patterns with proper contrast ratios
+- Close button with X icon and ESC key support (TailAdmin modal patterns)
 
 📁 CREATE FILE: frontend/src/components/ui/Badge.tsx
-- Medical status badges: Active, Pending, Completed, Cancelled
+- **COPY BASE**: Reference `ux/tailadmin-reference/src/components/Badges/`
+- Adapt TailAdmin badges for medical status: Active, Pending, Completed, Cancelled
 - Severity levels: Low, Medium, High, Critical
-- Color-coded for medical professionals
+- Color-coded for medical professionals using TailAdmin color system
 
 📁 CREATE FILE: frontend/src/components/ui/Table.tsx
-- Medical data table with sorting, filtering
-- Striped rows for readability
-- Hover states and selection highlighting
+- **COPY BASE**: Reference `ux/tailadmin-reference/src/components/Tables/`
+- Use TailAdmin table patterns for medical data with sorting, filtering
+- TailAdmin striped rows: `even:bg-gray dark:even:bg-meta-4`
+- Hover states and selection highlighting (TailAdmin table interactions)
 - Responsive design for mobile medical devices
 
-🏥 MEDICAL-GRADE FEATURES:
+🏥 MEDICAL-GRADE FEATURES (built on TailAdmin foundation):
 - High contrast ratios (WCAG AAA compliance)
 - Large touch targets for medical gloves
 - Professional color palette for healthcare
@@ -484,21 +527,25 @@ Create authentication service in frontend/src/services/auth/AuthService.ts:
 ```
 🎯 TASK: Create COMPLETE login page - frontend/src/pages/auth/LoginPage.tsx
 
+🎨 **PRIMARY REFERENCE**: Copy login patterns from `ux/tailadmin-reference/src/pages/Authentication/`
+
 📋 EXACT REQUIREMENTS:
+- **COPY LAYOUT**: Reference `ux/tailadmin-reference/src/pages/Authentication/SignIn.tsx`
 - Split-screen: LEFT = login form, RIGHT = medical imagery
 - Form fields: email (validation), password (toggle visibility)
 - Submit button with loading spinner when authenticating
 - Error messages display below form
 - Auto-redirect: admin → /admin/dashboard, doctor → /doctor/dashboard
 
-🎨 EXACT STYLING (TailAdmin + Medical Design):
-- Container: `min-h-screen bg-white dark:bg-boxdark` (Theme support)
+🎨 EXACT STYLING (Copy from TailAdmin Authentication):
+- **COPY CONTAINER**: Use exact TailAdmin auth page layout
+- Container: `min-h-screen bg-white dark:bg-boxdark` (exact TailAdmin theme classes)
 - Form: `rounded-lg border border-stroke bg-white shadow-md dark:border-strokedark dark:bg-boxdark`
 - Input: `w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 focus:border-primary`
-- Button: `w-full cursor-pointer rounded-lg border border-primary bg-primary-600 p-4 text-white hover:bg-primary-700`
-- Medical Colors: Primary #3C50E0, Success #10B981, Medical Blue #2563EB
+- Button: `w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white hover:bg-opacity-90`
+- Use EXACT TailAdmin color variables from `ux/tailadmin-reference/`
 
-📁 IMPORTS REQUIRED:
+📁 IMPORTS REQUIRED (match TailAdmin auth page):
 ```typescript
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

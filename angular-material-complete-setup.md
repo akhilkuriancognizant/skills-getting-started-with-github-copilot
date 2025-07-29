@@ -4,26 +4,64 @@
 
 ### 1. Create Angular Project
 ```bash
-# Create new Angular project
-ng new admin-dashboard
+# Create new Angular project with routing and SCSS
+ng new admin-dashboard --routing --style=scss
 cd admin-dashboard
 
 # Add Angular Material with animations
 ng add @angular/material
 # Choose: Custom theme, Yes to typography, Yes to animations
 
-# Add Angular CDK for additional utilities
+# Add Angular CDK for additional utilities (layout, drag-drop, etc.)
 ng add @angular/cdk
 
-# Install chart libraries
+# Add Angular Flex Layout for responsive design
+npm install @angular/flex-layout
+
+# Install chart libraries for Material integration
 npm install chart.js ng2-charts
 npm install @types/chart.js
 
-# Install calendar library
+# Install calendar library with Material Design support
 npm install angular-calendar date-fns
 
-# Install additional Angular animations
+# Install Material Icons and additional animations
 npm install @angular/animations
+npm install material-design-icons
+
+# Install Angular Material Moment Adapter for date handling
+npm install @angular/material-moment-adapter moment
+
+# Install additional Material components
+npm install @angular/material-experimental
+```
+
+---
+
+## 📦 Angular Material Modules Setup
+
+### 1.5. Create Material Module
+```bash
+ng generate module shared/material
+```
+
+### 1.6. Cursor Prompt - Complete Material Module Setup
+```
+Create comprehensive Angular Material module with all necessary imports:
+- Import and export all Angular Material modules for the admin dashboard
+- Include: MatButtonModule, MatCardModule, MatToolbarModule, MatSidenavModule, MatListModule
+- Add: MatIconModule, MatMenuModule, MatFormFieldModule, MatInputModule, MatSelectModule
+- Include: MatCheckboxModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule
+- Add: MatTableModule, MatPaginatorModule, MatSortModule, MatDialogModule, MatSnackBarModule
+- Include: MatProgressSpinnerModule, MatProgressBarModule, MatChipsModule, MatBadgeModule
+- Add: MatTabsModule, MatExpansionModule, MatStepperModule, MatSlideToggleModule, MatSliderModule
+- Include: MatAutocompleteModule, MatTooltipModule, MatBottomSheetModule, MatGridListModule
+- Add: MatButtonToggleModule, MatRippleModule, MatDividerModule, MatTreeModule
+- Include: DragDropModule, LayoutModule, A11yModule, ClipboardModule, PortalModule
+- Add proper imports, exports array, and module configuration
+- Include Angular Flex Layout module integration
+- Add Material moment adapter configuration for date handling
+- Include all necessary TypeScript imports and module structure
 ```
 
 ---
@@ -39,17 +77,21 @@ ng generate @angular/material:navigation app-layout
 ng generate @angular/material:dashboard dashboard
 ```
 
-### 3. Cursor Prompt - Enhanced Layout
+### 3. Cursor Prompt - Enhanced Material Layout
 ```
-Create Angular Material app layout with:
-- mat-sidenav with collapsible sidebar containing navigation menu
-- mat-toolbar header with hamburger menu, app title, search bar, notifications bell with mat-badge, and user profile dropdown
-- Responsive design that collapses sidebar on mobile with overlay mode
-- Navigation menu with mat-nav-list including: Dashboard, Users, Analytics, Calendar, Charts, Settings
-- Each menu item with mat-icon and proper routing
-- User profile section in sidebar footer with avatar and name
-- Smooth animations for sidebar toggle and menu item hover effects
-- Include all necessary imports and routing setup
+Create comprehensive Angular Material app layout with:
+- mat-sidenav-container with mat-sidenav for collapsible sidebar navigation
+- mat-toolbar header with mat-icon hamburger menu, app title, mat-form-field search with mat-autocomplete
+- mat-badge notifications bell, mat-menu user profile dropdown with mat-list-item options
+- Responsive design using Angular Flex Layout that collapses sidebar on mobile with 'over' mode
+- Navigation menu with mat-nav-list including: Dashboard, Users, Analytics, Calendar, Charts, Settings, Reports
+- Each menu item with mat-list-item, mat-icon, routerLink, and routerLinkActive for highlighting
+- mat-expansion-panel for nested menu items with sub-navigation
+- User profile section in sidebar footer with mat-card, mat-avatar, and user details
+- Smooth Angular animations for sidebar toggle, menu expansion, and hover effects
+- mat-divider separators between menu sections
+- Include all Material module imports, routing configuration, and responsive breakpoints
+- Add mat-progress-bar for loading states and mat-snack-bar for notifications
 ```
 
 ---
@@ -141,23 +183,31 @@ Create complete authentication system with:
 ng generate component components/charts/pie-chart
 ng generate component components/charts/bar-chart
 ng generate component components/charts/line-chart
-ng generate pages/analytics
+ng generate component components/charts/doughnut-chart
+ng generate component components/charts/area-chart
+ng generate component components/charts/chart-dashboard
+ng generate component pages/analytics
+ng generate service shared/chart-config
 ```
 
-### 11. Cursor Prompt - Chart Components
+### 11. Cursor Prompt - Material Chart Components
 ```
-Create Angular Material chart components using Chart.js with:
-- PieChartComponent with mat-card wrapper, dynamic data binding, and theme integration
-- BarChartComponent with responsive design and interactive tooltips
-- LineChartComponent with real-time data updates and zoom functionality
-- Chart configuration service for consistent styling across all charts
-- Color schemes that adapt to light/dark themes automatically
-- Loading states with mat-progress-spinner while data loads
-- Error handling with user-friendly messages in mat-snack-bar
-- Export functionality for charts as PNG/PDF
-- Responsive design that works on mobile devices
-- TypeScript interfaces for chart data and configuration
-- Include all necessary Chart.js imports and Material components
+Create comprehensive Angular Material chart components using Chart.js with:
+- PieChartComponent with mat-card wrapper, mat-card-header with mat-icon, dynamic data binding, and theme integration
+- BarChartComponent with mat-card container, mat-toolbar actions, responsive design and interactive tooltips
+- LineChartComponent with mat-card layout, real-time data updates, zoom functionality, and mat-button controls
+- DoughnutChartComponent with mat-card wrapper and center text display using Angular Material typography
+- AreaChartComponent with mat-card container and gradient fills matching Material theme colors
+- ChartConfigService for consistent Material Design styling across all charts with theme-aware color palettes
+- Color schemes that automatically adapt to Angular Material light/dark themes using CSS custom properties
+- Loading states with mat-progress-spinner and mat-card-content skeleton screens
+- Error handling with user-friendly messages using mat-snack-bar and mat-error components
+- Export functionality with mat-menu dropdown offering PNG/PDF/SVG options using mat-menu-item
+- Chart controls using mat-button-toggle-group for view switching and mat-slider for data range
+- Responsive design with Angular Flex Layout that adapts chart size for mobile devices
+- mat-tooltip for chart data points and legends with Material Design styling
+- TypeScript interfaces for chart data, configuration, and theme integration
+- Include all Chart.js imports, Material module imports, and proper component lifecycle hooks
 ```
 
 ### 12. Cursor Prompt - Analytics Dashboard
@@ -440,6 +490,100 @@ webpack-bundle-analyzer dist/admin-dashboard/stats.json
 - [ ] Production-ready build configuration
 
 **🎉 Result: Complete, modern, animated Angular Material admin dashboard ready for production use!**
+
+---
+
+## 🎨 Additional Angular Material Components
+
+### 29. Generate Advanced Material Components
+```bash
+ng generate component components/dashboard/dashboard-grid
+ng generate component components/dashboard/kpi-cards
+ng generate component components/data-visualization/data-widgets
+ng generate component components/forms/dynamic-form
+ng generate component components/ui/material-toolbar-advanced
+ng generate component components/ui/material-sidebar-advanced
+```
+
+### 30. Cursor Prompt - Advanced Material Dashboard Grid
+```
+Create sophisticated Angular Material dashboard grid with:
+- mat-grid-list with responsive tiles using Angular Flex Layout breakpoints
+- Dashboard widgets using mat-card with mat-card-header, mat-icon, and mat-card-actions
+- Draggable and resizable widgets using Angular CDK drag-drop with Material Design feedback
+- Widget configuration panel using mat-bottom-sheet with mat-form-field controls
+- KPI cards with mat-card, mat-progress-bar for metrics, and mat-chip for status indicators
+- Real-time data updates with WebSocket integration and mat-badge for notifications
+- Custom Material dashboard layout service for widget positioning and persistence
+- Export dashboard configuration using mat-menu with mat-list-item options
+- Responsive grid that adapts widget sizes using Angular Flex Layout directives
+- Loading states with mat-skeleton-loader and mat-progress-spinner components
+- Include all CDK imports, Material modules, and proper TypeScript interfaces
+```
+
+### 31. Cursor Prompt - Material Form Builder
+```
+Create dynamic form builder using Angular Material with:
+- Dynamic form generation using mat-form-field with various input types
+- Form controls: mat-input, mat-select, mat-checkbox, mat-radio-group, mat-datepicker, mat-slider
+- Form validation with mat-error messages and real-time feedback using mat-hint
+- Multi-step forms using mat-stepper with mat-step and navigation controls
+- File upload with drag-drop using mat-card and Angular CDK drag-drop
+- Form templates using mat-expansion-panel for organized sections
+- Auto-save functionality with mat-progress-bar indicator and mat-snack-bar confirmations
+- Form preview using mat-dialog with read-only Material components
+- Export/import form definitions using mat-menu and JSON handling
+- Responsive form layout using Angular Flex Layout with proper spacing
+- Include reactive forms, validation patterns, and all Material form modules
+```
+
+### 32. Cursor Prompt - Material Data Visualization Widgets
+```
+Create advanced data visualization widgets with Angular Material:
+- Widget library using mat-card containers with configurable chart types
+- Interactive legends using mat-chip-list with toggle functionality
+- Data filtering panel using mat-expansion-panel with mat-form-field controls
+- Real-time data streaming with WebSocket and mat-progress-bar indicators
+- Chart comparison view using mat-tab-group for multiple chart displays
+- Data export options using mat-menu with CSV, Excel, PDF format options
+- Widget sharing using mat-dialog with social media integration and mat-button actions
+- Performance metrics display using mat-card with mat-list for key-value pairs
+- Customizable color themes using mat-select with Material color palettes
+- Mobile-optimized widgets using Angular Flex Layout responsive directives
+- Include Chart.js integration, Material theming, and TypeScript data interfaces
+```
+
+### 33. Cursor Prompt - Material Advanced Search & Filters
+```
+Create comprehensive search and filtering system with Angular Material:
+- Global search using mat-autocomplete with category-based results
+- Advanced filter panel using mat-expansion-panel with multiple mat-form-field controls
+- Date range filtering using mat-date-range-picker with preset options
+- Tag-based filtering using mat-chip-list with removable mat-chip elements
+- Saved search functionality using mat-menu with mat-list for saved queries
+- Search suggestions using mat-autocomplete with recent searches and trending items
+- Filter presets using mat-button-toggle-group for quick filter application
+- Search results highlighting using Angular Material typography and mat-chip
+- Export filtered results using mat-menu with various format options
+- Search analytics using mat-card widgets to display search metrics
+- Include debouncing, caching, and all necessary Material search modules
+```
+
+### 34. Cursor Prompt - Material Notification Center
+```
+Create comprehensive notification system using Angular Material:
+- Notification center using mat-sidenav with mat-list for notification items
+- Push notifications using Angular Service Worker with mat-snack-bar display
+- Notification categories using mat-tab-group with mat-badge counters
+- Notification actions using mat-button and mat-menu for mark as read/delete
+- Real-time notifications using WebSocket with mat-icon status indicators
+- Notification preferences using mat-slide-toggle and mat-checkbox controls
+- Email digest settings using mat-form-field and mat-select for frequency
+- Notification history using mat-table with mat-paginator and mat-sort
+- Custom notification templates using mat-card with rich content support
+- Sound and visual alerts using Angular animations and HTML5 audio API
+- Include PWA notification support, Material theming, and proper TypeScript interfaces
+```
 
 ---
 

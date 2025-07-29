@@ -101,9 +101,9 @@
 2. Staff creates comprehensive patient profile including:
    - Personal information (name, address, contact details)
    - Medical history and current conditions
-   - Insurance information and coverage details
    - Emergency contact information
    - Allergies and medication sensitivities
+   - Payment preferences (cash, check)
 3. System generates unique patient ID for medical records
 4. Patient information encrypted and stored securely
 5. Profile accessible across all authorized system users
@@ -111,7 +111,7 @@
 **Business Rules**:
 - HIPAA compliance for all patient data handling
 - Mandatory fields enforced for complete medical records
-- Insurance verification integration where applicable
+- Payment policies clearly explained during registration
 - Patient consent tracking for data usage
 
 ### **UC-006: Patient Search & Quick Access**
@@ -228,14 +228,14 @@
    - Cost breakdown for each treatment
    - Alternative treatment options
 3. Treatment plan shared with patient for approval
-4. Insurance pre-authorization handled if required
+4. Payment requirements discussed and confirmed
 5. Treatment schedule integrated with appointment calendar
 6. Progress tracking throughout treatment completion
 
 **Business Rules**:
 - All treatments require proper medical documentation
 - Patient consent required before treatment initiation
-- Insurance coverage verification for billing accuracy
+- Payment confirmation required before treatment initiation
 - Treatment modification tracking for medical liability
 
 ### **UC-012: Medical Procedure Recording**
@@ -266,7 +266,7 @@
 3. Track treatment plan progress and completion rates
 4. Monitor patient response to various treatments
 5. Identify patterns in treatment success for quality improvement
-6. Generate treatment reports for insurance or referrals
+6. Generate treatment reports for patient records or referrals
 
 **Business Value**: Evidence-based treatment monitoring improving patient outcomes.
 
@@ -355,7 +355,7 @@
    - Daily, weekly, monthly, and annual trends
    - Revenue by treatment type and procedure
    - Doctor productivity and billing analysis
-   - Insurance vs. private pay breakdowns
+   - Cash vs. check payment breakdowns
 3. Expense tracking including staff, supplies, and overhead
 4. Profitability analysis by treatment and patient
 5. Budget planning and financial forecasting tools
@@ -469,7 +469,7 @@
 **Business Flow**:
 1. Generate comprehensive medical reports for various purposes:
    - Patient treatment summaries for referrals
-   - Insurance documentation and claim support
+   - Payment records and billing documentation
    - Regulatory compliance and audit reports
    - Medical research and case study documentation
 2. Automated report generation with customizable templates
@@ -559,7 +559,7 @@
 1. Integration with common dental practice systems:
    - Digital imaging and X-ray systems
    - Laboratory systems for test results
-   - Insurance verification and claims processing
+   - Payment processing and cash management systems
    - Accounting and financial management systems
 2. API-based data exchange with authorized systems
 3. Data synchronization and conflict resolution

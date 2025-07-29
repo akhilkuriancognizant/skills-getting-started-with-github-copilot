@@ -282,31 +282,7 @@ Dependencies: Data services before visualization
 - **Prompt 60**: Create Export Service (Requires Analytics services)
 - **Prompt 61**: Create Medical Report Generator (Requires Prompt 60)
 
-#### **PHASE 10: AI SYSTEM FOUNDATION (Prompts 64-67, 102, 105)**
-```
-Sequential Order: 64 → 65 → 102 → 105 → 66 → 67
-Dependencies: AI infrastructure before specific features
-```
-- **Prompt 64**: Setup AI Service Project (AI Foundation)
-- **Prompt 65**: Create Medical Knowledge Base (Requires Prompt 64)
-- **Prompt 102**: Create Advanced AI Medical Analysis (Requires Prompt 65)
-- **Prompt 105**: Create AI Knowledge Base Enhancement (Requires Prompt 102)
-- **Prompt 66**: Create Clinic Suggestions API (Requires Prompt 105)
-- **Prompt 67**: Create Web Suggestions API (Requires Prompt 105)
-
-#### **PHASE 11: AI CHAT INTEGRATION (Prompts 68-73)**
-```
-Sequential Order: 68 → 69 → 70 → 71 → 72 → 73
-Dependencies: AI backend before chat UI, components before integration
-```
-- **Prompt 68**: Create Chat Message Component (UI Component)
-- **Prompt 69**: Create Chat Input Component (UI Component)
-- **Prompt 70**: Create Chat Interface Layout (Requires Prompt 68,69)
-- **Prompt 71**: Create Chat Suggestion Panel (Requires Prompt 66,67,70)
-- **Prompt 72**: Create AI Service Integration (Requires Prompt 66,67)
-- **Prompt 73**: Create Chat WebSocket Service (Requires Prompt 72)
-
-#### **PHASE 12: ADVANCED UI COMPONENTS (Prompts 83-95)**
+#### **PHASE 10: ADVANCED UI COMPONENTS (Prompts 83-95)**
 ```
 Sequential Order: 83 → 84 → 90 → 91 → 92 → 93 → 94 → 95 → 85 → 86 → 87 → 88 → 89
 Dependencies: Basic UI before complex features, core components before integrations
@@ -325,7 +301,7 @@ Dependencies: Basic UI before complex features, core components before integrati
 - **Prompt 88**: Create Mobile Responsive Enhancements (Mobile)
 - **Prompt 89**: Create Error Boundary & Logging (Error Handling)
 
-#### **PHASE 13: ADVANCED FEATURES & INTEGRATION (Prompts 62-63)**
+#### **PHASE 11: ADVANCED FEATURES & INTEGRATION (Prompts 62-63)**
 ```
 Sequential Order: 62 → 63
 Dependencies: Core system before advanced features
@@ -333,7 +309,7 @@ Dependencies: Core system before advanced features
 - **Prompt 62**: Create Notification System (Requires Prompt 85,91)
 - **Prompt 63**: Create File Upload Component (Requires Prompt 98)
 
-#### **PHASE 14: ADVANCED DASHBOARDS (Prompts 74-79)**
+#### **PHASE 12: ADVANCED DASHBOARDS (Prompts 74-79)**
 ```
 Sequential Order: 74 → 75 → 76 → 77 → 78 → 79
 Dependencies: Analytics services and charts before dashboards
@@ -344,6 +320,30 @@ Dependencies: Analytics services and charts before dashboards
 - **Prompt 77**: Create Financial Reports (Requires Prompt 56,58)
 - **Prompt 78**: Create Appointment Analytics (Requires Prompt 57)
 - **Prompt 79**: Create System Health Dashboard (System Monitoring)
+
+#### **PHASE 13: AI SYSTEM FOUNDATION (Prompts 64-67, 102, 105)**
+```
+Sequential Order: 64 → 65 → 102 → 105 → 66 → 67
+Dependencies: Complete system before AI enhancement
+```
+- **Prompt 64**: Setup AI Service Project (AI Foundation)
+- **Prompt 65**: Create Medical Knowledge Base (Requires Prompt 64)
+- **Prompt 102**: Create Advanced AI Medical Analysis (Requires Prompt 65)
+- **Prompt 105**: Create AI Knowledge Base Enhancement (Requires Prompt 102)
+- **Prompt 66**: Create Clinic Suggestions API (Requires Prompt 105)
+- **Prompt 67**: Create Web Suggestions API (Requires Prompt 105)
+
+#### **PHASE 14: AI CHAT INTEGRATION (Prompts 68-73)**
+```
+Sequential Order: 68 → 69 → 70 → 71 → 72 → 73
+Dependencies: AI backend before chat UI, components before integration
+```
+- **Prompt 68**: Create Chat Message Component (UI Component)
+- **Prompt 69**: Create Chat Input Component (UI Component)
+- **Prompt 70**: Create Chat Interface Layout (Requires Prompt 68,69)
+- **Prompt 71**: Create Chat Suggestion Panel (Requires Prompt 66,67,70)
+- **Prompt 72**: Create AI Service Integration (Requires Prompt 66,67)
+- **Prompt 73**: Create Chat WebSocket Service (Requires Prompt 72)
 
 #### **PHASE 15: PRODUCTION DEPLOYMENT (Prompts 80-82)**
 ```
@@ -370,19 +370,20 @@ PHASE 6 (Appointments):      37 → 38 → 39 → 40 → 41 → 42 → 43 → 44
 PHASE 7 (Inventory/Billing): 49 → 50 → 51 → 52 → 53 → 54 → 55
 PHASE 8 (Advanced Backend):  97 → 98 → 99 → 100 → 101 → 102 → 104 → 105
 PHASE 9 (Analytics):         56 → 57 → 58 → 59 → 60 → 61 → 62
-PHASE 10 (AI Foundation):    65 → 66 → 103 → 106 → 67 → 68
-PHASE 11 (AI Chat):          69 → 70 → 71 → 72 → 73 → 74
-PHASE 12 (Advanced UI):      84 → 85 → 91 → 92 → 93 → 94 → 95 → 96 → 86 → 87 → 88 → 89 → 90
-PHASE 13 (Integration):      63 → 64
-PHASE 14 (Dashboards):       75 → 76 → 77 → 78 → 79 → 80
+PHASE 10 (Advanced UI):      84 → 85 → 91 → 92 → 93 → 94 → 95 → 96 → 86 → 87 → 88 → 89 → 90
+PHASE 11 (Integration):      63 → 64
+PHASE 12 (Dashboards):       75 → 76 → 77 → 78 → 79 → 80
+PHASE 13 (AI Foundation):    65 → 66 → 103 → 106 → 67 → 68
+PHASE 14 (AI Chat):          69 → 70 → 71 → 72 → 73 → 74
 PHASE 15 (Production):       81 → 82 → 83
 ```
 
 ### **🔄 DEPENDENCY VALIDATION:**
 - ✅ **Backend First**: All entities/services before frontend components
 - ✅ **Security Early**: Authentication system before business logic
-- ✅ **UI Foundation**: Base components before complex features  
-- ✅ **AI Last**: Core system complete before AI enhancement
+- ✅ **UI Foundation**: Base components before complex features
+- ✅ **Dashboards Before AI**: Complete core system and dashboards before AI enhancement
+- ✅ **AI Enhancement**: AI features added after core medical system is complete
 - ✅ **Production Final**: Complete system before deployment
 
 ### **⚠️ CRITICAL EXECUTION RULES:**
@@ -2512,11 +2513,11 @@ Use the template provided above and include:
 - **Phase 7 (Prompts 48-54)**: 2 days - Inventory & billing foundation
 - **Phase 8 (Prompts 96-104)**: 3-4 days - Advanced backend services
 - **Phase 9 (Prompts 55-61)**: 2-3 days - Analytics & data services
-- **Phase 10 (Prompts 64-67,102,105)**: 2-3 days - AI system foundation
-- **Phase 11 (Prompts 68-73)**: 2 days - AI chat integration
-- **Phase 12 (Prompts 83-95)**: 3-4 days - Advanced UI components
-- **Phase 13 (Prompts 62-63)**: 1 day - Advanced features integration
-- **Phase 14 (Prompts 74-79)**: 2 days - Advanced dashboards
+- **Phase 10 (Prompts 83-95)**: 3-4 days - Advanced UI components
+- **Phase 11 (Prompts 62-63)**: 1 day - Advanced features integration
+- **Phase 12 (Prompts 74-79)**: 2 days - Advanced dashboards
+- **Phase 13 (Prompts 64-67,102,105)**: 2-3 days - AI system foundation
+- **Phase 14 (Prompts 68-73)**: 2 days - AI chat integration
 - **Phase 15 (Prompts 80-82)**: 1-2 days - Production deployment
 
 **Total estimated time: 30-40 days for complete system**

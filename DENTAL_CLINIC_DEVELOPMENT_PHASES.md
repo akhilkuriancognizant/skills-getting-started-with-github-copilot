@@ -49,18 +49,18 @@ dental-clinic-management/
 ```
 
 ## 🎯 **OPTIMIZED PHASE OVERVIEW & TIMELINE**
-- **Phase 1 (Prompts 1-11)**: 2-3 days - Project Foundation & Angular Setup
-- **Phase 2 (Prompts 12-23)**: 3-4 days - Authentication & Security
-- **Phase 3 (Prompts 24-35)**: 4-5 days - Patient Management System
-- **Phase 4 (Prompts 36-47)**: 4-5 days - Appointments & Scheduling
-- **Phase 5 (Prompts 48-54)**: 2-3 days - Inventory & Billing Foundation
-- **Phase 6 (Prompts 55-61)**: 2-3 days - Analytics & Reporting
-- **Phase 7 (Prompts 62-63)**: 1 day - Advanced Features Integration
-- **Phase 8 (Prompts 64-79)**: 2 days - Advanced Dashboards
-- **Phase 9 (Prompts 80-95)**: 3-4 days - Advanced UI Components
-- **Phase 10 (Prompts 96-104)**: 3-4 days - Backend Services Enhancement
-- **Phase 11 (Prompts 105-110)**: 2-3 days - Production Deployment
-- **Phase 12 (Prompts 111-120)**: 3-4 days - AI Chat System Integration (PRIORITY)
+- **Phase 1 (Prompts 1-10)**: 2-3 days - Project Foundation & Angular Setup
+- **Phase 2 (Prompts 11-22)**: 3-4 days - Authentication & Security
+- **Phase 3 (Prompts 23-34)**: 4-5 days - Patient Management System
+- **Phase 4 (Prompts 35-46)**: 4-5 days - Appointments & Scheduling
+- **Phase 5 (Prompts 47-53)**: 2-3 days - Inventory & Billing Foundation
+- **Phase 6 (Prompts 54-60)**: 2-3 days - Analytics & Reporting
+- **Phase 7 (Prompts 61-62)**: 1 day - Advanced Features Integration
+- **Phase 8 (Prompts 63-68)**: 2 days - Advanced Dashboards
+- **Phase 9 (Prompts 69-84)**: 3-4 days - Advanced UI Components
+- **Phase 10 (Prompts 85-93)**: 3-4 days - Backend Services Enhancement
+- **Phase 11 (Prompts 94-99)**: 2-3 days - Production Deployment
+- **Phase 12 (Prompts 100-109)**: 3-4 days - AI Chat System Integration (PRIORITY)
 
 **Total Estimated Time: 32-45 days**
 
@@ -68,22 +68,14 @@ dental-clinic-management/
 
 # 🚀 PHASE 1: PROJECT FOUNDATION & ANGULAR SETUP (2-3 days)
 
-## **Prompt 1: Create Root Project Directory**
-**Category**: other-prompts
-```bash
-mkdir dental-clinic-management && cd dental-clinic-management
-mkdir -p prompts-history/{frontend,backend,ai-service,db-query,other-prompts}
-echo "# Dental Clinic Management System" > README.md
-```
-
-## **Prompt 2: Initialize Angular Frontend Project**
+## **Prompt 1: Initialize Angular Frontend Project**
 **Category**: frontend
 ```bash
 ng new frontend --routing --style=scss --package-manager=npm
 cd frontend
 ```
 
-## **Prompt 3: Add Angular Material to Frontend**
+## **Prompt 2: Add Angular Material to Frontend**
 **Category**: frontend
 ```bash
 cd frontend
@@ -93,7 +85,7 @@ npm install @angular/flex-layout chart.js ng2-charts angular-calendar date-fns
 npm install @angular/material-moment-adapter moment
 ```
 
-## **Prompt 4: Create Angular Material Theme System**
+## **Prompt 3: Create Angular Material Theme System**
 **Category**: frontend
 **Files**: `frontend/src/app/shared/material.module.ts`, `frontend/src/styles.scss`
 
@@ -104,7 +96,7 @@ Create comprehensive Angular Material module with all necessary imports:
 - Custom blue/pink/red theme with dark/light mode toggle
 - Typography with Roboto font and responsive breakpoints
 
-## **Prompt 5: Create Main App Layout Structure**
+## **Prompt 4: Create Main App Layout Structure**
 **Category**: frontend
 **Files**: `frontend/src/app/layout/app-layout.component.ts`
 
@@ -115,7 +107,7 @@ Generate Angular Material layout component with:
 - Dashboard, Patients, Appointments, Treatments, Inventory, Billing, Analytics, Settings
 - Each menu item with appropriate mat-icon and routerLink
 
-## **Prompt 6: Initialize Spring Boot Backend**
+## **Prompt 5: Initialize Spring Boot Backend**
 **Category**: other-prompts
 ```bash
 cd dental-clinic-management
@@ -123,7 +115,7 @@ mkdir backend && cd backend
 # Use Spring Initializr to create project with: Spring Web, Spring Security, Spring Data JPA, H2 Database, Validation
 ```
 
-## **Prompt 7: Configure Spring Boot Application Properties**
+## **Prompt 6: Configure Spring Boot Application Properties**
 **Category**: backend
 **Files**: `backend/src/main/resources/application.yml`
 
@@ -134,7 +126,7 @@ Create application.yml configuration:
 - JPA and logging configurations
 - Profile-based settings (dev, prod)
 
-## **Prompt 8: Create Core Spring Boot Entity Models**
+## **Prompt 7: Create Core Spring Boot Entity Models**
 **Category**: backend
 **Files**: `backend/src/main/java/com/dentalclinic/entity/User.java`
 
@@ -143,7 +135,7 @@ Create User entity with JPA annotations:
 - Role enum: ADMIN, DOCTOR, RECEPTIONIST
 - Validation annotations and proper constructors
 
-## **Prompt 9: Create Patient Entity Model**
+## **Prompt 8: Create Patient Entity Model**
 **Category**: backend
 **Files**: `backend/src/main/java/com/dentalclinic/entity/Patient.java`
 
@@ -152,7 +144,7 @@ Create Patient entity:
 - Additional: emergencyContact, medicalHistory, allergies, createdAt, updatedAt
 - Proper JPA annotations and validation
 
-## **Prompt 10: Create Appointment & Treatment Entities**
+## **Prompt 9: Create Appointment & Treatment Entities**
 **Category**: backend
 **Files**: `backend/src/main/java/com/dentalclinic/entity/Appointment.java`, `backend/src/main/java/com/dentalclinic/entity/Treatment.java`
 
@@ -161,7 +153,7 @@ Create entities for:
 - **Treatment**: id, name, description, duration, cost, category, isActive
 - Proper relationships and status enums
 
-## **Prompt 11: Setup Angular Routing Foundation**
+## **Prompt 10: Setup Angular Routing Foundation**
 **Category**: frontend
 **Files**: `frontend/src/app/app-routing.module.ts`
 
@@ -175,7 +167,7 @@ Configure basic routing with lazy loading:
 
 # 🔐 PHASE 2: AUTHENTICATION & SECURITY (3-4 days)
 
-## **Prompt 12: Create Spring Security Configuration**
+## **Prompt 11: Create Spring Security Configuration**
 **Category**: backend
 **Files**: `backend/src/main/java/com/dentalclinic/config/SecurityConfig.java`
 

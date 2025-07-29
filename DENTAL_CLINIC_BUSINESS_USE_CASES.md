@@ -80,13 +80,17 @@
 2. Monitor daily appointment schedule with patient details
 3. Track patient check-ins and waiting room status
 4. Access patient contact information for manual confirmations
-5. View daily cash collections and payment tracking
-6. Handle appointment rescheduling and cancellations manually
-7. Monitor medicine inventory levels and dispensing requirements
-8. Access standard pricing for patient cost estimates
-9. Manage cash drawer and daily payment collections
+5. Receive automated treatment completion notifications from doctors
+6. View automatically generated bills when treatments completed:
+   - Complete procedure details with costs
+   - Prescribed medications with dosages and pricing
+   - Total treatment cost calculations
+   - Patient diagnosis and treatment summary
+7. Print comprehensive treatment bills and prescriptions for patients
+8. Process immediate payments and update payment records
+9. Monitor inventory alerts for low stock medications
 
-**Business Value**: Centralized reception operations managing scheduling, billing, inventory, and patient communication efficiently.
+**Business Value**: Streamlined reception operations with automated billing integration and comprehensive treatment documentation.
 
 ---
 
@@ -270,11 +274,39 @@
 
 **Business Value**: Evidence-based treatment monitoring improving patient outcomes.
 
+### **UC-014: Doctor Treatment Completion & Prescription System**
+
+**Primary Actor**: Doctor
+
+**Business Flow**:
+1. Doctor completes patient examination and treatment
+2. Doctor records comprehensive treatment details:
+   - Primary diagnosis and condition assessment
+   - All procedures performed with medical codes
+   - Medications prescribed with specific dosages
+   - Treatment recommendations and follow-up instructions
+3. Doctor specifies medication prescriptions:
+   - Medicine name and strength
+   - Dosage instructions (frequency, duration)
+   - Quantity to be dispensed from clinic inventory
+4. System automatically calculates costs:
+   - Retrieves procedure costs from admin-defined pricing
+   - Calculates medicine costs based on prescribed quantities
+   - Includes any supplies or materials used during treatment
+5. Doctor clicks "Complete Appointment" to finalize:
+   - Treatment summary saved to patient records
+   - Automated billing generated with all costs
+   - Inventory automatically updated for prescribed medicines
+   - Receptionist immediately notified of completed treatment
+6. Complete treatment package sent to receptionist for patient checkout
+
+**Business Value**: Comprehensive treatment documentation with automated cost calculation and seamless billing integration.
+
 ---
 
 ## **💊 INVENTORY & SUPPLY MANAGEMENT**
 
-### **UC-014: Medical Inventory Tracking**
+### **UC-015: Medical Inventory Tracking**
 
 **Primary Actor**: Admin, Doctor
 
@@ -296,26 +328,29 @@
 - Usage tracking for controlled substances compliance
 - Cost tracking for procedure profitability analysis
 
-### **UC-015: Receptionist Medicine Packing & Inventory**
+### **UC-016: Automated Medical Inventory & Cost Tracking**
 
-**Primary Actor**: Receptionist
+**Primary Actor**: Admin, Doctor
 
 **Business Flow**:
-1. Doctor prescribes medication and informs receptionist
-2. Receptionist locates required medicines from clinic inventory
-3. Receptionist manually counts and packages prescribed medications:
-   - Verifies dosage and quantity prescribed
-   - Uses small bottles or packets for individual patient doses
-   - Writes patient name and dosage instructions on packaging
-4. Receptionist manually updates inventory ledger:
-   - Records medicines dispensed and quantities
-   - Notes remaining stock levels
-   - Identifies low stock items for reordering
-5. Patient receives packaged medicines with verbal instructions
-6. Receptionist creates manual record of dispensed medications
-7. Low stock items reported to admin for ordering
+1. Admin sets up inventory system with medicines and supplies:
+   - Medical supplies with unit costs and stock levels
+   - Medications with dosage forms and pricing
+   - Treatment procedures with associated costs
+2. System automatically tracks inventory usage:
+   - Real-time stock level monitoring
+   - Automatic deduction when medicines prescribed
+   - Low stock alerts for reordering
+3. Doctor records procedures and prescriptions:
+   - Treatment procedures performed with costs
+   - Medications prescribed with dosage and quantity
+   - System automatically calculates total costs
+4. Automated cost calculation includes:
+   - Procedure fees from admin-defined pricing
+   - Medicine costs based on prescribed quantities
+   - Supply costs used during treatment
 
-**Business Value**: Direct patient service and careful medication management ensuring proper dosage and inventory control.
+**Business Value**: Accurate inventory management and automated cost calculation ensuring precise billing and stock control.
 
 ---
 
@@ -345,7 +380,7 @@
 - Emergency treatments require payment guarantee
 - Clear pricing displayed in reception area
 
-### **UC-017: Financial Reporting & Analytics**
+### **UC-018: Financial Reporting & Analytics**
 
 **Primary Actor**: Admin, Clinic Owner
 
@@ -363,24 +398,31 @@
 
 **Business Value**: Complete financial visibility enabling strategic business decisions.
 
-### **UC-018: Simple Treatment Billing**
+### **UC-017: Doctor Treatment Completion & Automated Billing**
 
-**Primary Actor**: Receptionist
+**Primary Actor**: Doctor, Receptionist
 
 **Business Flow**:
-1. After treatment completion, doctor informs receptionist of procedures performed
-2. Receptionist creates simple invoice including:
-   - Procedures performed with clear descriptions
-   - Standard clinic fees for each procedure
-   - Total amount due
-3. Receptionist presents bill to patient at checkout
-4. Patient pays immediately via:
-   - Cash payment (preferred method)
-   - Personal check with ID verification
-5. Receptionist issues receipt for payment
-6. Payment recorded in daily cash log
+1. Doctor completes patient treatment and records:
+   - All procedures performed during visit
+   - Medications prescribed with dosage and quantity
+   - Diagnosis and treatment notes
+   - Any supplies or materials used
+2. Doctor clicks "Complete Appointment" in system
+3. System automatically generates comprehensive bill including:
+   - Detailed list of procedures with individual costs
+   - Prescribed medications with dosage, quantity, and costs
+   - Total treatment cost calculated automatically
+   - Patient diagnosis and treatment summary
+4. Bill automatically appears on receptionist screen
+5. Receptionist reviews complete treatment summary and prints:
+   - Detailed invoice for patient payment
+   - Treatment summary with diagnosis
+   - Medication prescription with dosage instructions
+6. Patient pays immediately for all services and medications
+7. System automatically updates inventory for dispensed medicines
 
-**Business Value**: Simple, immediate payment collection with transparent pricing.
+**Business Value**: Comprehensive automated billing with complete treatment documentation and accurate cost calculation.
 
 ---
 
@@ -611,16 +653,16 @@
 ## **💡 SUCCESS METRICS & BUSINESS OUTCOMES**
 
 ### **Operational Efficiency Metrics**:
-- **40% improvement** in receptionist multitasking efficiency
-- **25% decrease** in patient wait times through better scheduling
+- **60% improvement** in billing accuracy through automated cost calculation
+- **45% reduction** in treatment completion time through integrated workflows
 - **50% improvement** in appointment confirmation rates through personal calls
-- **30% reduction** in appointment scheduling conflicts
+- **35% reduction** in inventory management time through automation
 
 ### **Financial Performance Metrics**:
 - **100% cash collection rate** at time of service
 - **Zero accounts receivable** through immediate payment policy
-- **25% reduction** in billing disputes through transparent pricing
-- **15% decrease** in medication waste through careful inventory management
+- **90% reduction** in billing errors through automated cost calculation
+- **25% decrease** in medication waste through automated inventory tracking
 
 ### **Patient Experience Metrics**:
 - **95% patient satisfaction** with personal receptionist service
@@ -638,15 +680,15 @@
 
 ## **🎯 CONCLUSION**
 
-This comprehensive dental clinic management system enhances traditional dental practice operations by empowering receptionist-centered workflows with digital support tools. The system emphasizes personal patient interaction, manual verification processes, and direct cash collection while maintaining digital record keeping and medical compliance standards.
+This comprehensive dental clinic management system streamlines dental practice operations through automated billing integration and intelligent inventory management. The system combines doctor-driven treatment completion with automated cost calculation, seamless receptionist checkout processes, and real-time inventory tracking while maintaining immediate cash collection and medical compliance standards.
 
 **Key Business Benefits**:
-- **Receptionist-Centered Operations**: Empowered front desk managing scheduling, billing, and inventory
-- **Personal Patient Service**: Direct communication and manual processes building patient relationships
+- **Doctor-Driven Billing**: Automated cost calculation when doctors complete appointments
+- **Integrated Treatment Workflow**: Seamless flow from treatment completion to patient checkout
 - **Immediate Payment Collection**: 100% cash collection at time of service with zero receivables
-- **Manual Quality Control**: Personal verification of billing and careful medication dispensing
-- **Simplified Operations**: Browser-based responsive system with no mobile app complexity
-- **Cost-Effective Management**: No insurance integrations, payment gateways, or complex automation
+- **Automated Inventory Management**: Real-time tracking with automatic updates when medicines prescribed
+- **Comprehensive Documentation**: Complete treatment bills with procedures, medicines, and dosages
+- **Streamlined Operations**: Browser-based system with automated billing and inventory integration
 
 **Target ROI**: 150-200% return on investment within 12 months through improved cash collection, reduced no-shows via personal contact, and enhanced operational efficiency through receptionist multitasking.
 

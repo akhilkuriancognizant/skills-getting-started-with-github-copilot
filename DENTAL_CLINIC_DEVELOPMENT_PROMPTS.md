@@ -1,5 +1,5 @@
 # **DENTAL CLINIC MANAGEMENT SYSTEM - DEVELOPMENT PROMPTS**
-## **TailAdmin React Template Integration - OPTIMIZED FOR CURSOR & GITHUB COPILOT**
+## **Angular Material Dental Clinic Management System - OPTIMIZED FOR CURSOR & GITHUB COPILOT**
 
 ## 🚨 **CRITICAL AGENT COMPATIBILITY INSTRUCTIONS** 🚨
 
@@ -582,13 +582,13 @@ Create User entity in backend/src/main/java/com/dentalclinic/model/User.java:
 - TailAdmin overlay patterns with proper contrast ratios
 - Close button with X icon and ESC key support (TailAdmin modal patterns)
 
-📁 CREATE FILE: frontend/src/components/ui/Badge.tsx
+📁 CREATE FILE: frontend/src/app/components/ui/badge.component.ts
 - **COPY BASE**: Reference `ux/tailadmin-reference/src/components/Badges/`
 - Adapt TailAdmin badges for medical status: Active, Pending, Completed, Cancelled
 - Severity levels: Low, Medium, High, Critical
 - Color-coded for medical professionals using TailAdmin color system
 
-📁 CREATE FILE: frontend/src/components/ui/Table.tsx
+📁 CREATE FILE: frontend/src/app/components/ui/table.component.ts
 - **COPY BASE**: Reference `ux/tailadmin-reference/src/components/Tables/`
 - Use TailAdmin table patterns for medical data with sorting, filtering
 - TailAdmin striped rows: `even:bg-gray dark:even:bg-meta-4`
@@ -619,7 +619,7 @@ Create JWT security setup in backend/src/main/java/com/dentalclinic/config/:
 ```
 🎯 TASK: Create dedicated theme toggle component - frontend/src/components/ui/
 
-📁 CREATE FILE: frontend/src/components/ui/ThemeToggle.tsx
+📁 CREATE FILE: frontend/src/app/components/ui/theme-toggle.component.ts
 - **PRIMARY MODE**: Light theme (default on first load)
 - Toggle button with sun/moon icons
 - Smooth transition animations
@@ -633,12 +633,10 @@ Create JWT security setup in backend/src/main/java/com/dentalclinic/config/:
 - Switch ball: `translate-x-0` (light) / `translate-x-5` (dark)
 - Medical UI: `shadow-md rounded-lg` for professional appearance
 
-📁 IMPORTS REQUIRED:
-```typescript
-import React from 'react';
-import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
-import { useTheme } from '../../hooks/useTheme';
-```
+📁 ANGULAR MATERIAL IMPORTS:
+- Use mat-slide-toggle for theme switching
+- Import MatIconModule for sun/moon Material Design icons
+- Import ThemeService for Angular reactive theme management
 
 🔄 FUNCTIONALITY:
 - onClick: Toggle between light/dark themes
@@ -716,7 +714,7 @@ Create admin controller in backend/src/main/java/com/dentalclinic/controller/Adm
 
 ### **Prompt 16: Create TailAdmin Auth Context**
 ```
-Create authentication context in frontend/src/context/AuthContext.tsx:
+Create authentication service in frontend/src/app/services/auth.service.ts:
 
 - User state management with TailAdmin patterns
 - Login/logout functions with loading states
@@ -740,7 +738,7 @@ Create authentication service in frontend/src/services/auth/AuthService.ts:
 
 ### **Prompt 18: Create TailAdmin Login Page**
 ```
-🎯 TASK: Create COMPLETE login page - frontend/src/pages/auth/LoginPage.tsx
+🎯 TASK: Create COMPLETE login page - frontend/src/app/pages/auth/login-page.component.ts
 
 
 
@@ -761,18 +759,17 @@ Create authentication service in frontend/src/services/auth/AuthService.ts:
 - Use EXACT TailAdmin color variables from `ux/tailadmin-reference/`
 
 📁 IMPORTS REQUIRED (match TailAdmin auth page):
-```typescript
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
-```
+📁 ANGULAR IMPORTS:
+- Use Angular Material reactive forms with FormBuilder
+- Import Router for Angular navigation
+- Use Material Design icons for password visibility toggle
 
 ✅ COMPLETE: Fully functional login page with TailAdmin styling, form validation, and role-based routing
 ```
 
 ### **Prompt 19: Create Protected Route Component**
 ```
-Create protected route component in frontend/src/components/auth/ProtectedRoute.tsx:
+Create protected route guard in frontend/src/app/guards/auth.guard.ts:
 
 - Check authentication status
 - Role-based access control for medical roles
@@ -784,7 +781,7 @@ Create protected route component in frontend/src/components/auth/ProtectedRoute.
 
 ### **Prompt 20: Create TailAdmin User Management Page**
 ```
-Create user management page in frontend/src/pages/admin/UserManagement.tsx:
+Create user management page in frontend/src/app/pages/admin/user-management.component.ts:
 
 - TailAdmin data table with user information
 - Search and filter functionality
@@ -796,7 +793,7 @@ Create user management page in frontend/src/pages/admin/UserManagement.tsx:
 
 ### **Prompt 21: Create Add User Modal**
 ```
-Create add user modal in frontend/src/components/admin/AddUserModal.tsx:
+Create add user dialog in frontend/src/app/components/admin/add-user-dialog.component.ts:
 
 - TailAdmin modal design with form
 - Multi-step form for user creation
@@ -1342,12 +1339,10 @@ Create Invoice component in frontend/src/components/common/InvoiceComponent.tsx:
 - Medical colors: Blue (male), Pink (female), Green (age groups)
 - Professional healthcare styling
 
-📁 IMPORTS REQUIRED:
-```typescript
-import React from 'react';
-import { Pie, Doughnut, Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement } from 'chart.js';
-```
+📁 ANGULAR CHART IMPORTS:
+- Import Chart.js and ng2-charts for Angular integration
+- Use Angular Material cards (mat-card) for chart containers
+- Import chart types: Pie, Doughnut, Bar for medical data visualization
 
 ✅ COMPLETE: Patient demographics chart with medical styling
 ```
